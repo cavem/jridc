@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>用户单独价格</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">用户单独价格</h1>
+			<span class="pagedesc"></span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		               <div class="tableoptions">
+		                <button class="radius3" onclick="location.href='{:U('Admin/Beian/puseradd')}'">添加用户价格</button>
+                     	<br></br>
+                	<form action="{:U('Admin/Beian/puser')}" method="get">
+                	用户
+					<input type="text" name="username" id="username" value='{$username}'  value="" class="smallinput20"/>
+                    <button class="radius3">查询</button>
+                     </form>
+                </div><!--tableoptions-->
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head0">用户</th>
+							<th class="head1">价格</th>
+							<th class="head0">操作时间</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>{$vo.username}</td>
+							<td>
+								{$vo.product_price}
+							</td>
+							<td>
+								<if condition="$vo[addtime]">
+								{$vo.addtime|date='Y-m-d H:i:s',###}
+								<else/>
+								-
+								</if>
+							</td>
+							<td class="center">
+								<a href="{:U('Admin/Beian/puseredit',array('id'=>$vo['id']))}">修改</a>
+				 				<a href="{:U('Admin/Beian/puserdel',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					<empty name="data" >
+				<tr>
+				<td colspan="8">暂无数据</td>
+				</tr>
+				</empty>
+					
+				</tbody>
+				</table>
+				 <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate" style="height:30px;">
+				<div class="paginationnew">{$page}</div>
+			 </div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+var getstatusurl="{:U('Admin/Beian/state')}";
+</script>
+<script type="text/javascript">
+function get_status() {
+    var code = $("input[name='code[]']");
+    if (code.length == 0) {
+        return;
+    }
+    for (var i=0; i<code.length; i++) {
+    	codeid = code[i].value;
+        $.get(getstatusurl,{'act':'status','code':codeid},function(data){
+				if(data['status']==1){
+					$("#code_"+data['code']).html(data['icp']);
+				}else{
+					$("#code_"+data['code']).html(data['msg']);
+				}
+        },'json');
+    }
+}
+
+</script>
+<script type="text/javascript">
+get_status();
+</script>
+</body>
+</html>

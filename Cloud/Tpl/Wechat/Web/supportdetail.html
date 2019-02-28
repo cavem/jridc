@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style>
+	.support_yw { 
+		float:left;
+	}
+	.support_time { 
+		float:right;
+		margin-right:5px;
+	}
+	.support_fj { 
+		float:left;
+		margin-left:35px;
+	}
+	.grey { 
+		background:#eee;
+	}
+	.white { 
+		background:white;
+	}
+	.support_detail { 
+		box-sizing:border-box;
+		width:88%;
+		float:left;
+		border:1px solid #666;
+		-moz-box-sizing:border-box; /* Firefox */ 
+		-webkit-box-sizing:border-box; /* Safari */ 
+		border-radius:4px;
+	}
+	.clear { 
+		clear:both;
+	}
+	.answer_box {
+		border:0px solid #eee;
+		float:left
+	}
+	</style>
+<script type="text/javascript">
+
+//验证上传文件大小
+var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+function filechange(target){
+	var e_id = $(target).attr('id');
+	//验证文件类型
+	photoExt=target.value.substr(target.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+	if(photoExt!='.jpg' & photoExt!='.jpeg' & photoExt!='.pjpeg' & photoExt!='.png' & photoExt!='.gif' & photoExt!='.bmp'){
+		alert("图片格式不正确!");
+		clearObj(e_id);
+		return false;
+	}
+	//验证图片大小
+	var fileSize = 0;
+	if (isIE && !target.files) {
+		var filePath = target.value;
+		var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+		var file = fileSystem.GetFile (filePath);
+		fileSize = file.Size;
+	} else {
+		fileSize = target.files[0].size;
+	}
+	var size = fileSize / (1024*1024);
+	if(size>10){
+		alert("附件不能大于10M");
+		clearObj(e_id);
+	}
+}
+function clearObj(e_id){
+	if (document.getElementById(e_id).outerHTML) {
+		document.getElementById(e_id).outerHTML = document.getElementById(e_id).outerHTML;
+	} else {
+		document.getElementById(e_id).value = "";
+	}
+	document.getElementById(e_id).focus();
+}
+function sh(id){
+	$("#"+id).toggle(200);
+}
+</script>
+</head>
+<body >
+<div style="width:100%;border:0px solid blue;">
+	<div class="toptitle" style="width:100%;position:fixed;left:0px;top:0px;">
+		<div class="top_link">
+			<img width="30px;" style="margin-top:10px;" onclick="location.href='{:U('wechat/web/supportlist')}'" src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+		</div>
+		<div class="refresh">
+			<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+				<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+			</a>
+		</div>
+		<span>工单详情</span>
+	</div>
+	<div style="margin-top:55px;border:0px solid red;">
+		<span class='support_yw'>标题：</span>
+		<span>{$data.title}</span>
+		<div class='clear'/>
+	</div>
+	<!-- 原文 -->
+	<div style="margin-top:5px;border:0px solid red;">
+		<span class='support_yw'>原文：</span>
+		<div class='support_detail grey'>
+			<pre style='white-space:pre-wrap;'>{$data.content}</pre>
+		</div>
+		<span class='support_fj'>
+			<volist name='data.imgs' key='imgk' id='img'>
+				<a href="/{$img.path}">附件{$imgk}</a>&nbsp;
+			</volist>
+		</span>
+		<span class='support_time'>{$data.add_time|date="Y-m-d H:i:s",###}</span>
+		<div class='clear'/>
+	</div>
+	<!-- 追问及回复 -->
+	<volist name='apds' id='apd'>
+	<div style="margin-top:5px;border:0px solid red;">
+		<span class='support_yw'><if condition="$apd['type'] eq 1">追问<else/>回复</if>：</span>
+		<div class='support_detail <if condition="$apd['type'] eq 2">white<else/>grey</if>'>
+			<pre style='white-space:pre-wrap;'>{$apd.content}</pre>
+		</div>
+		<span class='support_fj'>
+			<volist name='apd.imgs' key='imgk' id='img'>
+				<a href="/{$img.path}">附件{$imgk}</a>&nbsp;
+			</volist>
+		</span>
+		<span class='support_time'>{$apd.add_time|date="Y-m-d H:i:s",###}</span>
+		<div class='clear'/>
+	</div>
+	</volist>
+	<!-- 评价追问 -->
+	<if condition='($data[status] neq 5)and($data[status] neq 9)'>
+	<!-- 发起评价 -->
+		<div style="margin-top:5px;border:0px solid red;margin-bottom:10px;">
+			<span onclick="sh('comment')" style='color:blue'>如果您的工单已完成，请点击此处评价并关闭工单。</span>
+			<div id="comment" style="display:none;">
+				<form action="{:U('wechat/web/comment')}" method="post">
+					<p>这样的回复有帮助吗?</p>
+					<div>
+						<input type="radio" name="comment_rank" value="1" id="rate_1" />差
+						<input type="radio" name="comment_rank" value="2" id="rate_2" />一般
+						<input type="radio" name="comment_rank" value="3" id="rate_3" checked="checked" />好
+						<input type="radio" name="comment_rank" value="4" id="rate_4" />很好
+						<input type="radio" name="comment_rank" value="5" id="rate_5" />非常好
+					</div>
+					<div>
+						<textarea rows="5" cols="50" name='comment'></textarea>
+					</div>
+					<div class="form-submit">
+						<input type="submit" value="关闭工单" />
+						<input type="hidden" name="id" value="{$data.id}" />
+					</div>
+				</form>
+			</div>
+		</div>
+	<!-- 发起追问 -->
+		<div style="margin-top:5px;border:0px solid red;margin-bottom:10px;">
+			<form id='zwform' class="stdform formvalidate" action="{:U('wechat/web/supportdetail')}" method="post" enctype="multipart/form-data">
+			<span class='support_yw'><if condition="$apd['type'] eq 1">追问<else/>回复</if>：</span>
+			<div class="answer_box">
+				<textarea name='content' rows="15" cols="40" style='border: 1px solid #e2e2e2;'></textarea><br/>
+				<input type="file" name="upfile1" id='upfile1' onchange='filechange(this);'/><br/>
+				<input type="file" name="upfile2" id='upfile2' onchange='filechange(this);'/><br/>
+				<input type="file" name="upfile3" id='upfile3' onchange='filechange(this);'/><br/>
+				<input type='hidden' name='id' value='{$data.id}'/>
+				<input type='submit' value='提交'/>
+			</div>
+			<div class='clear'/>
+			</form>
+		</div>
+	<else/>
+		<!-- 显示完成状态 -->
+		<div style="margin-top:5px;border:0px solid red;margin-bottom:10px;">
+			该工单已<if condition='$data[status] eq 5'>完成</if><if condition='$data[status] eq 9'>取消</if>
+			<notempty name='data[comment_rank]'>
+				，评分为:
+				<if condition='$data[comment_rank] eq 1'>差</if>
+				<if condition='$data[comment_rank] eq 2'>一般</if>
+				<if condition='$data[comment_rank] eq 3'>好</if>
+				<if condition='$data[comment_rank] eq 4'>很好</if>
+				<if condition='$data[comment_rank] eq 5'>非常好</if>
+			</notempty>
+			<notempty name='data[comment]'><br/>
+				<span class='support_yw'>评论：</span>
+				<div class='support_detail grey'>
+					<pre style='white-space:pre-wrap;'>{$data.comment}</pre>
+				</div>
+				<br/>
+				<br/>
+			</notempty>
+		</div>
+	</if>
+	
+</div>
+</body>
+</html>

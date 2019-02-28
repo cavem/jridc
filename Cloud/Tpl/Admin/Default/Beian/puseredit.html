@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>服务号价格配置</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">用户价格配置</h1>
+            <span class="pagedesc"></span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	       	<form class="stdform formvalidate" action="{:U('Admin/Beian/puseredit')}" method="post">
+	    			   	<p>
+                        <label>用户名</label>
+                           <span class="field">
+                           {$data.username}
+                           </span>
+                        </p>
+                        <p>
+                        <label>单价</label>
+                           <span class="field">
+                            <input type="text" value="{$data.product_price}" name="product_price" id="product_price" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                               	个
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                     	   <input type="hidden" id="id" name="id" value="{$data.id}">
+                       		<input type="submit" class="submit radius2 submitedit" value="修改"  />
+                        </p>
+                    </form>
+                    </div>
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

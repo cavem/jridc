@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>会员详情</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader">
+			<h1 class="pagetitle">查看用户信息</h1>
+            <ul class="hornav">
+                 <li class='current'><a href="#tabs-1">基本信息</a></li>
+                 <li><a href="#tabs-2">用户组</a></li>
+                 <li><a href="#tabs-3">联系人</a></li>
+            </ul>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="tabs-1" class="subcontent">
+				<form class="stdform formvalidate">
+					<p><label>用户名</label>
+						<span class="field">
+						{$data.username} 
+					</span></p>
+					<p><label>客服</label>
+					<span class="field">
+						<select name='kid' class="selectwidth20" disabled>
+							<volist name="kefus" id="vo">
+								<option value='{$vo.rank_id}' disabled='disabled'>{$vo.rank_name}</option>
+								<volist name="vo.kefus" id="voo">
+									<option value='{$voo.id}'
+									<if condition="$voo[id] eq $data['kid']">selected</if>
+									>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.kefuname}</option>
+								</volist>
+							</volist>
+						</select>
+					</span></p>
+					<p><label>Email</label>
+						<span class="field">
+						<input type="text" name="email" id="email" value='{$data.email}' class="smallinput20" disabled/>
+					</span></p>
+					<p><label>邮箱验证</label>
+					<span class="formwrapper">
+						<input disabled type="radio" name='emailv' id="emailv" value='1' 
+						<if condition='$data[emailv] eq 1'>checked</if>
+						/>是
+						<input disabled type="radio" name='emailv' id="emailv" value='0' 
+						<if condition='$data[emailv] eq 0'>checked</if>
+						/>否
+					</span></p>
+					<p><label>联系电话</label>
+						<span class="field">
+						<input disabled type="text" name="mobi" id="mobi" value='{$data.mobi}' class="smallinput20" />
+					</span></p>
+					<p><label>手机验证</label>
+					<span class="formwrapper">
+						<input disabled type="radio" name='mobiv' id="mobiv" value='1' 
+						<if condition='$data[mobiv] eq 1'>checked</if>
+						/>是
+						<input disabled type="radio" name='mobiv' id="mobiv" value='0' 
+						<if condition='$data[mobiv] eq 0'>checked</if>
+						/>否
+					</span></p>
+					<p><label>QQ</label>
+						<span class="field">
+						<input disabled type="text" name="qq" id="qq" value='{$data.qq}' class="smallinput20" />
+					</span></p>
+					<p><label>默认联系人</label>
+						<span class="field">
+						<input disabled type="text" name="conname" id="conname" value='{$data.conname}' class="smallinput20" />
+					</span></p>
+					<p><label>身份证号（或营业执照号）</label>
+						<span class="field">
+						<input disabled type="text" name="concode" id="concode" value='{$data.concode}' class="smallinput20" />
+					</span></p>
+					<p><label>所在地</label>
+						<span class="field">
+						<select disabled name='province' id='province' class="selectwidth20" onchange="loadRegion('province',2,'city','town','{:U('Admin/Ajax/getregion')}');">
+							<volist name="provinces" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['province']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>省
+						<select disabled name='city' id='city' class="selectwidth20" onchange="loadRegion('city',3,'town','','{:U('Admin/Ajax/getregion')}');">
+							<volist name="citys" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['city']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>市
+						<select disabled name='town' id='town' class="selectwidth20">
+							<volist name="towns" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['town']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>区
+					</span></p>
+					<p><label>联系地址</label>
+						<span class="field">
+						<input disabled type="text" name="address" id="address" value='{$data.address}' class="smallinput20" />
+					</span></p>
+					<p><label>邮编</label>
+						<span class="field">
+						<input disabled type="text" name="zipcode" id="zipcode" value='{$data.zipcode}' class="smallinput20" />
+					</span></p>
+					<p><label>状态</label>
+					<span class="formwrapper">
+						<input disabled type="radio" name='status' id="status" value='1' 
+						<if condition='$data[status] eq 1'>checked</if>
+						/>正常
+						<input disabled type="radio" name='status' id="status" value='0' 
+						<if condition='$data[status] eq 0'>checked</if>
+						/>已锁定
+					</span></p>
+					<p class="stdformbutton">
+						
+					   	<input type="button" class="submit radius2 " onclick="location.href='{:U('Sale/User/index')}'" value="返回"  />
+					</p>
+				</form>
+			</div>
+			<div id="tabs-2" class="subcontent" style='display:none'>
+				<form class="stdform formvalidate formuserrank">
+					<p><label>用户名</label>
+						<span class="field">
+						{$data.username}
+						</span></p>
+					<p><label>用户组</label>
+						<span class="field">
+							<select disabled name='user_rank' id='user_rank' class="selectwidth20">
+								<volist name="ranks" id="vo">
+									<option value='{$vo.rank_id}'
+									<if condition="$vo[rank_id] eq $data['user_rank']">selected</if>
+									>{$vo.rank_name}</option>
+								</volist>
+							</select>
+						</span></p>
+					<p class="stdformbutton">
+							<input type="button" class="submit radius2 " onclick="location.href='{:U('Sale/User/index')}'" value="返回"  />
+					</p>
+				</form>
+			</div>
+	
+			<div id="tabs-3" class="subcontent" style='display:none'>
+		
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head0">编号</th>
+							<th class="head1">联系人</th>
+							<th class="head0">邮箱</th>
+							<th class="head1">电话</th>
+							<th class="head0">职务</th>
+						</tr>
+					</thead>
+					<tbody>
+						<volist name="contacts" id="vo">
+						<tr>
+							<td id='conid_{$vo.id}'>{$vo.id}</td>
+							<td id='conname_{$vo.id}'>{$vo.name}</td>
+							<td id='conemail_{$vo.id}'>{$vo.email}</td>
+							<td id='conmobi_{$vo.id}'>{$vo.mobi}</td>
+							<td id='conposi_{$vo.id}' data="{$vo.position}">
+								<if condition="$vo['position'] eq 1">项目负责人</if>
+								<if condition="$vo['position'] eq 2">技术负责人</if>
+								<if condition="$vo['position'] eq 3">财务负责人</if>
+								<if condition="$vo['position'] eq 4">其他</if>
+								<if condition="$vo['position'] eq 0">请选择职位</if>
+							</td>
+						</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>产品配置</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">产品配置</h1>
+            <span class="pagedesc">操作系统</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+                   <div class="tableoptions">
+                	<form action="{:U('Admin/Loadb/product')}" method="get">
+                	所属主控
+                    <select name="masterid" id="masterid" class="selectwidth20" onChange="changemasterid(this.value)">
+                    	<option value="">--请选择--</option>
+                      	 <volist name="master" id="vo">
+                             <option value="{$vo.id}" <if condition="$vo.id  eq $masterid">selected="selected"</if>>{$vo.mastername}</option>
+                         </volist>
+                    </select> &nbsp;
+                    	资源池
+                     <select name="cid" id="cid" class="selectwidth20">
+                    	<option value="">--请选择--</option>
+                    </select> &nbsp;
+                   <button class="radius3">查询</button>
+                     </form>
+                </div><!--tableoptions-->
+                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                    <colgroup>
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                         <col class="con1" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head1">产品名称</th>
+                            <th class="head0">所属主控</th>
+                            <th class="head1">CID</th>
+                            <th class="head0">排序</th>
+                            <th class="head1">线路类型</th>
+                            <th class="head0">状态</th>
+                             <th class="head1">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data" id="vo">
+                     <tr>
+                            <td>{$vo.Cloudtype}(id:{$vo.id})</td>
+                            <td>{$vo.mastername}</td>
+                            <td class="center">{$vo.cid}</td>
+                            <td class="center">
+                                   {$vo.sort}
+                            </td>
+                            <td class="center">
+                                    <if condition="$vo[iptype] eq 1">
+					      				BGP
+					                </if>
+					                 <if condition="$vo[iptype] eq 2">
+					      				 香港 
+					                </if>
+					                 <if condition="$vo[iptype] eq 3">
+					     				 双线
+					                </if>
+					                <if condition="$vo[iptype] eq 4">
+					     				 电信
+					                </if>
+					                <if condition="$vo[iptype] eq 5">
+					     				 联通
+					                </if>
+					                <if condition="$vo[iptype] eq 6">
+					     				 国外
+					                </if>
+                            </td>
+                             <td class="center">
+                                    <if condition="$vo[status] eq 1">
+					       <img  src="__PUBLIC__/Admin/images/icons/icon_1.png" alt="启用" title="启用">
+					                          <else/>
+					       <img  src="__PUBLIC__/Admin/images/icons/icon_0.png" alt="关闭" title="关闭">
+					                             </if>
+                            </td>
+                            <td class="center">
+                			   <a href="{:U('Admin/Loadb/productname',array('id'=>$vo['id']))}" class="edit">修改产品名</a> &nbsp;
+                 			   <a href="{:U('Admin/Loadb/productedit',array('id'=>$vo['id']))}" class="edit">编辑</a> &nbsp;
+                 			   <a href="#del" >
+                  			   <span href="{:U('Admin/Loadb/productdel',array('id'=>$vo['id']))}" class="confirmbutton">删除</span>
+                  			   </a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>    
+             <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+                <div class="paginationnew">{$page}</div>
+             </div>    
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+<if condition="$masterid">getcidname({$masterid});</if>
+<if condition="$cid">var dcid={$cid};<else/>var dcid=0;</if>
+
+function changemasterid(serverid){
+	$("#cid").children().remove();	
+	if(serverid=="0" || serverid=="" ){
+	var cx_option = $("<option value=''>无此资源</option>");
+	$("#cid").append(cx_option);	
+	return false;
+	}
+	getcidname(serverid);
+}
+function getcidname(serverid){
+	$("#cid").children().remove();	
+	$.get('{:U("Admin/Ajax/getpool")}',{'id':serverid},function(data){
+		if(data.status=="success"){
+			if (data.value && data.value.length > 0) {
+			var cx_option = $("<option value=''>--请选择--</option>");
+			$("#cid").append(cx_option);	
+			for (var i=0; i<data.value.length; i++) {
+				if(data.value[i].cid==dcid){
+					var cx_option = $("<option value='"+data.value[i].cid+"' selected >"+unescape(data.value[i].name)+"</option>");
+				}else{
+					var cx_option = $("<option value='"+data.value[i].cid+"'>"+unescape(data.value[i].name)+"</option>");
+				}	
+			$("#cid").append(cx_option);
+			}
+		}else{
+			var cx_option = $("<option value=''>暂无</option>");
+			$("#cid").append(cx_option);		
+		}
+			var cid=$("#cid").val();
+			getimagename(serverid,cid);
+		}
+	});	
+}
+</script>
+
+
+
+
+</body>
+</html>

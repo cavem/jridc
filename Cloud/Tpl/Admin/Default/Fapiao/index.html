@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>发票管理</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">发票管理</h1>
+			<span class="pagedesc">发票管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+				<div class="tableoptions">
+                	<form action="{:U('Admin/Fapiao/index')}" method="get">
+                	用户名
+					<input type="text" name="username" id="username" value='{$prm_uname}' placeholder="会员名" autocomplete="off" value="" class="smallinput20"/>
+					<button class="radius3">查询</button>
+                     </form>
+                </div><!--tableoptions-->
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<colgroup>
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="head1">编号</th>
+							<th class="head0">用户名</th>
+							<th class="head1">发票编号</th>
+							<th class="head0">金额</th>
+							<th class="head1">联系人</th>
+							<th class="head0">联系电话</th>
+							<th class="head1">收取方式</th>
+							<th class="head1">地区</th>
+							<th class="head0">邮编</th>
+							<th class="head1">状态</th>
+							<th class="head0">申请时间</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					<volist name="data" id="vo">
+						<tr>
+							<td>{$vo.fid}</td>
+							<td>{$vo.username}</td>
+							<td>{$vo.fapiaonumber}</td>
+							<td>{$vo.money}</td>
+							<td>{$vo.addressee}</td>
+							<td>{$vo.phone}</td>
+							<td><if condition="$vo[ifkuaidi] eq 1">快递邮寄<else/>自取</if></td>
+							<td>{$vo.pcts}</td>
+							<td>{$vo.Postcode}</td>
+							<td><if condition="$vo[state] eq 1">未处理<else/>已处理</if></td>
+							<td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
+							<td class="center">
+				 				<a href="{:U('Admin/Fapiao/edit',array('id'=>$vo['fid']))}" class="edit">编辑</a> &nbsp;
+					 			<a href="{:U('Admin/Fapiao/del',array('id'=>$vo['fid']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+             <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+                <div class="paginationnew">{$page}</div>
+             </div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

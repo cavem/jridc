@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<include file="inc_css_js" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>微信管理平台</title>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">模版消息列表</h1>
+			<span class="pagedesc">模版消息列表</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div class="tableoptions">
+		 		<form action="{:U('Wechat/Admin/templatelist')}" method="get">
+				模版名称:
+				<input type="text" name="prm_name" id="prm_name" value='{$prm_name}' autocomplete="off" class="smallinput20"/>
+				模版ID:
+				<input type="text" name="prm_t_id" id="prm_t_id" value='{$prm_t_id}' autocomplete="off" class="smallinput20"/>
+				<button class="radius3">查询</button>
+				</form>
+			</div><!--tableoptions-->
+			<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+				<thead>
+					<tr>
+						<th class="head1">模版名称</th>
+						<th class="head0">模板ID</th>
+						<th class="head1">排序</th>
+						<th class="head0">操作</th>
+					</tr>
+				</thead>
+				<tbody id='tablelist'>
+				<volist name="data" id="vo">
+					<tr>
+						<td>{$vo.name}</td>
+						<td>{$vo.t_id}</td>
+						<td>{$vo.sort}</td>
+						<td class="center">
+			 				<a href="{:U('Wechat/Admin/templateedit',array('id'=>$vo['id']))}" class="editbutton">编辑</a>
+			 				<a href="{:U('Wechat/Admin/templatedel',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+						</td>
+					</tr>
+				</volist>
+				<empty name="data" >
+					<tr>
+						<td colspan="4">暂无数据</td>
+					</tr>
+				</empty>
+				</tbody>
+			</table>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+function setOptType(type){
+	$("#opttype").val(type);
+}
+</script>
+</body>
+</html>

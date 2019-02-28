@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>邀请码管理</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">邀请码管理</h1>
+			<span class="pagedesc">邀请码管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div class="tableoptions">
+                	<form action="{:U('Admin/Invite/index')}" method="get">
+                	用户名
+					<input type="text" name="username" id="username" value='{$prm_uname}' placeholder="会员名" autocomplete="off" value="" class="smallinput20"/>
+                    <button class="radius3">查询</button>
+                     </form>
+                </div><!--tableoptions-->
+			<form class="stdform formvalidate" action="{:U('Admin/Invite/del')}" method="post">
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<colgroup>
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+						<col class="con0" />
+						 <col class="con1" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="head0">
+								<input type='checkbox' name='checkboxall' id='checkboxall' value='0'/>
+							</th>
+							<th class="head1">编号</th>
+							<th class="head0">客服</th>
+							<th class="head1">邀请码</th>
+							<th class="head0">有效周期</th>
+							<th class="head1">状态</th>
+							<th class="head0">使用者</th>
+							<th class="head1">使用时间</th>
+							<th class="head0">添加时间</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>
+								<input type='checkbox' name='chkb{$vo.id}' id='chkb{$vo.id}' value="{$vo.id}"/>
+							</td>
+							<td>{$vo.id}</td>
+							<td>{$vo.kefuname}</td>
+							<td>{$vo.usecode}</td>
+							<td>{$vo.useday}</td>
+							<td>
+								<if condition="$vo[status] eq 1">
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_1.png" alt="启用" title="启用">
+								<else/>
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_0.png" alt="启用" title="启用">
+								</if>
+							</td>
+							<td>
+								<if condition="$vo[userid] eq 0">
+								-
+								<else/>
+								{$vo.username}
+								</if>
+							</td>
+							<td>
+								<if condition="$vo[usetime] eq 0">
+								-
+								<else/>
+								{$vo.usetime|date='Y-m-d H:i:s',###}
+								</if>
+							</td>
+							<td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+							<td class="center">
+				 				<a href="{:U('Admin/Invite/del',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+				 <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+		   		<div  style='float:left;border:0px solid #F78A29;padding:3px 3px 3px 3px;cursor:pointer;'>
+		   		<input type="submit" class="submit radius2 submitdel" value="删除"  />
+		   		</div>
+				<div class="paginationnew">{$page}</div>
+			 </div>
+			 </form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑管理员</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">编辑管理员</h1>
+            <span class="pagedesc">主要用于管理员的添加和修改操作</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	        <form class="stdform formvalidate" action="{:U('Admin/System/editadmin')}" method="post">
+                        <p>
+                        	<label>用户名</label>
+                            <span class="field">
+                            {$data.u_name}
+                            </span>
+                        </p>
+                         <p>
+                        	<label>密码</label>
+                            <span class="field">
+							 <input id="u_password" name="u_password" type="password" class="smallinput20" value=""  validate="{equalTo:'#u_password'}" /> 
+							 
+                            </span>
+                        </p>
+                          <p>
+                        	<label>确认密码</label>
+                            <span class="field">
+                              <input type="password" class="smallinput20" name="confirm_password" value=""  validate="{equalTo:'#u_password'}">
+                            </span>
+                        </p>
+                          <p>
+                        	<label>姓名</label>
+                            <span class="field">
+                             <input name="u_username" type="text" class="smallinput20" value="{$data.u_username}" size="30" maxlength="50" validate="{ username:true}" /> 
+                            </span>
+                        </p>
+                          <p>
+                        	<label>性别</label>
+                            <span class="field">
+                                    <input type="radio" <if condition="$data['u_sex'] eq 1"> checked="checked" </if> value="1" name="u_sex">男
+                                    <input type="radio" value="2" <if condition="$data['u_sex'] eq 2"> checked="checked" </if> name="u_sex">女
+                            </span>
+                        </p>
+           
+                         <p>
+                        	<label>所属组</label>
+                            <span class="field">
+						  <select name="role_id" class="selectwidth40-1" style="font-family:'Courier New',Courier,monospace;">
+                            <volist name="role" id="re">
+                                <option value="{$re.id}"  <if condition="$data[role_id] eq $re[id] ">selected</if>>{$re.name}</option>
+                            </volist>
+							</select> 
+                            
+                            </span>
+                        </p>
+                        <p>
+                        <label>手机</label>
+                            <span class="field">
+                           <input name="u_phone" id="u_phone" type="text" class="smallinput20" value="{$data.u_phone}" size="30" maxlength="50" />
+                            </span>
+                        </p>
+                       <p>
+                        <label>邮箱</label>
+                            <span class="field">
+                           <input name="u_email" type="text" class="smallinput20" value="{$data.u_email}" size="30" maxlength="50" validate="{ email:true}" /> 
+                            </span>
+                        </p>
+                         <p>
+                        <label>头像</label>
+                            <span class="field">
+                           <input name="u_photo" type="text" class="smallinput20" value="{$data.u_photo}" id="photo"   size="30"/> 
+                        <a href="javascript:upImage('photo');" id="button1" value="" class="type-file-button">上传</a>
+                            </span>
+                        </p>
+                        <p>
+                        <label>QQ</label>
+                            <span class="field">
+                           <input name="u_qq" type="text" class="smallinput20" value="{$data.u_qq}" size="30" /> 
+                            </span>
+                        </p>
+                       <p>
+                    
+                        <label>状态</label>
+                            <span class="formwrapper">
+                            	 <input type="radio" <if condition="$data['u_status'] eq 1"> checked="checked" </if> value="1" name="u_status">启用&nbsp;
+                            	 <input type="radio" <if condition="$data['u_status'] eq 0"> checked="checked" </if> value="0" name="u_status">停用</label>
+                            </span>
+                        </p>
+                          <p>
+                    
+                        <label>描述</label>
+                            <span class="formwrapper">
+                            <textarea class="text-input textarea" id="wysiwyg" name="u_description" rows="10" cols="75">{$data.u_description}</textarea>
+                            </span>
+                        </p>
+                        
+                        <p class="stdformbutton">
+                     	   <input type="hidden" name="u_id" value="{$data.u_id}">
+                        	<button class="submit radius2 submitedit">保存</button>
+                            <input type="reset" class="reset radius2" value="重置" />
+                        </p>
+                    </form>
+                    </div>
+                
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+  <script type="text/javascript">
+    window.UEDITOR_HOME_URL = "__PUBLIC__/Admin/Lib/ueditor/";
+</script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Lib/ueditor/editor_all.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Lib/ueditor/editor_config.js"></script>
+<script>
+    var dom;
+    var editor = new UE.ui.Editor({
+        imageRealPath:"images"
+    });
+    editor.render("myEditor");
+    var dialog_img;
+    editor.ready(function(){
+        editor.hide();
+        dialog_img = editor.getDialog("insertimage");
+        editor.addListener('beforeInsertImage',function(t, arg){
+        	jQuery("#"+dom).val(arg[0]['src']);
+        });
+        editor.addListener('afterUpfile',function(t, arg){
+        	jQuery("#"+dom).val(arg[0]['url']);
+        });
+    });
+    function upImage(pid) {
+        dom = pid;
+        dialog_img.open();
+    }
+</script>
+</body>
+</html>

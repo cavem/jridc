@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>发票信息</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+        <div class="pageheader">
+            <h1 class="pagetitle">发票详情</h1>
+            <ul class="hornav">
+                 <li class="current"><a href="#tabs-1">基本信息</a></li>
+                 <li><a href="#tabs-2">开票信息</a></li>
+                 <li><a href="#tabs-3">所属财务</a></li>
+            </ul>
+        </div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<form class="stdform formvalidate" action="{:U('Admin/Fapiao/edit')}" method="post">
+			<div id="tabs-1"" class="subcontent">
+				<p><label>用户</label>
+				<span class="field">
+					{$data.username}
+				</span></p>
+				<p><label>发票编号</label>
+					<span class="field">
+					{$data.fapiaonumber}
+				</span></p>
+				<p><label>发票金额</label>
+				<span class="formwrapper">
+					{$data.money}
+				</span></p>
+				<p><label>收件人</label>
+				<span class="formwrapper">
+					{$data.addressee}
+				</span></p>
+				<p><label>联系电话</label>
+				<span class="formwrapper">
+					{$data.phone}
+				</span></p>
+				<p><label>详细地址</label>
+				<span class="formwrapper">
+					{$data.pcts}
+				</span></p>
+				<p><label>邮编</label>
+				<span class="formwrapper">
+					{$data.Postcode}
+				</span></p>
+				<p><label>收取方式</label>
+				<span class="formwrapper">
+					<if condition="$data[ifkuaidi] eq 1">快递邮寄<else/>自取</if>
+				</span></p>
+				<p><label>状态</label>
+				<span class="formwrapper">
+					<input type='radio' name='state' id='state1' value='1' 
+					<if condition='$data[state] eq 1'>checked</if>/>未处理
+					<input type='radio' name='state' id='state2' value='2' 
+					<if condition='$data[state] eq 2'>checked</if>/>已处理
+
+				</span></p>
+				<p><label>备注</label>
+				<span class="formwrapper">
+					<textarea name='bak' rows="10" cols="40">{$data.bak}</textarea>
+				</span></p>
+			</div>
+            <div id="tabs-2" class="subcontent" style="display: none;">
+				<p><label>开具类型</label>
+				<span class="formwrapper">
+					<if condition="$data[info][opentype] eq 1">个人</if>
+					<if condition="$data[info][opentype] eq 2">企业</if>
+				</span></p>
+				<p><label>发票抬头</label>
+				<span class="formwrapper">
+					{$data.info.infotitle}
+				</span></p>
+				<p><label>发票类型</label>
+				<span class="formwrapper">
+					<if condition="$data[info][infotype] eq 1">增值税普通发票</if>
+					<if condition="$data[info][infotype] eq 2">增值税专用发票</if>
+				</span></p>
+				
+				<if condition="$data[info][infotype] eq 2">
+				<p><label>税务登记证号</label>
+				<span class="formwrapper">
+					{$data.info.registrynumber}
+				</span></p>
+				<p><label>基本户开户银行名称</label>
+				<span class="formwrapper">
+					{$data.info.bankaccount}
+				</span></p>
+				<p><label>注册场所地址</label>
+				<span class="formwrapper">
+					{$data.info.siteaddress}
+				</span></p>
+				<p><label>注册固定电话</label>
+				<span class="formwrapper">
+					{$data.info.telephone}
+				</span></p>
+				</if>
+            </div>
+            <div id="tabs-3" class="subcontent" style="display: none;">
+            	<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head0">金额</th>
+							<th class="head1">操作方式</th>
+							<th class="head0">类型</th>
+						</tr>
+					</thead>
+					<tbody>
+					<volist name="data.trans" id="vo">
+						<tr>
+							<td>
+								{$vo.usermoney}
+							</td>
+							<td>
+								{$vo.forwhat}
+							</td>
+							<td>
+								<if condition ='$vo.type eq 1' >在线充值</if>
+								<if condition ='$vo.type eq 2' >后台入款</if>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+            </div>
+				<p class="stdformbutton">
+					<input type='hidden' name='id' value='{$data.fid}' />
+					<input type="submit" class="submit radius2 " value="更新数据"  />
+				</p>
+			</form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

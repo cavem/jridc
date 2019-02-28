@@ -1,0 +1,35 @@
+ <form action="{:U('User/Change/changeuser')}" method="post" name="formTop" target="_blank">
+	 <input type="hidden" name="username" id="username" />
+ </form>
+ <div class="topheader">
+        <div class="left">
+            <h1 class="logo">Kefu<span>Admin</span></h1>
+            <span class="slogan"></span>
+            <br clear="all" />
+        </div><!--left-->
+        <div class="right">
+            <div class="userinfo">
+                <span>{$Think.session.kefuname}</span>
+            </div><!--userinfo-->
+            <div class="userinfodrop">
+                <div class="userdata" style="margin-left: 10px;">
+                	<h4>{$Think.session.kefuname}</h4>
+                    <span class="email">{$Think.session.kefuname}</span>
+                    <ul>
+                        <li><a href="{:U('Sale/System/passwd')}">修改密码</a></li>
+                    	<li><a href="{:U('Sale/Login/doLogout')}">退出</a></li>
+                    </ul>
+                </div><!--userdata-->
+            </div><!--userinfodrop-->
+        </div><!--right-->
+    </div><!--topheader-->
+    <div class="header">
+    	<ul class="headermenu">
+	    	<li nav="1" id="nav_1"  class="current" >
+    			<a href="javascript:;" >
+    			<span class="icon icon-flatscreen"></span>控制台</a>
+    	</li>
+        </ul>
+       <div class="headerwidget">
+        </div><!--headerwidget-->
+    </div><!--header-->

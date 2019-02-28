@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VLAN-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>VLAN管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Cloud/index')}">我的云主机</a>
+			</span>
+		</div>
+		
+		<div class="mainM">
+		<br></br>
+		<form method="post">
+			<table class="table">
+				<tbody>
+				<tr class="tdColor">
+					<th>编号</th>
+					<th>私有网络名称</th>
+					<th>所属机房</th>
+					<th>操作</th>
+				</tr>
+				<volist name="data" id="vo">
+					<tr>
+					<td>{$vo.id}</td>
+					<td>{$vo.vlanname}</td>
+					<td>{$vo.Cloudtype}</td>
+					<td>
+					<a href="{:U('User/Vlan/handle',array('id'=>$vo['id']))}">管理</a>
+					<a href="{:U('User/Vlan/del',array('id'=>$vo['id']))}" class="confirmbuttonvlan">删除</a></td>
+				</tr>
+				</volist>
+				<tr>
+				<td colspan="4">
+					<div class="pagediv">
+						<div class="pageinfo">{$pageinfo}</div>
+					</div>
+				</td>
+				</tr>					
+			</tbody></table></form>
+			<button class="btn btnOrg1" type="submit" onclick="location.href='{:U('User/Vlan/add')}'">创建Vlan</button>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+$('.confirmbuttonvlan').click(function(){
+	var href=$(this).attr('href');
+	layer.confirm('确定操作当前信息吗？',function(index){
+		 var loadi = layer.load('私有网络删除中');
+		 $.get(href,function(msgObj){
+	            if(msgObj.status == '1'){
+	            	layer.msg(msgObj.info,2,1);
+	            	location.reload();
+	            }else{
+	            	layer.msg(msgObj.info,2,8);
+	            	location.reload();
+	            }
+	      },"JSON");
+	});
+	return false;
+});
+</script>
+</body>
+</html>

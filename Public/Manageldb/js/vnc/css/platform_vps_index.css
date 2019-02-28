@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+/*conright*/
+.conright{ overflow:hidden;}
+.rightpic{border:1px solid #47a1e4;border-radius:4px; overflow:hidden; zoom:1;*width:808px;}
+.pictitle{background:url(../images/base/img8.gif) repeat-x; height:42px; line-height:40px; font-size:18px; color:#FFF; padding-left:15px;
+}
+/*vpsfunction*/
+.vpsfunction ul li {width:127px; height:32px; float:left; text-align:center;line-height:32px; margin:4px 18px 8px 16px;_margin:4px 8px 8px 16px;}
+.vpsfunction ul li a {float:left; display:block; height:32px;width:127px;line-height:32px; 
+background:url(../images/clouddb/img10.gif) no-repeat; cursor:pointer; text-align:center}
+.vpsfunction ul li a span {display:block;text-align:cente }
+.vpsfunction ul li a:hover { background:url(../images/clouddb/img11.gif) no-repeat;}
+.vpsfunction ul li a.vpscurrent { height:32px; line-height:32px; background:url(../images/clouddb/img12.gif) no-repeat;}
+.vpsfunction a{color:#636363}
+.vpsfunction a:hover{color:#434343; text-decoration:none;}
+/*vpsfunction6*/
+.vpsfunction6 ul li {width:98px; height:32px; float:left; text-align:center;line-height:32px; margin:4px 30px 8px 6px;_margin:4px 3px 8px 3px}
+.vpsfunction6 ul li a {float:left; display:block; height:32px;width:127px;line-height:32px; 
+background:url(../images/clouddb/img10.gif) no-repeat; cursor:pointer; text-align:center}
+.vpsfunction6 ul li a span {display:block;text-align:cente }
+.vpsfunction6 ul li a:hover { background:url(../images/clouddb/img11.gif) no-repeat;}
+.vpsfunction6 ul li a.vpscurrent { height:32px; line-height:32px; background:url(../images/clouddb/img12.gif) no-repeat;}
+.vpsfunction6 a{color:#636363}
+.vpsfunction6 a:hover{color:#434343; text-decoration:none;}
+/*vpsfunction5*/
+.vpsfunction5 ul li {width:117px; height:32px; float:left; text-align:center;line-height:32px; margin:4px 27px 8px 17px;;_margin:4px 12px 8px 16px;}
+.vpsfunction5 ul li a {float:left; display:block; height:32px;width:127px;line-height:32px; 
+background:url(../images/clouddb/img10.gif) no-repeat; cursor:pointer; text-align:center}
+.vpsfunction5 ul li a span {display:block;text-align:cente }
+.vpsfunction5 ul li a:hover { background:url(../images/clouddb/img11.gif) no-repeat;}
+.vpsfunction5 ul li a.vpscurrent { height:32px; line-height:32px; background:url(../images/clouddb/img12.gif) no-repeat;}
+.vpsfunction5 a{color:#636363}
+.vpsfunction5 a:hover{color:#434343; text-decoration:none;}
+/*peizhititle*/
+.peizhititle{color:#494949; text-align:center; background:#f4f4f4; line-height:26px; margin-bottom:8px;}
+.peibox{margin:10px 10px 4px 20px;line-height:28px;}
+.peileft{background:#f2f2f2; border:1px solid #bfcfda;zoom:100%;float:left; padding:8px 10px 8px 0; width:330px; margin-right:10px; margin-left:20px;*margin-left:15px; margin-bottom:10px;}
+.peileft ul li{padding-left:10px;_padding-top:5px;_padding-bottom:5px}
+.peileft2{background:#f2f2f2; border:1px solid #bfcfda; float:left; padding:8px 10px; width:330px; margin-right:10px; margin-bottom:10px;}
+.mleft10{margin-left:10px;}
+.mleft25{margin-left:23px;}
+.mleft26{margin-left:23px; color: red;}
+.vpsimg{margin-right:5px;}
+.peizhititle2{width:780px;color:#494949;background:#f9f9f9; line-height:26px; border:1px solid #b2d0ea; margin:10px;border-radius:4px; padding:10px 0px 10px 10px;}
+.styleiput{width:260px; height:30px; margin-left:10px; padding:0 4px; line-height:30px; color:#666}
+.fontleft{color:#f10c68; margin-left:5px; font-size:12px} 
+.peizhititle3{color:#494949; text-align:center; background:#f4f4f4; padding:8px 0; margin-bottom:8px}
+.passwordbtn{background:url(../images/base/img17.gif) repeat-x; width:88px; height:32px; border:none medium;cursor:pointer; color:#FFF; border:1px solid #7dc5fc; border-radius:2px; line-height:32px;}
+.managerDisk{background:url(../images/vps/unOverManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative;top:-3px;*top:0px;left:25px}
+.selectdiv{position:absolute;z-index:50;width:expression(this.nextSibling.offsetWidth);height:expression(this.nextSibling.offsetHeight);top:expression(this.nextSibling.offsetTop);left:expression(this.nextSibling.offsetLeft)}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.managerDisk{position:relative;top:3px;_top:0}}/*google hack*/
+.managerDisk:hover{background:url(../images/vps/overManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative; top:-3px;*top:0px;left:25px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.managerDisk:hover{ position:relative;top:3px;_top:0}}/*google hack*/
+.resetbtn{background:url(../images/vps/reset.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative; top:0px;* top:-28px;float:right;margin-right:10px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.resetbtn{ position:relative;top:3px;_top:0}}/*google hack*/
+.resetbtn:hover,resetbtn:visited{background:url(../images/vps/resethover.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative; top:0px;* top:-28px;float:right;margin-right:10px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.resetbtn:hover{ position:relative;top:3px;_top:-28px}}/*google hack*/
+.closebtn{background:url(../images/vps/close.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative;top:0px;* top:-28px;float:right;margin-right:3px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.closebtn{ position:relative;top:3px;_top:0}}/*google hack*/
+.closebtn:hover,closebtn:visited{background:url(../images/vps/closehover.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative; top:0px;* top:-28px;float:right;margin-right:3px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.closebtn:hover{ position:relative;top:3px;_top:-28px}}/*google hack*/
+.installbtn{background:url(../images/vps/kscz.gif) no-repeat; width:55px; height:24px; border:medium none; cursor:pointer; position:relative; top:0px;* top:-28px;float:right;margin-right:30px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.installbtn{ position:relative;top:3px;_top:0}}/*google hack*/
+.installbtn:hover,installbtn:visited{background:url(../images/vps/kscz2.gif) no-repeat; width:55px;height:24px; border:medium none; cursor:pointer; position:relative; top:0px;* top:-28px;float:right;margin-right:30px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.installbtn:hover{ position:relative;top:3px;_top:-28px}}/*google hack*/
+.openbtn{background:url(../images/vps/open.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative;top:0px;* top:-28px;float:right;margin-right:35px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.openbtn{ position:relative;top:3px;_top:0}}/*google hack*/
+.openbtn:hover,openbtn:visited{background:url(../images/vps/openhover.gif) no-repeat; width:47px; height:24px; border:medium none; cursor:pointer; position:relative;top:0px;* top:-28px;float:right;margin-right:35px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.openbtn:hover{ position:relative;top:3px;_top:-28px}}/*google hack*/
+.datatable{width:750px; text-align:center;margin:10px;border:1px solid #cbccd0}
+.datatdn1{background:#D9F5F9;border:1px solid #cbccd0;height:35px}
+.datatdn2{background:#fff;border:1px solid #cbccd0;height:33px}
+.datatdn3{background:#fff;border:1px solid #cbccd0;height:110px}
+/*蓝色BUTTON*/
+.blue_button_input_small {border:none 0px;cursor:pointer;color:#fff;height:23px;display:inline-block;line-height:20px;width:45px;background-image: url('../images/clouddb/btn2_07.gif');}
+.blue_button_input_big {border:none 0px;cursor:pointer;color:#fff;height:28px;display: inline-block;width:62px;line-height: 20px;background-image: url('../images/clouddb/btn2_03.gif');}
+.blue_button_input_sobig {border:none 0px;cursor:pointer;color:#fff;height:26px;display: inline-block;width:82px;line-height: 20px;background-image: url('../images/clouddb/button_03.gif');}
+/*磁盘合并*/
+.border-hb{width:260px}
+.border-hbli{width:160px;border:1px solid #47a1e4;border-bottom:none;border-left:none}
+.border-hbli-b{width:160px;border:1px solid #47a1e4;border-top:none;border-left:none}
+.hebing-btndiv{width:47px;height:24px;position:absolute;margin-left:160px;_margin-left:10px;_margin-top:20px;}
+.hebing-btn{background:url(../images/vps/hebing.gif) no-repeat;width:47px;height:24px;color:#fff;border:none medium;font-size:14px;cursor:pointer;float:left;margin-left:20px;margin-top:14px;_margin-top:20px;*+margin-left:-140px;*+margin-top:40px;}
+.hebing-btn-b{background:url(../images/vps/hebing-b.gif) no-repeat;width:47px;height:24px;color:#fff;border:none medium;font-size:14px;cursor:pointer;float:left;margin-left:20px;margin-top:14px;_margin-top:20px;*+margin-left:-140px;*+margin-top:40px;}
+.clearfix {/* 触发 hasLayout */zoom:1; }
+.clearfix:after {content: "."; display: block; height:0; clear:both;visibility:hidden}
+.managerDisk2{background:url(../images/vps/unOverManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative;top:-3px;*top:0px;left:25px}
+.managerDisk:hover{background:url(../images/vps/overManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative; top:-3px;*top:0px;left:25px;}
+.managerDisk2:hover{background:url(../images/vps/overManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative; top:-3px;*top:0px;left:25px;}
+.managerDisk{background:url(../images/vps/unOverManagerDisk.gif) no-repeat; width:54px; height:24px; border:medium none; cursor:pointer; position:relative;top:-3px;*top:0px;left:25px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.managerDisk2{position:relative;top:0;_top:0}}/*google hack*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {.managerDisk2:hover{ position:relative;top:0;_top:0}}/*google hack*/

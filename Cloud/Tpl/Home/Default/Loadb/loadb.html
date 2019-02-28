@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$data.keyword}">
+<meta name="description" content="{$data.description}">
+<title>弹性购买_{$Web.Config.site_name}</title>
+<link href="__PUBLIC__/Home/Default/css/index.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/Default/css/page.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/css/cloud.css" rel="stylesheet" type="text/css">
+<script language="javaScript" src="__PUBLIC__/Home/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/layer/layer.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/ul/jquery-ui.js"></script>
+<link href="__PUBLIC__/Home/js/ul/jquery-uinew.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<include file="Common:inc_header"/>
+	<div class="twonav">
+	  <div class="viewport-inner"></div>
+	</div>
+	<div class="document">
+		<div class="sphinxsidebar">
+		<div class="sphinxsidebarwrapper">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/Cloud/buy')}">云主机</a>
+				<ul>
+					<li class="toctree-l2">
+					<a class="reference internal" href="{:U('Home/Cloud/buy')}">弹性购买</a>
+					</li>
+				  <Cloud:page  where="type_id=3"  limit="10" result="page" order="sort desc">
+					<li class="toctree-l2">
+						<a class="reference internal" href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+				  </Cloud:page>
+				</ul>
+			</li>
+		</ul>				
+			
+		</div>
+		</div>
+	  <div class="documentwrapper" style="width:830px;">
+		<div class="bodywrapper">
+		  <div class="body">
+		  <!-- start cloud -->
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+		  <tr>
+		   <td>
+<div class="rightcont">
+	<div class="yzj_info_fzjh">负载均衡基于规模资源池，以虚拟化方式为客户提供多种规格的计算、存储和网络等资源服务，用户可根据自己的需求弹性选择自己所属服务器的硬件配置，随意部署自己的硬件及系统，智能的控制面板可在线启动、停止、重置、重启、更换操作系统、定期智能备份、以及修改密码、监控资源使用情况等更多管理属性。</div>
+  	  <div class="yzj_jfls" style="margin-bottom: 1px;padding-bottom: 1px;">
+		<div class="jf_list">
+			<ul id="iptype" class="iptype">
+				<volist name="iptype" id="vo">
+				<li <if condition="$vo[ipdefalt]">class="hover"</if> data="{$vo.iptype}"><a href="javascript:void(0)">{$vo.ipname}</a></li>
+				</volist>
+			</ul>
+		</div>
+		<div class="js_list" id="productlist">
+		</div>
+	</div>
+  <div class="yzj_xz">
+  <table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+	<td>连接数:</td>
+	<td colspan="3">
+		<ul>
+		<volist name="loadbcon" id="vol">
+			<li style="width:100px;float:left;"><input type="radio" name="conradio" id="conradio_{$vol.id}"  value="{$vol.connection}" <if condition="$key eq '0'">checked="checked"</if> />{$vol.connection}</li>    
+		</volist>
+		</ul>
+	</td>
+  </tr>
+  <tr>
+	<td>宽带 :</td>
+	<td colspan="3">
+	 <div id="qos">
+	<div id="qos_slider" style="width:500px;margin-left:10px;float:left;margin-top:6px;"></div>&nbsp;&nbsp;&nbsp;
+	<input type="text" id="qos_slider_info" name="qos_slider_info" value="1" onKeyPress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" maxLength=4 size="4" style="width:50px;height:10px;"/>M
+	</div><span class="helpnt">以1Mbps为步长增加</span></td>
+  </tr>
+  <tr>
+	<td>负载均衡名称 :</td>
+	<td colspan="3">
+	<input type="text" name="Cloudnames" class="yzj_input"  id="Cloudnames" onblur="checkCloudname(this.value)" onfocus="IuCloudname()">
+	<span class="helpnts" id="Cloudnameshow">4-14位字母或数字，必须以字母开头</span>
+	</td>
+	</tr>
+	  <tr>
+	<td>初始密码 :</td>
+	<td colspan="3">
+	<input type="password" name="passwords" class="yzj_input" id="passwords" onblur="checkpassword(this.value)" onfocus="Iupassword()">
+	<span class="helpnts" id="passwordshow">此密码为系统初始登录使用</span>
+</td>
+  </tr>
+  <tr>
+	<td>购买时长 :</td>
+	<td colspan="3">
+	<select name="years" id="years"></select>
+</td>
+  </tr>
+</table>
+	</div>
+</div>
+<div class="clearer"></div>
+			<div class="yzj_order">
+				<table width="100%" border="0" cellspacing="1" cellpadding="0">
+					  <tr>
+						<td class="setab">连接数</td>
+						<td class="setab">带宽</td>
+						<td class="setab">购买年限</td>
+						<td class="setab">机房</td>
+					  </tr>
+					  <tr>
+						<td><span id="con_show_info">0</span></td>
+						<td><span id="qos_show_info">1</span>Mbps</td>
+						<td><span id="year_show_info">一个月</span></td>
+						<td><span id="jf_show_info">北京BGP</span></td>
+	
+					  </tr>
+					  <tr>
+						<td colspan="8">
+						<div class="orderinfo">
+							<div class="isrebatediv">
+							
+							</div>
+							<div class="priceinfo">
+								<span id="cloudprice" class="cloudprice fon40 red">0</span>元
+								<span id="cloudpriceolddiv" style="display:none;">
+									<font class="fon24">/</font> 
+									<font class="red fon24" id="yzhekou">0</font><font class="fon24">折</font>  原价<font  class="red fon24" style="text-decoration:line-through" id="cloudpriceold">0</font>元
+								</span>
+								<a href="javascript:void(0)" id="subpost"><img src="__PUBLIC__/Home/Default//images/ljgm02_host.gif"></a>
+							</div>
+						
+						
+						</div>
+						
+					
+		
+						</td>
+					  </tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>
+		  </div>
+		</div>
+	  </div>
+	  <div class="clearer"></div>
+</div>
+<include file="Common:inc_footer"/>
+<div id="cloudform">
+	<form id='cloud_form' action='{:U("User/Order/loadb")}' method='post'>
+		<input type='hidden' name='id' id='id' value='0'>
+		<input type='hidden' name='conid' id='conid' value='0'>
+		<input type='hidden' name='qosnum' id='qosnum' value='0'>
+		<input type='hidden' name='maxqos' id='maxqos' value='100'>
+		<input type='hidden' name='dqos' id='dqos' value='0'>
+		<input type='hidden' name='ipnum' id='ipnum' value='1'>
+		<input type='hidden' name='cloudname' id='cloudname' value=''>
+		<input type='hidden' name='cloudpassword' id='cloudpassword' value=''>
+		<input type='hidden' name='year' id='year' value='1'>
+		<input type='hidden' name='isrebate' id='isrebate' value='n'>
+		<input type='hidden' name='jfname' id='jfname' value=''>
+	</form>
+</div>
+<script>
+var isuser={$isuser};
+var defaulttype={$defaulttype};
+var Loginurl="{:U('Home/User/login')}";
+var Ajaxosurl="{:U('Home/Loadb/ajaxos')}";
+var Ajaxproducturl="{:U('Home/Loadb/ajaxproduct')}";
+var Ajaxcloudinfourl="{:U('Home/Loadb/ajaxcloudinfo')}";
+var Ajaxcloudpriceurl="{:U('Home/Loadb/ajaxcloudprice')}";
+var Ajaxcloudname="{:U('Home/Loadb/ajaxcloudname')}";
+</script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/loadb.js"></script>
+</body>
+</html>

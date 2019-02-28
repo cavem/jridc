@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>邮件模板</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">邮件模板</h1>
+            <span class="pagedesc">邮件模板的设置</span>
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	       	<form class="stdform formvalidate" action="{:U('Admin/Emailtpl/edit')}" method="post">
+                        <p>
+                        	<label>Key</label>
+                            <span class="field">
+                            {$data.key}
+                            <input type="hidden" name="key" value="{$data.key}">
+                            </span>
+                        </p>
+                        <p>
+                        	<label>名称</label>
+                            <span class="field">
+								{$data.name}
+                            </span>
+                        </p>
+                          <p>
+                        <label>内容</label>
+                            <span class="formwrapper">
+                            	  <textarea class="text-input textarea" id="value" name="value" rows="10" cols="75">{$data.value}</textarea>
+                            </span>
+                        </p>
+                                   <p>
+                    
+                        <label>状态</label>
+                            <span class="formwrapper">
+                            	 <input type="radio" checked="checked" <if condition="$data['issend'] eq 1"> checked="checked" </if> value="1" name="issend">启用&nbsp;
+                            	 <input type="radio" value="0" name="issend" <if condition="$data['issend'] eq 0"> checked="checked" </if>>停用</label>
+                            </span>
+                        </p>
+    					   <p>
+                         <label>排序</label>
+                            <span class="field">
+                           <input name="sort" type="text" class="smallinput20" value="{$data.sort}" size="30" /> 
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                       		<input type="submit" class="submit radius2 submitedit" value="设置"  />
+                        </p>
+                    </form>
+                    </div>
+                
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

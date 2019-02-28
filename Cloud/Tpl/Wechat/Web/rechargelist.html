@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style>
+	a{ text-decoration:none; color:#111;}
+	</style>
+	<script type="text/javascript">
+	function sub_form(str,tf){
+		var tform = document.getElementById(str+tf);
+		tform.submit();
+	}
+	</script>
+</head>
+<body >
+<div class="toptitle" style="position:fixed;left:0px;top:0px;width:100%;">
+	<div class="top_link" onclick="location.href='{:U('wechat/web/usercenter')}'">
+		<img width="50px;" style="margin-top:5px;" src="__PUBLIC__/Wechat/Web/images/btn_setting_n.png"/>
+	</div>
+	<div class="refresh">
+		<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+			<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+		</a>
+	</div>
+	<span>充值记录</span>
+</div>
+<div class="changebar" style='margin-top:50px;'>
+	<div class="on">
+		 <table width='100%;' border=0>
+		 	<tr>
+		 		<td></td>
+		 		<td style='text-align:left;'>操作账户</td>
+		 		<td style='text-align:right;'>金额</td>
+		 		<td style='text-align:center;padding-right:5px;'>时间</td>
+		 	</tr>
+			<volist name='rechargelist' id='data'> 
+		 	<tr onclick="location.href='{:U('wechat/web/rechargedetail',array('id'=>$data['id']))}'">
+		 		<td>&nbsp;&nbsp;&nbsp;&nbsp;<!-- 
+			 		<img width='30px' src="__PUBLIC__/Wechat/Web/images/cloud_pc.png"/> -->
+			 	</td>
+		 		<td style='text-align:left;'>{$data['user_name']}</td>
+		 		<td style='text-align:right;'>￥:{$data['money']}</td>
+		 		<td style='text-align:center;padding-right:5px;'>{$data['add_time']|date=("Y-m-d H:i:s"),###}</td>
+		 	</tr>
+			</volist>
+		</table>
+	</div>
+</div>
+</body>
+</html>

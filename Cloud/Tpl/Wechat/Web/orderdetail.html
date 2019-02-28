@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style type="text/css">
+		input[type='text']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='password']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='button']{
+			background:#EE5B45;
+			border:none;
+			width:100%;
+			height:40px;
+			line-height:40px;
+		}
+	</style>
+</head>
+<body >
+ <div style="width:100%;border:0px solid blue;">
+	<div class="toptitle" style="width:100%;position:fixed;left:0px;top:0px;">
+		<div class="top_link">
+			<img width="30px;" style="margin-top:10px;" onclick='history.go(-1);' src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+		</div>
+		<span>订单详情</span>
+	</div>
+	<div style="margin-top:50px;padding:15px 10px 0 10px;border:0px solid red;">
+		<input type="hidden" value="{$data_info.id}" name="id" id="id"/>
+		<table border=0 width='100%'>
+			<tr>
+				<td height="30px;">订单编号：</td>
+				<td>{$data_info['ordernumber']}</td>
+			</tr>
+			<tr>
+				<td height="30px;" width="25%;">当前账户：</td>
+				<td>{$data_info['username']}</td>
+			</tr>
+			<tr>
+				<td height="30px;">下单时间：</td>
+				<td>{$data_info['addtime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+			<tr>
+				<td height="30px;">所属产品：</td>
+				<td>
+					<if condition="$data_info['type'] eq 1">云主机产品</if>
+					<if condition="$data_info['type'] eq 2">域名产品</if>
+					<if condition="$data_info['type'] eq 3">托管租用</if>
+				</td>
+			</tr>
+			<tr>
+				<td height="30px;">操作类型：</td>
+				<td>{$data_info['ordertype']}</td>
+			</tr>
+			<tr>
+				<td height="30px;">产品类型：</td>
+				<td>{$data_info['producttype']}</td>
+			</tr>
+			<tr>
+				<td height="30px;">操作金额：</td>
+				<td>￥:{$data_info['usermoney']}</td>
+			</tr>
+			<tr>
+				<td height="30px;">支付状态：</td>
+				<td>
+					<if condition="$data_info.status eq 1">未支付</if>
+					<if condition="$data_info.status eq 2">已支付</if>
+					<if condition="$data_info.status eq 3">已取消</if>
+				</td>
+			</tr>
+	<if condition="($data_info['ordertype'] eq '云主机开通')or($data_info['ordertype'] eq '云主机续费')">
+			<tr>
+				<td height="30px;">付款周期：</td>
+				<td>{$data_info['yearname']}</td>
+			</tr>
+		<if condition="($data_info['ordertype'] eq '云主机开通')">
+			<tr>
+				<td height="30px;">系统类型：</td>
+				<td>{$cloudos['osname']}</td>
+			</tr>
+			<tr>
+				<td height="30px;">订单详情：</td>
+				<td>
+					CPU：{$data_info.cpunum}个<br/>
+					内存：{$data_info.memnum}M<br/>
+					硬盘:{$data_info.disknum}G<br/>
+					带宽:{$data_info.qosnum}M
+				</td>
+			</tr>
+		</if>
+		<if condition="($data_info['ordertype'] eq '云主机续费')">
+			<tr>
+				<td height="30px;">IP网卡：</td>
+				<td>
+					<volist name="data_info.qosnetwork" id="vo">
+						MAC:&nbsp;&nbsp;{$vo.MAC}<br/>
+						QOS:&nbsp;&nbsp;{$vo[qos]/128}M<br/>
+						IP:&nbsp;&nbsp;
+						<volist name="vo.ip_infos" id="voo">
+						{$voo.ip}&nbsp;&nbsp;&nbsp;				
+						</volist>
+					</volist>
+				</td>
+			</tr>
+			<tr>
+				<td height="30px;">订单详情：</td>
+				<td>
+					CPU：{$data_info.cpunum}个<br/>
+					内存：{$data_info.memnum}M<br/>
+					硬盘:{$data_info.disknum}G<br/>
+				</td>
+			</tr>
+			<tr>
+				<td height="30px;">原到期时间：</td>
+				<td>{$data_info['starttime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+			<tr>
+				<td height="30px;">现到期时间：</td>
+				<td>{$data_info['endtime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+		<else/>
+			<tr>
+				<td height="30px;">开通时间：</td>
+				<td>{$data_info['starttime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+			<tr>
+				<td height="30px;">到期时间：</td>
+				<td>{$data_info['endtime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+		</if>
+	<else/>
+			<tr>
+				<td height="30px;">开始时间：</td>
+				<td>{$data_info['starttime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+			<tr>
+				<td height="30px;">到期时间：</td>
+				<td>{$data_info['endtime']|date=("Y-m-d H:i:s"),###}</td>
+			</tr>
+	</if>
+			<tr>
+				<td colspan=2 height="40px;"></td>
+			</tr>
+			<tr>
+				<td colspan=2 height="40px;" align="right"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>

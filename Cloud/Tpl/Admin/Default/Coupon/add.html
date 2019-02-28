@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加优惠券</title>
+<include file="Common:inc_css_js" />
+<include file="Common:inc_jqvalidate" />
+<script src="__PUBLIC__/Admin/JS/mydatepicker/WdatePicker.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">添加优惠券</h1>
+			<span class="pagedesc">优惠券</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Admin/Coupon/add')}" method="post">
+				<p><label>优惠券类型</label>
+				<span class="field">
+					<select name='type' class="selectwidth40" >
+						<option value='Cloud产品'>Cloud产品</option>
+					</select>
+				</span></p>
+				<p><label>面值</label>
+				<span class="field">
+					<input type="text" name="cmoney" id="cmoney" class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>张数</label>
+				<span class="field">
+					<input type="text" name="cnumber" id="cnumber" class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>过期时间</label>
+				<span class="field">
+					<input type="text" name="expire_time" id="expire_time" class='hasDatepicker' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})"/>
+				</span></p>
+				<p><label>使用金额</label>
+				<span class="field">
+					<input type="text" name="condition" id="condition" class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				超过多少总金额 方可使用
+				</span></p>
+				<p><label>所属客服</label>
+				<span class="field">
+					<select name='kid' class="selectwidth20" >
+						<volist name="kefus" id="vo">
+							<option value='{$vo.rank_id}' disabled='disabled'>{$vo.rank_name}</option>
+							<volist name="vo.kefus" id="voo">
+								<option value='{$voo.id}'>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.kefuname}</option>
+							</volist>
+						</volist>
+					</select>
+				</span></p>
+				<p class="stdformbutton">
+					<input type="submit" class="submit radius2 submitadd" value="添加"  />
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

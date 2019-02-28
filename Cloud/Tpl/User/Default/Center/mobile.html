@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改验证手机-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<div id="content">
+<include file="Common:inc_left"/>
+	<div class="main">
+		<div class="mainT">
+			<b>安全信息</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<form action="{:U('User/Center/domobile')}" method="post" class="formvalidate">
+		<div class="mainM">
+			<div class="mainHalf3">
+				<p class="mainTson">修改验证手机</p>
+				<div class="forms">
+					<div class="item">
+						<b>旧手机：</b>
+						{$user_info.mobi}
+					</div>
+					<div class="item">
+						<b>新号码：</b>
+						<input name="mobi" id="mobi" value="" type="text">
+						<button class="btn btnBlue2" type="button" id="send" onclick="sendMessage()">获取验证码</button>
+					</div>
+					<div class="item">
+						<b>验证码：</b>
+				        <input name="mobicode" id="mobicode" value="" type="text">
+					</div>
+				</div>
+			</div>
+			<hr class="dotted">
+			<button class="btn btnOrg1 btnsubmitmobile" type="submit">修改</button>
+		</div>
+		</form>
+	</div>
+</div>
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+var InterValObj; //timer变量，控制时间
+var count = 60; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+function sendMessage() {
+	$('#msg').remove();
+	if($("#send").html()=="重新发送验证码"){
+		$("#mobi").removeAttr("readonly");//启用按钮
+		$("#send").html("发送验证码");
+		return false;
+	}
+    curCount = count;
+   	if($("#mobi").val()==""){
+   		$('#send').after('<span id="msg">手机号不能为空</span>');
+   		$("#mobi").focus();
+   		return false;
+   	}
+ 	$.ajax({
+        url:'{:U("User/Center/sendmobicode")}',
+        cache:false,
+        dataType:"json",
+        data:{'mobi':$("#mobi").val()},
+        type:"POST",
+        success:function(data){
+        	if(data.status == '1'){
+        		$("#mobi").attr("readonly", "true");
+        		$('#send').removeClass('btnBlue2').addClass('btnGray2').attr('disabled',true);
+        		InterValObj = window.setInterval(SetRemainTime, 1000);
+        	}else{
+        		$('#send').after('<span id="msg">'+data.info+'</span>');
+            }
+        }
+    });
+}
+function SetRemainTime() {
+    if (curCount == 0) {                
+        window.clearInterval(InterValObj);//停止计时器
+        $("#send").removeAttr("disabled");//启用按钮
+        $("#send").html("重新发送验证码");
+        $('#send').removeClass('btnGray2').addClass('btnBlue2');
+    }
+    else {
+        curCount--;
+        $("#send").html("请在" + curCount + "秒内输入验证码");
+    }
+}
+$(function () {
+	$(".btnsubmitmobile").click(function(){ 
+		$('#msg').remove();
+	 	if($("#mobi").val()==""){
+	 		$('#send').after('<span id="msg">手机号不能为空</span>');
+	   		$("#mobi").focus();
+	   		return false;
+	   	}
+	 	if($("#mobicode").val()==""){
+	 		$('#mobicode').after('<span id="msg">&nbsp;&nbsp;&nbsp;&nbsp;验证码不能为空</span>');
+	   		$("#mobicode").focus();
+	   		return false;
+	   	}
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			resetForm: true,//重置表单
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				if(data.status == '1'){
+	            	layer.msg(data.info,2,1);
+	            	setTimeout(function(){
+                        location.href = '{:U("User/Center/index")}';
+                    },3000);
+	            }else{
+	            	layer.msg(data.info,2,8);
+	     	    }
+			}
+		});
+		return false;
+	});
+}); 
+</script>
+</body>
+</html>

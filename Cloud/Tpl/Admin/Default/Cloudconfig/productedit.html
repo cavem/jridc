@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>编辑产品配置</title>
+	<include file="Common:inc_css_js" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper" >
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+		<h1 class="pagetitle20">编辑产品配置</h1>
+		<span class="pagedesc">产品配置</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		<div id="basicform" class="subcontent">
+<form class="stdform formvalidate" action="{:U('Admin/Cloudconfig/productedit')}" method="post">
+	<p>
+		<label>产 品 名</label>
+	   	<span class="field">
+		<input type="text" name="Cloudtype" value="{$data.Cloudtype}" disabled class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+		排队顺序
+		<input type="text" name="sort" value="1" class="smallinput10"/>
+		(数值大排前面) 
+		</span>
+	</p>
+<p>
+<label>选择产品<a onclick="openctype()" style="color:red">查看详情</a></label>
+<span class="field">
+<select name="pid" id="pid"  class="selectwidth40-1" validate='{required:true,messages:{required:"请选择"}}' >
+<option value="" >--请选择--</option>
+<if condition="$prodcut['status'] eq 'success'">
+	<volist name="prodcut.value" id="vo">
+		<option value="{$vo.id}" <if condition="$vo.id  eq $data[pid]">selected="selected"</if>>{$vo.cloudtype}</option>
+	</volist>
+</if>
+</select>
+</span>
+</p>
+	<label>线路类型</label>
+	<span class="formwrapper">
+		<input type="radio" name="iptype" id="iptype0" value="1" <if condition="$data[iptype] eq '1' ">checked</if>/>BGP(1)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="2" <if condition="$data[iptype] eq '2' ">checked</if>/>香港(2)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="3" <if condition="$data[iptype] eq '3' ">checked</if>/>双线(3)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="4" <if condition="$data[iptype] eq '4' ">checked</if>/>电信(4)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="5" <if condition="$data[iptype] eq '5' ">checked</if>/>联通(5)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="6" <if condition="$data[iptype] eq '6' ">checked</if>/>国外(6)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="7" <if condition="$data[iptype] eq '7' ">checked</if>/>移动(7)&nbsp;
+		<input type="radio" name="iptype" id="iptype1" value="8" <if condition="$data[iptype] eq '8' ">checked</if>/>高防(8)&nbsp;
+	</span>
+</p>
+<p>
+	<label>价	格</label>
+	<span class="field">
+		<input type="text" name="usermoney"  value="{$data[usermoney]}" class="smallinput10" />元/年 
+	</span>
+</p>
+<p>
+<label>CPU单价</label>
+<span class="field">
+<input type="text" name="moneycpu" value="{$data[moneycpu]}"  class="smallinput" validate='{required:true,messages:{required:"不能为空"}}' />
+元/核 (阶梯定价格式为 16<=800|8<=400|2<=200 16,8,2为对应的核数 <=后为价格)
+</span>
+</p>
+<p>
+<label>内存单价</label>
+<span class="field">
+<input type="text" name="moneymemory" value="{$data[moneymemory]}" class="smallinput" validate='{required:true,messages:{required:"不能为空"}}' />
+元/1GB  (阶梯定价格式为 32<=800|16<=400|4<=200 32,16,4为对应的内存大小 <=后为价格)
+</span>
+</p>
+<p>
+	<label>IP单价</label>
+	<span class="field">
+		<input type="text" name="moneyip"  value="{$data[moneyip]}" class="smallinput10" />元/个
+		数据盘单价：<input type="text" name="moneydisk"  value="{$data[moneydisk]}" class="smallinput10"  />元/1GB
+	</span>
+</p>
+<p>
+	<label>带宽单价</label>
+	<span class="field">
+		<input type="text" name="moneyqos"  value="{$data[moneyqos]}" class="smallinput" validate='{required:true,messages:{required:"不能为空"}}' />
+		元/1MB(阶梯定价 格式为 200<=200|10<=100|5<=60 5,10,200为对应的带宽 <=后为价格)
+	</span>
+</p>
+<p>
+	<label>月 付 费 率</label>
+	<span class="field">
+		<input type="text" name="PAY_Month" value="{$data[PAY_Month]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		(如果一个产品是120元/年，每月支付的价格就是120X费率，默认费率是0.084=1/12)
+	</span>
+</p>
+<p>
+	<label>季 付 费 率</label>
+	<span class="field">
+		<input type="text" name="PAY_Season" value="{$data[PAY_Season]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		(如果一个产品是120元/年，每季支付的价格就是120X费率，默认费率是0.25=1/4)
+	</span>
+</p>
+<p>
+	<label>半年付费 率</label>
+	<span class="field">
+		<input type="text" name="PAY_halfyear"  value="{$data[PAY_halfyear]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		(如果一个产品是120元/年，每季支付的价格就是120X费率，默认费率是0.5=1/2) 
+	</span>
+</p>
+<p>
+	<label>一次购买两年费率</label>
+	<span class="field">
+		<input type="text" name="PAY_2year" value="{$data[PAY_2year]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		三年费率
+		<input type="text" name="PAY_3year" value="{$data[PAY_3year]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		四年费率
+		<input type="text" name="PAY_4year" value="{$data[PAY_4year]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		五年费率
+		<input type="text" name="PAY_5year" value="{$data[PAY_5year]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+	</span>
+</p>
+<p>
+	<label>续费一年费率</label>
+	<span class="field">
+		<input type="text" name="PAY_Nextyear" value="{$data[PAY_Nextyear]}" class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+		(续费二,三,四,五年的费率和一次性购买二,三,四,五年是一样的)
+	</span>
+</p>
+<p>
+	<label>是否允许月付</label>
+	<span class="formwrapper">
+		<input name=canmonth type="checkbox"  value="1"  <if condition="$data[canmonth] eq '1' ">checked</if>>是否允许季付
+		<input name="canseason" type="checkbox" id="canmonth" value="1"  <if condition="$data[canseason] eq '1' ">checked</if>>是否允许年付
+		<input name="canhalfyear" type="checkbox" id="canmonth" value="1"  <if condition="$data[canhalfyear] eq '1' ">checked</if>>是否允许半年
+		</span>
+</p>
+<p>
+	<label>机房名称</label>
+	<span class="field">
+		<input type="text" name="jfname" value="{$data[jfname]}"  class="smallinput10" validate='{required:true,messages:{required:"不能为空"}}' />
+	</span>
+</p>
+<p>
+	<label>简要说明</label>
+	<span class="field">
+		<textarea name="info" class="text-input textarea" rows="8" cols="50">{$data[info]}</textarea> 
+	</span>
+</p>
+<p>
+	<label>详细说明</label>
+	<span class="field">
+		<textarea name="infomore" class="text-input textarea" rows="8" cols="50">{$data[infomore]}</textarea> 
+	</span>
+</p>
+<p>
+	<label>启用</label>
+	<span class="formwrapper">
+		<input type="radio" name="status" value="1"
+		<if condition="$data[status] eq 1">checked</if>
+		/> 是 &nbsp; &nbsp;
+		<input type="radio" name="status"  value="0"
+		<if condition="$data[status] eq 0 ">checked</if>
+		/> 否 &nbsp; &nbsp;				  
+	</span>
+</p>
+<p class="stdformbutton">
+	<input type='hidden' name='id' value='{$data.id}'/>
+	<input type="submit" class="submit radius2 submitedit" value="修改"  />
+</p>
+</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper--><script type="text/javascript">
+function openctype(){
+	$pid=$("#pid").val();
+	var url="{:U('Admin/Cloudconfig/productinfo')}"+"?pid="+$pid;
+	window.open(url);
+}
+</script>
+</body>
+</html>

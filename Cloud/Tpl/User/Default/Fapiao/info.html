@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发票信息-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>发票管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">发票信息</li>
+				</ul>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/address')}">发票寄送地址</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/info')}">发票信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/add')}">索取发票</a>
+			</div>
+			<div class="blockBody">
+				<hr class="dotted">
+<form action="{:U('User/Fapiao/doinfo')}" method="post"  class="formvalidate" enctype="multipart/form-data">
+				<div class="forms">
+					<div class="item">
+						<b style="width: 180px;">开具类型：</b>
+						<input type="radio" name="opentype" class="checkbox" id="opentype1" value="1" checked onclick="changeopentype(this.value)"/>个人
+						<input type="radio" name="opentype" class="checkbox" id="opentype2" value="2" onclick="changeopentype(this.value)"/>企业
+						
+					</div>
+					<div class="item">
+						<b style="width: 180px;">发票抬头：</b>
+							<label id="invoicetitlep">个人</label>
+							<label id="invoicetitlec" style="display:none;">
+							<input name="infotitle" id="infotitle" type="text" class="edit_inp"
+							validate='{required:true,messages:{required:"不能为空"}}' value="个人"  size='50'>
+							</label>
+						
+					</div>
+					<div class="item">
+						<b style="width: 180px;">发票类型：</b>       
+						<label id="infotype1">
+						<input type="radio" name="infotype"  class="checkbox" value="1" checked onclick="changeinfotype(this.value)" />增值税普通发票
+						</label>
+						<label id="infotype2" style="display:none;">
+						<input type="radio" name="infotype"  class="checkbox" value="2" onclick="changeinfotype(this.value)" />增值税专用发票
+						</label>
+					</div>
+				</div>
+				<div class="forms" id="infobody" style="display:none;">
+					<div class="item">
+						<b style="width: 180px;">税务登记证号：</b>       
+						<input name="registrynumber" type="text" class="edit_inp"
+			validate='{required:true,messages:{required:"不能为空"}}'  size='50'>
+					</div>
+					<div class="item">
+							<b style="width: 180px;">基本户开户银行名称：</b>       
+			<input name="bankname" type="text" class="edit_inp" validate='{required:true,messages:{required:"不能为空"}}'  size='50'>
+					</div>
+				<div class="item">
+							<b style="width: 180px;">基本户开户账号：</b>       
+<input name="bankaccount" type="text" class="edit_inp"
+			validate='{required:true,messages:{required:"不能为空"}}'  size='50'>	
+				</div>	
+					<div class="item">
+							<b style="width: 180px;">注册场所地址：</b>       
+<input name="siteaddress" type="text" class="edit_inp"
+			validate='{required:true,messages:{required:"不能为空"}}'  size='50'>
+				</div>
+				<div class="item">
+							<b style="width: 180px;">注册固定电话：</b>       
+<input name="telephone" type="text" class="edit_inp"
+			validate='{required:true,messages:{required:"不能为空"}}'  size='50'>
+				</div>
+				<div class="item">
+							<b style="width: 180px;">营业执照复印件：</b>       
+		<input type="file" name="businesslicense" style="height:20px;width:200px;" validate='{required:true,messages:{required:"请选择文件"}}'/> 
+
+				</div>
+					<div class="item">
+				<b style="width: 180px;">税务登记复印件：</b>       
+<input type="file" name="taxregistration" style="height:20px;width:200px;" validate='{required:true,messages:{required:"请选择文件"}}'/> 
+				</div>
+	<div class="item">
+				<b style="width: 180px;">一般纳税人资格认证复印件：</b>       
+		<input type="file" name="taxpayercopy" style="height:20px;width:200px;" validate='{required:true,messages:{required:"请选择文件"}}'/> 
+				</div>
+					
+				</div>
+				<div class="forms">
+				<div class="item">
+					<button class="btn btnOrg2 btnsubmitfapiaoinfo" type="submit" style="margin-left:170px;">保存</button>
+				</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+function changeopentype(openid){
+	 if(openid==1){
+		 $("#invoicetitlep" ).css("display","inline");
+		 $("#invoicetitlec" ).css("display","none");
+		 $("#infotitle" ).val("个人");
+		 $("#infotype1" ).css("display","inline");
+		 $("#infotype2" ).css("display","none");
+		 $("#infobody" ).css("display","none");
+	 }else{
+		 $("#invoicetitlep" ).css("display","none");
+		 $("#invoicetitlec" ).css("display","inline");
+		 $("#infotitle" ).val("");
+		 $("#infotype2" ).css("display","inline");
+	 }
+	 $('input:radio[name=infotype]')[0].checked = true;
+}
+function changeinfotype(typeid){
+	if(typeid==1){
+	 $("#infobody" ).css("display","none");
+	}else{
+	 $("#infobody" ).css("display","block");
+	}
+}
+</script>
+<script type="text/javascript">
+$(function () {
+	$(".btnsubmitfapiaoinfo").click(function(){ 
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			resetForm: true,//重置表单
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				if(data.status == '1'){
+	            	layer.msg(data.info,2,1);
+	            	setTimeout(function(){
+                        location.href = '{:U("User/Fapiao/info")}';
+                    },3000);
+	            }else{
+	            	layer.msg(data.info,2,8);
+	     	    }
+			}
+		});
+		return false;
+	});
+}); 
+</script>
+</body>
+</html>

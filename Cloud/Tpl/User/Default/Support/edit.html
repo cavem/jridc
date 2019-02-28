@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="__PUBLIC__/Lib/lightbox/css/screen.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/Lib/lightbox/css/lightbox.css"/>
+<style>
+a{cursor:pointer;}
+li{list-style:none;}
+ul,li{padding:0px; margin:0px;}
+.order_tle{
+  width:100%;
+  margin:0 auto;
+  height:90px;
+}
+.f_left{ float:left;}
+.f_right{ float:right;}
+.tools{}
+.tools li{
+	float:left;
+   list-style:none;
+   margin:20px 20px 0 10px;   
+}
+.tools li a{
+	display:block;
+	width:75px; 
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	border:1px solid #ccc;
+	font-size:14px;
+	font-family:"Microsoft Yahei";
+	color:#888;
+	border-radius:3px;
+}
+.mainbox{ width:100%; margin:0 auto;}
+.main_list>li{ border-bottom:2px solid #eee; padding-bottom:2px;}
+.main_list>li>ul{ height:auto; overflow:hidden;margin:10px 0 5px 0}
+.tools li a:hover{
+	background:#d9534f;
+	color:white;
+	border:1px solid #cf4b37;
+}
+.item_tle{
+   margin:5px 0 5px 0;
+}
+.item_tle span{ color:#222; margin:5px 10px 0 5px; font-family:"Microsoft Yahei"; font-size:14px;}
+.spa_user{}
+.spa_time{}
+.spa_state{}
+
+.item_con{
+  width:100%;
+  box-sizing:border-box;
+   -moz-box-sizing:border-box; /* Firefox */ 
+   -webkit-box-sizing:border-box; /* Safari */ 
+  padding:10px;
+  height:auto;
+  overflow:hidden;
+  border:1px solid #ccc;
+  border-radius:4px;
+  background:#f5f5f5;
+}
+.answer_box{
+  margin:0 auto;
+  padding-top:30px;
+  width:100%;
+  height:auto;
+}
+.item_fujian {
+  padding-top:4px!important;
+  font-family:"Microsoft Yahei";
+  font-size:14px;
+  height:auto;
+}
+.item_fujian a{
+  margin:0 15px 0 0;
+  display:block;
+  float:left;
+
+}
+.requied{
+  display:inline-block;
+  height:20px;
+  line-height:20px; 
+  width:70px;border:1px solid #eee;
+  border-radius:3px; 
+  text-align:center;
+}
+.a_btn{
+	display:inline-block;
+	margin:5px 10px 5px 5px;	
+	width:100px;
+	line-height:28px;
+	text-align:center;
+	font-size:14px;
+	font-family:"Microsoft Yahei";
+	color:#888;
+	border-radius:3px;
+	}
+.file{
+	border:1px solid #ccc; 
+	}
+.file_selected{
+	
+	}
+.sub{ 
+	background:#00aced;
+	width:90px;
+	color:white;
+	height:35px;
+	line-height:35px;
+	}
+.close{
+	background:#d9534f;
+	width:110px;
+	color:white;
+	height:35px;
+	line-height:35px;
+	}
+.last_box{
+	margin:0 auto;
+	padding-top:15px;
+	width:100%;
+	height:auto;
+	}
+.info{
+	border:1px solid #00aced;
+	height:50px;
+	line-height:50px;
+	border-radius:5px;
+	margin:0 0 10px 0;
+	font-family:"Microsoft Yahei";
+	color:#888;
+	padding-left:10px;
+	
+}
+.info span {color:#00aced;}
+.info span a{
+	color:#00aced; font-weight:bolder;
+}
+.back{
+display:block;
+	width:100px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	border:1px solid #eee;
+	font-size:14px;
+	font-family:"Microsoft Yahei";
+	color:#888;
+	border-radius:3px;
+}
+</style>
+<title>工单状态-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+<script >
+//验证上传文件大小
+var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+function filechange(target){
+	var e_id = $(target).attr('id');
+	//验证文件类型
+    photoExt=target.value.substr(target.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+    if(photoExt!='.jpg' & photoExt!='.jpeg' & photoExt!='.pjpeg' & photoExt!='.png' & photoExt!='.gif' & photoExt!='.bmp'){
+		alert("图片格式不正确!");
+		clearObj(e_id);
+		return false;
+    }
+    //验证图片大小
+	var fileSize = 0;
+	if (isIE && !target.files) {
+		var filePath = target.value;
+		var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+		var file = fileSystem.GetFile (filePath);
+		fileSize = file.Size;
+	} else {
+		fileSize = target.files[0].size;
+	}
+	var size = fileSize / (1024*1024);
+	var e_id = $(target).attr('id');
+	if(size>10){
+		alert("附件不能大于10M");
+		clearObj(e_id);
+	}
+}
+function clearObj(e_id){
+	if (document.getElementById(e_id).outerHTML) {
+		document.getElementById(e_id).outerHTML = document.getElementById(e_id).outerHTML;
+	} else {
+		document.getElementById(e_id).value = "";
+	}
+	document.getElementById(e_id).focus();
+}
+function shcomm(){
+	$("#comment_p").toggle(600);
+}
+</script>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>我的工单</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Support/index')}">我的工单</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">详情</li>
+				</ul>
+			</div>
+			<div class="blockBody">
+				<div class="mainbox">
+				<ul class="main_list">
+					<li>
+						<ul>
+							<li class="item_tle">
+							<span class="spa_state">内容</span>
+							<span class="spa_time">{$data.add_time|date='Y-m-d H:i:s',###}</span>
+							</li>
+						<if condition="$data['type'] eq 9999 && $data['product']" >
+							<li class="">
+								<if condition="$data['product_type'] eq 1" >
+								云主机：<a target="_blank" href="{:U('user/cloud/cloudact',array('id'=>$data['product_id'],'act'=>'m'))}">{$data['product']}</a>
+								</if>
+								<if condition="$data['product_type'] eq 2" >
+								域名：
+								</if>
+								<if condition="$data['product_type'] eq 3" >
+								托管租用：
+								</if>
+							</li>
+						</if>
+							<li class="item_con">
+								<pre style='background:#f5f5f5;white-space:pre-wrap;'>{$data.content}</pre>
+							</li>
+							<li class="item_fujian">
+								<volist name='data.imgs' id='img'>
+								<a href='/{$img.path}' data-lightbox="example-1" >附件{$key+1}</a>
+								</volist>
+							</li>
+						</ul>
+					</li>
+					<!-- 追问及回复 -->
+					<volist name='apd_data' id='apd'>
+					<li>
+						<ul>
+							<li class="item_tle">
+								<if condition="$apd[type] eq 2"><span class="spa_user">{$apd.u_name}</span></if>
+								<span class="spa_state">
+									<if condition="$apd[type] eq 1">追问</if>
+									<if condition="$apd[type] eq 2">回复</if>
+								</span>
+								<span class="spa_time">{$apd.add_time|date='Y-m-d H:i:s',###}</span>
+							</li>
+							<li class="item_con">
+								<pre style='background:#f5f5f5;white-space:pre-wrap;'>{$apd.content}</pre>
+							</li>
+							<li class="item_fujian">
+								<volist name='apd.imgs' id='img'>
+								<a href="/{$img.path}" data-lightbox="example-1">附件{$key+1}</a>
+								</volist>
+							</li>
+						</ul>
+					</li>
+					</volist>
+				</ul>
+				</div>
+				<if condition='($data[status] neq 9) and ($data[status] neq 5)'>
+				<br/><br/>
+				<div><a onclick='shcomm();'>如果您的工单已经完成了，请点击这里来关闭它。</a></div>
+				<div id='comment_p' style='display:none'>
+					<form action="{:U('User/Support/comment')}" method="post" id="closeTicket">
+						<p>这样的回复有帮助吗?</p>
+						<div>
+							<input type="radio" name="comment_rank" value="1" id="rate_1" />差
+							<input type="radio" name="comment_rank" value="2" id="rate_2" />一般
+							<input type="radio" name="comment_rank" value="3" id="rate_3" checked="checked" />好
+							<input type="radio" name="comment_rank" value="4" id="rate_4" />很好
+							<input type="radio" name="comment_rank" value="5" id="rate_5" />非常好
+						</div>
+						<div>
+							<textarea rows="5" cols="50" name='comment' style='border:1px solid #e2e2e2;'></textarea>
+						</div>
+						<div class="form-submit">
+							<input type="submit" id="submit_btn" class="btn btn_red" value="关闭工单" />
+							<input type="hidden" name="id" value="{$data.id}" />
+						</div>
+					</form>
+				</div>
+				<form action="{:U('User/Support/edit')}" method="post" id='zwform' enctype="multipart/form-data">
+				<div class="answer_box">
+					<b style="display:block;">追问：</b><br/>
+					<textarea name='content' rows="15" cols="120" style='border: 1px solid #e2e2e2;'></textarea><br/>
+					<input type="file" name="upfile1" id='upfile1' onchange='filechange(this);'/><br/>
+					<input type="file" name="upfile2" id='upfile2' onchange='filechange(this);'/><br/>
+					<input type="file" name="upfile3" id='upfile3' onchange='filechange(this);'/><br/>
+					<input type='hidden' name='wo_id' value='{$data.id}'/>
+					<a class="a_btn sub" onclick="document.getElementById('zwform').submit();return false" id='submit_btn'>提交</a>
+				</div>
+				</form>
+				<else/>
+					<br/><br/>
+					<div>该工单已<if condition="($data['status'] eq 5) ">完成</if>
+							<notempty name='data[comment_rank]'>,评价等级：
+								<if condition='$data[comment_rank] eq 1'>差</if>
+								<if condition='$data[comment_rank] eq 2'>一般</if>
+								<if condition='$data[comment_rank] eq 3'>好</if>
+								<if condition='$data[comment_rank] eq 4'>很好</if>
+								<if condition='$data[comment_rank] eq 5'>非常好</if>
+							</notempty>
+						<if condition="$data['status'] eq 9">
+						取消
+						</if>
+					</div>
+				</if>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+
+	<script src="__PUBLIC__/Lib/lightbox/js/lightbox.js"></script>
+</body>
+</html>

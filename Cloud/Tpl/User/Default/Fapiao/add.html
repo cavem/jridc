@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>申请发票-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>发票管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">申请发票</li>
+				</ul>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/address')}">发票寄送地址</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/info')}">发票信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/add')}">索取发票</a>
+			</div>
+			<div class="blockBody">
+				<div class="money">
+				<b>可开票总金额：</b>￥<span class="font2"><if condition="$countmoney">{$countmoney}<else/>0.00</if></span>元
+				<b>已选总金额：</b>￥<span class="font2" id="selectmoney">0.00</span>
+				<b>待开票金额：</b>￥<span class="font2" id="selectmoneyw">0.00</span>
+				<if condition="$Fapiaoconf['MinFapiaomoney']"><b>最小的开发票金额</b>￥<span class="font2">{$Fapiaoconf.MinFapiaomoney}</span>元</if>
+				<button onclick="subbform()" class="btn btnOrg2">索取发票</button>
+				</div>		
+				<hr class="dotted">
+<form id="subform" name="subform" action="{:U('User/Fapiao/addnext')}" method="post">
+<table class="table">
+					<tbody><tr class="tdColor">
+						<th>
+						<input name="check_all" type="checkbox" class="checkAll" id="check_all"  onclick="if(this.checked==true) { checkAll('selectfid[]'); } else { clearAll('selectfid[]'); }"/>
+						全选
+						</th>
+						<th>交易类型</th>
+						<th>金额</th>
+						<th>时间</th>
+					</tr>
+						<volist name="data" id="vo">
+	<tr class="tr_list">
+		<td>
+		<input value="{$vo.id}" id="check_{$key}" type="checkbox" name="selectfid[]">
+		</td>
+		<td>
+			<if condition="$vo[type] eq 1">在线充值</if>
+			<if condition="$vo[type] eq 2">后台入款</if>
+		</td>
+		<td>
+		<span id="money_{$vo.id}">{$vo.usermoney}</span>
+		</td>
+		<td>
+		{$vo.addtime|date="Y-m-d H:i:s",###}
+		</td>
+	</tr>
+	</volist>
+	<empty name="data">
+		<tr><td colspan="4">暂时没有数据!</td></tr>
+	</empty>
+					 </tbody>
+</table>
+</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+function subbform(){
+	if($("#selectmoneyw").html()=="0.00" || $("#selectmoney").html()=="0.00"){
+		return false;
+	}
+	<if condition="$Fapiaoconf['MinFapiaomoney']">
+		var minmoney={$Fapiaoconf.MinFapiaomoney};
+		var endmoney=$("#selectmoney").html();
+		if(minmoney>endmoney){
+			layer.msg("开票金额不能小于"+minmoney,2,8);
+			return false;
+		}	
+	</if>
+	$("#subform").submit();
+}
+		function checkAll(name) {
+			var el = document.getElementsByTagName('input'); 
+			var len = el.length; 
+			for(var i=0; i<len; i++) { 
+				if((el[i].type=="checkbox") && (el[i].name==name)) { 
+					if (!el[i].disabled){
+						el[i].checked = true;
+					}
+				}
+			}
+			getmoney();
+		};
+		function clearAll(name) {
+			var el = document.getElementsByTagName('input');
+			var len = el.length;
+			for(var i=0; i<len; i++) {
+				if((el[i].type=="checkbox") && (el[i].name==name)) {
+					el[i].checked = false;
+				}
+			}
+			getmoney();
+		}; 
+		 $('input[name="selectfid[]"]').bind("click", function () {
+			 getmoney();
+         });
+		function getmoney(){
+			var endmoeny="0.00";
+			endmoeny=endmoeny*1;
+			$('input[name="selectfid[]"]:checked').each(function(){ 
+				var moenyval=$("#money_"+$(this).val()).html();
+				moenyval=moenyval*1;
+				endmoeny=endmoeny+moenyval;
+			}); 
+			$("#selectmoneyw").html(endmoeny.toFixed(2));
+			$("#selectmoney").html(endmoeny.toFixed(2));
+		}
+	</script>
+</body>
+</html>

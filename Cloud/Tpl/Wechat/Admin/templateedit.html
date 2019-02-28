@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑消息模版</title>
+<include file="inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">编辑模版</h1>
+			<span class="pagedesc">编辑模版</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/templateedit')}" method="post">
+				<p><label>模版名称</label>
+				<span class="field">
+					<input type="text" name="name" id="name" class="smallinput" value='{$data.name}' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>模版编号</label>
+					<span class="field">
+					<input type="text" name="t_id" id="t_id" class="smallinput" value='{$data.t_id}' value='10' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>排序</label>
+					<span class="field">
+					<input type="text" name="sort" id="sort" class="smallinput" value='{$data.sort}' value='10' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<volist name="data[content]" id="field" >
+				<p><label>字段名称</label>
+					<span class="field">
+					<input type="text" name="field{$key}" id="field{$key}" class="smallinput" value='{$field}' value='10' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				</volist>
+				<p class="stdformbutton">
+					<input type='hidden' name="id" value='{$data.id}' />
+					<input type="submit" class="submit radius2 " value="保存"  />
+				</p>
+			</form>
+			</div>             
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

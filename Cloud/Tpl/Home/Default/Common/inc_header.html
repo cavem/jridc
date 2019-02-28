@@ -1,0 +1,61 @@
+<div id="header">
+  <div class="viewport-inner"><a class="header-logo" href="/" >CLOUD</a>
+    <div class="header-account">
+    <if condition="$_SESSION['uid']">
+        <a class="btn btn-outline btn-signin" href="{:U('User/Center/index')}">管理</a>
+  	    <a class="btn btn-primary btn-signup" href="{:U('User/Center/dologout')}" >退出</a>
+    <else/>
+    <a class="btn btn-outline btn-signin" href="{:U('Home/User/login')}">登录</a>
+    <a class="btn btn-primary btn-signup" href="{:U('Home/User/register')}" >注册</a>
+    </if>
+    </div>
+    <ul class="header-nav">
+      <li class="nav-item home"><a href="/" >首页</a></li>
+      <li class="nav-item customers"><a href="{:U('Home/Cloud/buy')}" >云产品</a>
+      <div class="items cpmain">
+      	<div class="viewport-inner">
+        	<div class="cpnav">
+                <ul>
+                  <li><a href="{:U('Home/Cloud/buy')}" >弹性购买</a></li>
+                   <Cloud:page  where="type_id=3"  limit="10" result="page" order="sort desc">
+					<li>
+						<a href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+				  </Cloud:page>
+                </ul>
+            </div>
+        </div>
+       </div>
+      </li>
+      <li class="nav-item customers"><a href="{:U('Home/Page/Show',array('id'=>5))}" >解决方案</a>
+        <div class="items cpmain">
+          <div class="viewport-inner">
+            <div class="cpnav">
+              <ul>
+              <Cloud:page  where="type_id=2"  limit="10" result="page" order="sort desc">
+					<li>
+						<a href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+			 </Cloud:page>
+              </ul>
+            </div>
+        </div>
+       </div>
+      </li>
+      <li class="nav-item pricing"><a href="{:U('Home/News/index/')}" >新闻公告</a></li>
+      <li class="nav-item console"><a href="{:U('Home/Page/show/',array('id'=>12))}">合作加盟</a></li>
+      <li class="nav-item about"><a href="{:U('Home/Page/show/',array('id'=>1))}" >关于我们</a>
+      <div class="items cpmain">
+      	<div class="viewport-inner">
+        	<div class="cpnav">
+                <ul>              
+                  <Cloud:page  where="type_id=1"  limit="10" result="page" order="sort desc">
+					<li>
+						<a href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+			 </Cloud:page>
+                </ul>
+            </div>
+        </div>
+       </div>
+      </li>
+    </ul>
+  </div>
+</div>

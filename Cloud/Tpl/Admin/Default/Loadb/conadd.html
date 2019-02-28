@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加负载均衡连接数</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">添加连接数</h1>
+            <span class="pagedesc">负载均衡</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+<form class="stdform formvalidate" action="{:U('Admin/Loadb/conadd')}" method="post">
+    <p>
+    <label>连接数</label>
+       <span class="field">
+        <input type="text" name="connection" id="connection" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>
+                     
+    <p>
+    <label>CPU</label>
+       <span class="field">
+        <input type="text" name="cpu" id="cpu" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>
+    <p>
+    <label>MEM</label>
+       <span class="field">
+        <input type="text" name="mem" id="mem" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>  
+    <p>
+    <label>系统大小</label>
+       <span class="field">
+        <input type="text" name="sysdisk" id="sysdisk" class="smallinput20" value="50" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>  
+     <p>
+    <label>数据盘</label>
+       <span class="field">
+        <input type="text" name="disk" id="disk" class="smallinput20" value="10" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>            
+                         <p>
+                         <label>排序</label>
+                              <span class="field">
+                               <input type="text" name="sort" id="sort" value="1" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                       		<input type="submit" class="submit radius2 submitadd" value="添加"  />
+                        </p>
+</form>
+                    </div>
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

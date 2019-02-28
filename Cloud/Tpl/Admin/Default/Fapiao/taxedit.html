@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>纳税人信息</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">纳税人信息</h1>
+			<span class="pagedesc">纳税人信息</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Admin/Fapiao/taxedit')}" method="post">
+				<p><label>用户</label>
+				<span class="field">
+					{$data.username}
+				</span></p>
+				<p><label>开具类型</label>
+				<span class="field">
+					<if condition='$data[opentype] eq 1'>个人</if>
+					<if condition='$data[opentype] eq 2'>企业</if>
+				</span></p>
+				<p><label>发票抬头</label>
+					<span class="field">
+					{$data.infotitle}
+				</span></p>
+				<p><label>发票类型</label>
+				<span class="field">
+					<if condition='$data[infotype] eq 1'>增值税普通发票</if>
+					<if condition='$data[infotype] eq 2'>增值税专用发票</if>
+				</span></p>
+				
+				<if condition="$data[infotype] eq 2">
+				<p><label>税务登记证号</label>
+				<span class="formwrapper">
+					{$data.registrynumber}
+				</span></p>
+				<p><label>开户银行名称</label>
+				<span class="formwrapper">
+					{$data.bankname}
+				</span></p>
+				<p><label>基本户开户帐号</label>
+				<span class="formwrapper">
+					{$data.bankaccount}
+				</span></p>
+				<p><label>注册场所地址</label>
+				<span class="formwrapper">
+					{$data.siteaddress}
+				</span></p>
+				<p><label>注册固定电话</label>
+				<span class="formwrapper">
+					{$data.telephone}
+				</span></p>
+				<p><label>营业执照复印件</label>
+				<span class="formwrapper">
+					<a href='{$data.businesslicense}' target='_blank'>点击查看图片详情</a>
+				</span></p>
+				<p><label>税务登记证复印件</label>
+				<span class="formwrapper">
+					<a href='{$data.taxregistration}' target='_blank'>点击查看图片详情</a>
+				</span></p>
+				<p><label>一般纳税人资质认证复印件</label>
+				<span class="formwrapper">
+					<a href='{$data.taxpayercopy}' target='_blank'>点击查看图片详情</a>
+				</span></p>
+				</if>
+				<p><label>审核状态</label>
+				<span class="formwrapper">
+					<input type='radio' name='state' id='state1' value='1' 
+					<if condition='$data[state] eq 1'>checked</if>/>审核中
+					<input type='radio' name='state' id='state2' value='2' 
+					<if condition='$data[state] eq 2'>checked</if>/>已审核
+				</span></p>
+				<p><label>备注</label>
+				<span class="formwrapper">
+					<textarea name='bak' rows="10" cols="40">{$data.bak}</textarea>
+				</span></p>
+				<p class="stdformbutton">
+					<input type='hidden' name='id' value='{$data.iid}' />
+					<input type="submit" class="submit radius2 " value="编辑"  />
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

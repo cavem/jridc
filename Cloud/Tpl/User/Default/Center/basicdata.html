@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基本信息-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>基本资料</b>
+			<span>
+			 	<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<form action="{:U('User/Center/dobasicdata')}" method="post" id="saveinfo" class="formvalidate">
+		<div class="mainM">
+			<div class="mainHalf3">
+				<p class="mainTson">基本资料</p>
+				<div class="forms">
+					<div class="item">
+						<b style="width: 180px;">用户名：</b>
+						{$user_info.username}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">手机：</b>
+						{$user_info.mobi}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">Email：</b>
+						{$user_info.email}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">姓名（或企业名称）：</b>
+						<input name="conname" id="conname" value="{$user_info.conname}" type="text">
+					</div>
+					<div class="item">
+						<b style="width: 180px;">身份证号码（或营业执照）：</b>
+						<input name="concode" id="concode" value="{$user_info.concode}" type="text">
+					</div>
+					<div class="item">
+						<b style="width: 180px;">省份/直辖市：</b>
+	  <select name="province" id="province" onchange="loadRegion('province',2,'city','town','{:U('User/Center/getregion')}');">
+       <option value="0" selected>省份/直辖市</option>
+	       <volist name="province" id="vo"> 
+	       <option value="{$vo.id}"    <if condition="$vo.id  eq $user_info['province']">selected="selected"</if>>{$vo.name}</option>
+	      </volist>
+      </select>          
+					</div>
+						<div class="item">
+						<b style="width: 180px;">市/县：</b>       
+     <select name="city" id="city"  onchange="loadRegion('city',3,'town','','{:U('User/Center/getregion')}');">
+      	 <option value="0">市/县</option>
+      	  <volist name="city" id="voo"> 
+	       <option value="{$voo.id}"    <if condition="$voo.id  eq $user_info['city']">selected="selected"</if>>{$voo.name}</option>
+	      </volist>
+     </select>
+
+					</div>
+						<div class="item">
+						<b style="width: 180px;">镇/区：</b>
+	 <select name="town" id="town">
+     	  <option value="0">镇/区</option>
+     	   <volist name="town" id="vooo"> 
+	       <option value="{$vooo.id}"    <if condition="$vooo.id  eq $user_info['town']">selected="selected"</if>>{$vooo.name}</option>
+	      </volist>
+     </select>
+					</div>
+						<div class="item">
+						<b style="width: 180px;">地址：</b>
+						<input name="address" id="address" value="{$user_info.address}" type="text">
+					</div>
+					<div class="item">
+						<b style="width: 180px;">邮编：</b>
+						<input name="zipcode" id="zipcode" value="{$user_info.zipcode}" type="text">
+					</div>
+					<div class="item">
+						<b style="width: 180px;">固定电话：</b>
+						<input name="tel" id="tel" value="{$user_info.tel}" type="text">
+					</div>
+				
+				</div>
+			</div>
+			<hr class="dotted">
+			<button class="btn btnOrg1 btnsubmitedit" type="submit">保存</button>
+		</div>
+		<input name="sort" value="0" type="hidden">
+		
+		</form>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+</body>
+</html>

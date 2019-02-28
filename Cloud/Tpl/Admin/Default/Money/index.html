@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>财务管理</title>
+<include file="Common:inc_css_js" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/mydatepicker/WdatePicker.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">财务管理</h1>
+			<span class="pagedesc">财务管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+				<div class="tableoptions">
+                	<form action="{:U('Admin/Money/index')}" method="get">
+                	用户名
+					<input type="text" name="username" id="username" value='{$prm_uname}' placeholder="会员名" autocomplete="off" value="" class="smallinput20"/>
+					
+					会员组
+					<select name="user_rank" id="user_rank" class="selectwidth20">
+						<option value=''>请选择</option>
+						<foreach name="user_rank" item="v">
+						<option value="{$v.rank_id}" <if condition="$v['rank_id'] eq $userRank">selected="selected"</if>>{$v.rank_name}</option>
+						</foreach>
+					</select>
+					&nbsp;&nbsp;支付类型
+					<select name="type" id="type" class="selectwidth20">
+						<option value=''>请选择</option>
+						<option value="1" <if condition="$type eq '1'" >selected="secleted"</if>>在线充值</option>
+						<option value="2" <if condition="$type eq '2'" >selected="secleted"</if>>后台入款</option>
+						<option value="3" <if condition="$type eq '3'" >selected="secleted"</if>>后台扣除</option>
+						<option value="4" <if condition="$type eq '4'" >selected="secleted"</if>>开通扣除</option>
+						<option value="4" <if condition="$type eq '5'" >selected="secleted"</if>>续费扣除</option>
+						<option value="4" <if condition="$type eq '6'" >selected="secleted"</if>>升级配置</option>
+						<option value="4" <if condition="$type eq '7'" >selected="secleted"</if>>降级配置</option>
+						<option value="4" <if condition="$type eq '10'" >selected="secleted"</if>>充值卡</option>
+					</select>
+					&nbsp;&nbsp;产品类型
+					<select name="whichProduct" id="whichProduct" class="selectwidth20">
+						<option value=''>请选择</option>
+						<option value="1" <if condition="$whichProduct eq '1'" >selected="secleted"</if>>cloud产品</option>
+					</select>
+					客服
+                	<select name="kid" id="kid" class="selectwidth20">
+                    	<option value="">--请选择--</option>
+                      	 <volist name="kefu" id="k">
+                             <option value="{$k.id}" <if condition="$k.id  eq $kid">selected="selected"</if>>{$k.kefuname}</option>
+                         </volist>
+                    </select>
+					<div style="width:100%;height:10px;"></div>	
+					订单号
+					<input type="text" name="orderid" id="orderid" value='{$orderid}' placeholder="订单号" autocomplete="off" value="" class="smallinput20"/>
+					
+					<input type="radio" name="isadd" id="isadd0"  value="0"  <if condition="empty($isadd)">checked</if> />全部
+					<input type="radio" name="isadd" id="isadd1"  value="1" <if condition="$isadd  eq 1">checked</if>/>进账
+					<input type="radio" name="isadd" id="isadd2"  value="2" <if condition="$isadd  eq 2">checked</if> />出账			
+					所属区域   
+					<select name="acspace" id="acspace" class="selectwidth20">
+						<option value=''>请选择</option>
+						<option value="1" <if condition="$acspace eq '1'" >selected="secleted"</if>>用户区</option>
+						<option value="2" <if condition="$acspace eq '2'" >selected="secleted"</if>>管理区</option>
+					</select>					
+					&nbsp;&nbsp;开始时间
+					<input  class="time smallinput10" name="starttime" value="{$starttime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" type="text" />
+					&nbsp;&nbsp;结束时间
+					<input  class="time smallinput10" name="endtime"  value="{$endtime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" type="text" />					
+					&nbsp;&nbsp;&nbsp;<button class="radius3">查询</button>
+                     </form>
+                </div><!--tableoptions-->
+                <if condition="$jinzhang gt 0 || $zhichu gt 0 ">
+                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                	<thead>
+                		<tr>
+                			<th align="left" class="head1">总计</th>
+                			<th class="head0">收支记录总数</th>
+                			<th class="head1">进账</th>
+                			<th class="head0">出帐</th>
+                		</tr>
+                	</thead>
+                	<tbody>
+                		<tr>
+                			<td>详细</td>
+                			<td>{$count}笔</td>
+                			<td>{$jinzhang|default=0}元</td>
+                			<td>{$zhichu|default=0}元</td>
+                		</tr>
+                	</tbody>
+                	
+                </table>
+                <div style="height:10px;"></div>
+                </if>
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head1">编号</th>
+							<th class="head0">用户</th>
+							<th class="head0">进账</th>
+							<th class="head1">出账</th>
+							<th class="head0">余额</th>
+							<th class="head1">交易时间</th>
+							<th class="head0">交易内容</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					<volist name="data" id="vo">
+						<tr>
+							<td>{$vo.id}</td>
+							<td><a href="{:U('Admin/User/edit',array('id'=>$vo['user_id']))}">{$vo.username}</a>&nbsp;&nbsp;({$vo.kefuname})</td>
+							<td><if condition='$vo[isadd] eq 1'>{$vo.usermoney}<else/>0.0</if></td>
+							<td><if condition='$vo[isadd] eq 2'>{$vo.usermoney}<else/>0.0</if></td>
+							<td>{$vo.newusermoney}</td>
+							<td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+							<td>{$vo.forwhat}</td>
+							<td class="center">
+				 				<a href="{:U('Admin/Money/detail',array('id'=>$vo['id']))}" class="edit">详情</a> &nbsp;
+					 			<a href="{:U('Admin/Money/del',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+             <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+                <div class="paginationnew">{$page}</div>
+             </div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

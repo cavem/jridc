@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的云主机-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>我的云主机</b>
+		</div>
+		
+		<div class="mainM">
+		<div id="search" class="forms">
+			<form action="{:U('User/Cloud/index')}" method="get" class="forms">
+				<div class="item">
+				主机名<input style="width: 100px; color: rgb(153, 153, 153);" value="{$cloudname}" name="cloudname" type="text">
+				开始时间
+				<input  class="time hasDatepicker" name="starttime" value="{$starttime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" type="text">
+				结束时间
+				<input  class="time hasDatepicker" name="endtime"  value="{$endtime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" type="text">
+				</div>
+					<button class="btn btnOrg2" type="submit">查询</button>&nbsp
+			</form>
+		</div>
+			<table class="table">
+				<tbody>
+				<tr class="tdColor">
+					<th>机房</th>
+					<th>名称</th>
+					<th>IP</th>
+					<th>创建时间</th>
+					<th>到期时间</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>	
+			<volist name="data" id="vo">
+				<tr>
+				<td>{$vo['jfname']}</td>
+				<td id='vm_name_{$vo.id}'>
+				<input type="hidden" name="vmid[]" value='{$vo.id}' />
+					{$vo['cloudname']}
+				</td>
+				<td id='vm_ip_{$vo.id}'>
+				<img src='__PUBLIC__/User/images/loading.gif' alt="loading" title="loading"/>
+				</td>
+				<td>{$vo.starttime|date='Y-m-d H:i:s',###}</td>
+				<td>{$vo.endtime|date='Y-m-d H:i:s',###}</td>
+				<td>
+					<if condition="$vo['istest'] eq 'y'">试用</if>
+					<span id='vm_status_{$vo.id}'>{$vo['status']}</span>
+				</td>
+				<td>
+					<if condition="$vo['istest'] eq 'y'">
+						<a href="{:U('User/Cloud/cloudact',array('id'=>$vo['id'],'act'=>'p'))}">购买</a>
+					<else/>
+						<a href="{:U('User/Cloud/cloudact',array('id'=>$vo['id'],'act'=>'p'))}">延期</a>
+					</if>
+					<a href="{:U('User/Cloud/cloudact',array('id'=>$vo['id'],'act'=>'a'))}">增配</a>
+					<a href="{:U('User/Cloud/cloudact',array('id'=>$vo['id'],'act'=>'b'))}">减配</a>
+					<a href="{:U('User/Cloud/cloudact',array('id'=>$vo['id'],'act'=>'m'))}">管理</a>
+				</td>
+				</tr>
+				</volist>
+				<empty name="data" >
+				<tr>
+				<td colspan="8">暂无数据</td>
+				</tr>
+				</empty>
+				<tr>
+				<td colspan="8">
+				<div class="pagediv">
+				<div class="pageinfo">{$pageinfo}</div>
+				</div>
+				</td>
+				</tr>	
+			</tbody></table>
+	
+
+			<button class="btn btnOrg1" type="submit" onclick="location.href='{:U('Home/Cloud/buy')}'">创建云主机</button>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+var getvmstatusurl="{:U('User/Cloud/vmstate')}";
+</script>
+<script type="text/javascript" src="__PUBLIC__/User/js/cloud.js"></script>
+<script type="text/javascript">
+get_vm_status();
+if (!vm_interval) {
+   var vm_interval = setInterval(get_vm_status,20000);
+}
+</script>
+</body>
+</html>

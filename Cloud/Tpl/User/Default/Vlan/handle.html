@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建Vlan-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>VLAN管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('index.php/User/Cloud/index')}">我的云主机</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<br></br>
+			<div class="blockBody">
+			
+				<div class="forms">
+				<div class="item">
+						<b></b>
+												
+					</div>
+				<form action="{:U('User/Vlan/handlesave')}" class='formvalidate' method="post" >
+				<table class="table" >
+				<tbody>
+				<tr>
+					<th class="tdColor" style="width: 180px;">私有网络名称</th>
+					<td style="text-align:left;background:#fff;">{$data.vlanname}</td>
+				</tr>
+				<tr>
+					<th class="tdColor" style="width: 180px;">所属机房</th>
+					<td style="text-align:left;background:#fff;">{$data.Cloudtype}</td>
+				</tr>
+				<tr>
+					<th class="tdColor" style="width: 180px;">选择云主机</th>
+					<td style="text-align:left;background:#fff;">
+					<ul style='list-style-type:none'>
+					<volist name="cloud" id="vo">
+							<li style="width:180px;float:left">
+							<input type='checkbox' id='checkcloud' name="checkcloud[]" value='{$vo[id]}' <if condition="in_array($vo[id],$data['cloudarr'])">checked</if> >
+							{$vo[cloudname]}</li>
+						</volist>
+						</ul>
+						</td>
+				</tr>
+				</tbody>
+				</table>
+					<div class="item">
+						<input type="hidden" id="id" name="id" value="{$data.id}">
+						<button type="submit" class="btn btnOrg2 btnsubmitpostvlan" style="margin-left:200px;">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+$(".btnsubmitpostvlan").click(function(){ 
+	layer.confirm('确定创建私有网络？',function(index){
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('私有网络创建中');
+			},
+			success: function(data) {
+				if(data.status == '1'){
+	            	layer.msg(data.info,2,1);
+	            	setTimeout(function(){
+	            		location.href="{:U('User/Vlan/index')}";
+	            	},2000);
+	            }else{
+	            	layer.msg(data.info,2,8);
+	     	    }
+			}
+		});
+	});
+	
+	return false;
+});
+</script>
+</body>
+</html>

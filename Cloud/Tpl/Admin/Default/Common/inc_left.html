@@ -1,0 +1,30 @@
+<div class="vernav2 iconmenu">
+    	<ul>
+       		<volist name="menus" id="menu"   key="j">
+				  <if condition="$menu.name eq '控制台'">
+						<volist name="menu.nodes" id="me">
+						<li nc_type='{$menu.name}'>
+						 <a href="javascript:void(0);" class="support"  onClick="openItem('{$me.nav_id},{$me.module},{$me.action},{$me.id}');" name="item_{$me.module}_{$me.action}" id="item_{$me.module}_{$me.action}">{$me.action_name}</a>
+						</li>
+						<li><a  href="{:U('Admin/Login/doLogout')}"" class="support">退出管理</a></li>
+						</volist>
+	              <else/>
+	                <li <if condition="strtolower($menu['module']) eq strtolower($modulename)">class="current"</if> dataparam='{$menu.name}'>
+	                	<a href="#form_{$menu.name}" class="support">{$menu.name}</a>
+            			<span class="arrow"></span> 
+            			<ul id="form_{$menu.name}">
+            			   <volist name="menu.nodes" id="me">
+                            <li nc_type='{$menu.name}'>
+                            <a href="javascript:void(0);"  onClick="openItem('{$me.nav_id},{$me.module},{$me.action},{$me.id}');" name="item_{$me.module}_{$me.action}" id="item_{$me.module}_{$me.action}">{$me.action_name}</a>
+                            </li>
+                           </volist>
+               		 </ul>
+            			
+            			   
+	                </li>
+	              </if>                  
+             </volist>
+        </ul>
+ <a class="togglemenu"></a>
+        <br /><br />
+</div><!--leftmenu-->

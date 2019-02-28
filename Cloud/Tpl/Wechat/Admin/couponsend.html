@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>发放优惠券</title>
+<include file="inc_css_js" />
+<script src="__PUBLIC__/Admin/JS/mydatepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+function checksendform(){
+	var choUser = $("#choUser").val();
+	$("#utype").val(choUser);//设置选择用户类型
+	if(choUser=='some'){ //如果是指定用户 获取用户编号
+		var chk_ids = '';//获取编号
+		$('input[cc="cc"]:checked').each(function(){
+			chk_ids += $(this).val()+",";
+		});
+		chk_ids = chk_ids.substr( 0,chk_ids.length-1);
+		$("#ids").val(chk_ids);
+		if(!chk_ids){
+        	layer.msg('没有选择任何用户！',2,8);
+			return false;
+		}
+	}
+	return true;
+}
+</script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">微信发放优惠券</h1>
+			<span class="pagedesc">发放</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/couponsend')}" method="post">
+				<p><label>优惠券类型</label>
+				<span class="field">
+					<select name='coupon_type' class="selectwidth40" >
+						<option value='Cloud产品'>Cloud产品</option>
+					</select>
+				</span></p>
+				<p><label>面值</label>
+				<span class="field">
+					<input type="text" name="cmoney" id="cmoney" class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>使用过期时间</label>
+				<span class="field">
+					<input type="text" name="expire_time" id="expire_time" class='hasDatepicker' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})" validate='{required:true,messages:{required:"不能为空"}}'/>
+				</span></p>
+				<p><label>使用金额</label>
+				<span class="field">
+					<input type="text" name="condition" id="condition" class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				超过多少总金额 方可使用
+				</span></p>
+				<p><label>所属客服</label>
+				<span class="field">
+					<select name='kid' class="selectwidth20" >
+						<option value='0' >无</option>
+						<volist name="kefus" id="vo">
+							<option value='{$vo.rank_id}' disabled='disabled'>{$vo.rank_name}</option>
+							<volist name="vo.kefus" id="voo">
+								<option value='{$voo.id}'>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.kefuname}</option>
+							</volist>
+						</volist>
+					</select>
+				</span></p>
+				<p><label>发放用户</label>
+				<span class="field">
+					<select name='chosUser' id='choUser' class="selectwidth20" onchange='changeUserType(this);'>
+						<option value='all' >所有</option>
+						<option value='some' >指定客户</option>
+					</select>
+				</span></p>
+				<p class="stdformbutton">
+					<input type='hidden' name='utype' id='utype'/>
+					<input type='hidden' name='ids' id='ids'/>
+					<input type="submit" class="submit radius2 submitsend" value="发放"/>
+				</p>
+			</form>
+			</div>
+			<div id='choseUser' style='display:none;border:0px solid #999;width:70%;'>
+				<div style='border:1px solid #ddd'>
+					<form class="formcs" action="{:U('Wechat/Admin/couponusers')}" method='get'>
+						OpenId：		<input type='text' name='open_id' class='smallinput20'/>
+						用户昵称：	<input type='text' name='nickname' class='smallinput20'/>
+						绑定用户：	<input type='text' name='uname' class='smallinput20'/>
+						<input type='submit' class='couponsearch' value='查询'/>
+					</form>
+				</div>
+				<div>
+					<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+						<thead>
+							<tr>
+								<th class="head0">
+									<input type='checkbox' name='checkboxall' id='checkboxall' value='0'/>
+								</th>
+								<th class="head0">OpenId</th>
+								<th class="head0">昵称</th>
+								<th class="head1">绑定用户</th>
+							</tr>
+						</thead>
+						<tbody id='tablelist'>
+							<volist name='users' id='user'>
+							<tr>
+								<td><input type='checkbox' cc='cc' name='chbx{$user.id}' id='chbx{$user.id}' value='{$user.id}' /></td>
+								<td>{$user['wxid']}</td>
+								<td>{$user['nickname']}</td>
+								<td>{$user['uname']}</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+function changeUserType(obj){
+	var type = $(obj).val();
+	if(type=='all'){
+		$("#choseUser").hide();
+	}else{
+		$("#choseUser").show();
+	}
+}
+//数据提交处理
+$(function () {
+	$(".couponsearch").click(function(){ 
+		$(".formcs").ajaxSubmit({
+			dataType:  'json',
+			resetForm: false,//resetForm: true,重置form表单
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			success: function(data) {
+				layer.closeAll();
+				var datas = data.info;
+				$("#tablelist").html("");
+				for(var i=0;i<datas.length;i++){
+					var item = datas[i];
+					var html = "<tr>";
+					html += "<td><input type='checkbox' cc='cc' name='chkb"+item['id']+"' id='chkb"+item['id']+"' value='"+item['id']+"'/></td>";			
+					html += "<td>"+item['wxid']+"</td>";
+					html += "<td>"+item['nickname']+"</td>";;
+					html += "<td>"+item['uname']+"</td>";
+					html += "</tr>";
+					$("#tablelist").append(html);
+				}
+			},
+			error:function(xhr){
+				layer.msg(xhr,2,8);
+			}
+		});
+		return false;
+	});
+	$(".submitsend").click(function(){ 
+		if(checksendform())
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			resetForm: true,//resetForm: true,重置form表单
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				if(data.status == '1'){
+		            	layer.msg(data.info,2,1);
+		            }else{
+		            	layer.msg(data.info,2,8);
+		        }
+			},
+			error:function(xhr){
+				layer.msg(xhr,2,8);
+			}
+		});
+		return false;
+	});
+});
+</script>
+</body>
+</html>

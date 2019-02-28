@@ -1,0 +1,721 @@
+[ 2019-02-07T01:52:20+08:00 ] 123.126.113.169 /index.php/home/page/show/id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000498s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000578s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000296s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000327s ]
+NOTIC: [2048] Declaration of PageAction::show() should be compatible with Action::show($content, $charset = '', $contentType = '', $prefix = '') /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/PageAction.class.php 第 2 行.
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000596s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000053s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000445s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( id =1 ) LIMIT 1   [ RunTime:0.000057s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 19 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000112s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 34 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000066s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 46 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000064s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 60 行.
+NOTIC: [8] Use of undefined constant type_id - assumed 'type_id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 75 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000057s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 80 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 80 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 80 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 80 行.
+NOTIC: [8] Use of undefined constant type_id - assumed 'type_id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 84 行.
+NOTIC: [8] Use of undefined constant type_id - assumed 'type_id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7ff62ca4f22f7123aed617eeb51b2168.php 第 93 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.011190s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011228s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000270s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000204s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000144s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000238s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000944s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000337s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000367s ]
+
+[ 2019-02-07T01:52:47+08:00 ] 123.126.113.169 /index.php/home/page/Show/id/11.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000429s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000497s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000279s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000310s ]
+NOTIC: [2048] Declaration of PageAction::show() should be compatible with Action::show($content, $charset = '', $contentType = '', $prefix = '') /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/PageAction.class.php 第 2 行.
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000526s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000052s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000351s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( id =11 ) LIMIT 1   [ RunTime:0.000052s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 19 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000122s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 34 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000061s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 46 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000064s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/16a838965008b33db837be889bbaaca3.php 第 60 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.010399s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010438s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000308s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000231s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000144s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000239s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001020s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000353s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000388s ]
+
+[ 2019-02-07T01:53:12+08:00 ] 123.126.113.169 /index.php/home/news/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000495s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000566s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000354s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000504s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000054s ]
+SQL: SHOW COLUMNS FROM `cloud_article` [ RunTime:0.000364s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_article_category` [ RunTime:0.000323s ]
+SQL: SELECT * FROM `cloud_article_category` LIMIT 1   [ RunTime:0.000075s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( pid = 0 and status = 1 ) ORDER BY sort asc  [ RunTime:0.000050s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( pid = 1 and status = 1 )  [ RunTime:0.000047s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( pid = 2 and status = 1 )  [ RunTime:0.000046s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( pid = 3 and status = 1 )  [ RunTime:0.000046s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( pid = 7 and status = 1 )  [ RunTime:0.000045s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( id = 1 ) LIMIT 1   [ RunTime:0.000045s ]
+SQL: SELECT * FROM `cloud_article_category` WHERE ( `status` = 1 )  [ RunTime:0.000071s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT COUNT(*) AS tp_count FROM `cloud_article` WHERE ( cid in (1) ) LIMIT 1   [ RunTime:0.000045s ]
+SQL: SELECT * FROM `cloud_article` WHERE ( cid in (1) ) ORDER BY update_time desc LIMIT 0,10   [ RunTime:0.000049s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined variable: data /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 9 行.
+NOTIC: [8] Undefined variable: data /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 10 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 28 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000576s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000054s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 43 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 43 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 43 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 43 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000078s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 55 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 55 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 55 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000068s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 69 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 69 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 69 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 69 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 88 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 88 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 88 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 86 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 88 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/a1287bb1f58d0d892a7c335fe6ff4ef9.php 第 91 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012835s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012876s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000359s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000232s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000149s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001082s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000329s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000360s ]
+
+[ 2019-02-07T01:53:28+08:00 ] 123.126.113.169 /index.php/home/page/Show/id/9.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000489s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000565s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000447s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000509s ]
+NOTIC: [2048] Declaration of PageAction::show() should be compatible with Action::show($content, $charset = '', $contentType = '', $prefix = '') /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/PageAction.class.php 第 2 行.
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000623s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000054s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000363s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( id =9 ) LIMIT 1   [ RunTime:0.000051s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 19 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000133s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 34 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000082s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 46 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000083s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/56913ba4b761a2efb6bbcbd5b03bf556.php 第 60 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.011518s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011563s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000244s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000205s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000149s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000287s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000984s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000324s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000358s ]
+
+[ 2019-02-07T07:00:28+08:00 ] 203.208.60.32 /robots.txt
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000469s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000530s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000319s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: group /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 102 行.
+ERR: 无法加载模块:Robots.txt
+
+[ 2019-02-07T07:00:29+08:00 ] 203.208.60.81 /index.php/home/user/checkmbi.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000444s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000519s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000408s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000452s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000604s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000067s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 26 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000564s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000053s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000058s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000063s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.011586s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011646s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000247s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000202s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000141s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000235s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000916s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000321s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000353s ]
+
+[ 2019-02-07T11:11:23+08:00 ] 121.233.44.91 /
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000383s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000592s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000056s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 21 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000627s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000063s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000062s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000075s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012376s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012421s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000293s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000233s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000175s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000261s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001082s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000359s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000392s ]
+
+[ 2019-02-07T13:02:49+08:00 ] 114.239.128.251 /
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000335s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000402s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000677s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000055s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 21 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000769s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000073s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000077s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000082s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.015091s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015147s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000386s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000295s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000192s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000332s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001333s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000468s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000513s ]
+
+[ 2019-02-07T14:15:50+08:00 ] 123.126.113.169 /robots.txt
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000444s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000508s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000305s ]
+NOTIC: [8] Undefined variable: group /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 102 行.
+ERR: 无法加载模块:Robots.txt
+
+[ 2019-02-07T14:15:58+08:00 ] 123.126.113.169 /index.php/home/page/Show/id/10.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000457s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000525s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000350s ]
+NOTIC: [2048] Declaration of PageAction::show() should be compatible with Action::show($content, $charset = '', $contentType = '', $prefix = '') /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/PageAction.class.php 第 2 行.
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000617s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000056s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.003336s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( id =10 ) LIMIT 1   [ RunTime:0.000064s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 19 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000260s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 34 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 34 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000085s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 46 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 46 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000087s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 60 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/7f3bb1e368e847069e4c63b9399a430a.php 第 60 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.011468s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011518s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000407s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000221s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000151s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001120s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000333s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000366s ]
+
+[ 2019-02-07T14:16:17+08:00 ] 123.126.113.169 /index.php/home/page/show/id/jg.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000431s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000488s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000322s ]
+NOTIC: [2048] Declaration of PageAction::show() should be compatible with Action::show($content, $charset = '', $contentType = '', $prefix = '') /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/PageAction.class.php 第 2 行.
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000623s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000060s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+
+[ 2019-02-07T14:16:37+08:00 ] 123.126.113.169 /index.php/home/index/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000444s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000509s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000305s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000338s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000591s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000054s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 21 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000635s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000055s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000060s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000079s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012082s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012123s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000345s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000270s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000186s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000302s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001242s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000341s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000376s ]
+
+[ 2019-02-07T15:08:25+08:00 ] 203.208.60.23 /robots.txt
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000457s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000580s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000311s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000343s ]
+NOTIC: [8] Undefined variable: group /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 102 行.
+ERR: 无法加载模块:Robots.txt
+
+[ 2019-02-07T15:08:25+08:00 ] 203.208.60.39 /index.php/home/cloud/ajaxos.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000592s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000673s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000404s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000457s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000559s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000054s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_cloud_product` [ RunTime:0.000469s ]
+SQL: SELECT `pid` FROM `cloud_cloud_product` WHERE ( id=0 and status=1 ) LIMIT 1   [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `cloud_cloud` [ RunTime:0.000459s ]
+NOTIC: [8] Undefined variable: post /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 178 行.
+NOTIC: [8] Undefined variable: hash /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 237 行.
+NOTIC: [8] Undefined variable: posturl /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 244 行.
+NOTIC: [8] Undefined variable: signpost /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 221 行.
+NOTIC: [8] Undefined index: masterid /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/CloudAction.class.php 第 132 行.
+NOTIC: [8] Undefined index: cid /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/CloudAction.class.php 第 132 行.
+NOTIC: [8] Undefined variable: hash /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 237 行.
+NOTIC: [8] Undefined variable: posturl /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 244 行.
+NOTIC: [8] Undefined variable: signpost /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 221 行.
+
+[ 2019-02-07T15:08:27+08:00 ] 203.208.60.119 /index.php/home/cloud/ajaxos.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000472s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000536s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000451s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000535s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000052s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Common/common.php 第 109 行.
+SQL: SHOW COLUMNS FROM `cloud_cloud_product` [ RunTime:0.000454s ]
+SQL: SELECT `pid` FROM `cloud_cloud_product` WHERE ( id=0 and status=1 ) LIMIT 1   [ RunTime:0.000046s ]
+SQL: SHOW COLUMNS FROM `cloud_cloud` [ RunTime:0.000400s ]
+NOTIC: [8] Undefined variable: post /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 178 行.
+NOTIC: [8] Undefined variable: hash /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 237 行.
+NOTIC: [8] Undefined variable: posturl /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 244 行.
+NOTIC: [8] Undefined variable: signpost /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 221 行.
+NOTIC: [8] Undefined index: masterid /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/CloudAction.class.php 第 132 行.
+NOTIC: [8] Undefined index: cid /www/wwwroot/yun.jridc.com/Cloud/Lib/Action/Home/CloudAction.class.php 第 132 行.
+NOTIC: [8] Undefined variable: hash /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 237 行.
+NOTIC: [8] Undefined variable: posturl /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 244 行.
+NOTIC: [8] Undefined variable: signpost /www/wwwroot/yun.jridc.com/Cloud/Lib/Model/CloudapiModel.class.php 第 221 行.
+
+[ 2019-02-07T18:19:32+08:00 ] 203.208.60.21 /robots.txt
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000431s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000521s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000380s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000419s ]
+NOTIC: [8] Undefined variable: group /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 102 行.
+ERR: 无法加载模块:Robots.txt
+
+[ 2019-02-07T18:19:32+08:00 ] 203.208.60.97 /index.php/home/user/checkmbi.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000432s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000499s ]
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+NOTIC: [2] stripslashes() expects exactly 1 parameter, 2 given /www/wwwroot/yun.jridc.com/ThinkPHP/Lib/Core/App.class.php 第 57 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000279s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000310s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000506s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000054s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 26 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000644s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000056s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 41 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000063s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 53 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000073s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/e2dd6ca59915d289c752652c568a6789.php 第 67 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.011856s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011898s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000349s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000211s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000146s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000263s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001061s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000345s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000394s ]
+
+[ 2019-02-07T19:39:11+08:00 ] 222.187.222.56 /
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000555s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000053s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 21 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000609s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000061s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000066s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000091s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012414s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012454s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000395s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000236s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000143s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000245s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001118s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000328s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000369s ]
+
+[ 2019-02-07T23:11:41+08:00 ] 114.234.237.6 /
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000386s ]
+SQL: SHOW COLUMNS FROM `cloud_config` [ RunTime:0.000593s ]
+SQL: SELECT `c_key`,`c_value` FROM `cloud_config` WHERE ( `c_module` = 'WEBSITE' )  [ RunTime:0.000053s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: field /www/wwwroot/yun.jridc.com/Cloud/Lib/TagLib/TagLibCloud.class.php 第 14 行.
+NOTIC: [8] Undefined index: uid /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 21 行.
+SQL: SHOW COLUMNS FROM `cloud_page` [ RunTime:0.000598s ]
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=3 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000055s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 36 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=2 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000060s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 48 行.
+SQL: SELECT * FROM `cloud_page` WHERE ( type_id=1 ) ORDER BY sort desc LIMIT 10   [ RunTime:0.000067s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /www/wwwroot/yun.jridc.com/Cloud/Runtime/Cache/Home/1b02bb37aaf4d696e544a9167d94e637.php 第 62 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012574s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012622s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000314s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000231s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000149s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000241s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001025s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000358s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000407s ]
+

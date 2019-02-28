@@ -1,0 +1,538 @@
+ul,li,a{ margin:opx; padding:0px;}
+a{ text-decoration:none;}
+li{list-style:none;}
+body {
+margin: 0;
+font-family:"Microsoft Yahei" ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 13px;
+line-height: 18px;
+color: #333333;
+background-color: #ffffff;
+}
+#header {
+    background: none repeat scroll 0% 0% #353644;
+    height: 80px;
+}
+#header	.viewport-inner {
+  padding: 0 0 5px 0;
+}
+.viewport-inner {
+   width: 1100px;
+   margin: 0 auto;
+   padding: 5px 0;
+}
+.header-logo, .header-account {
+margin-top: 5px;
+}
+.header-logo {
+text-indent: -9999px;
+background-image: url(../img/logo_1x.png);
+background-position: left center;
+background-repeat: no-repeat;
+height: 70px;
+width: 280px;
+float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header-logo, .header-account {
+margin-top: 5px;
+}
+.header-account {
+float: right;
+padding: 19px 10px;
+}
+
+.header-logo, .header-account {
+  margin-top: 5px;
+}
+.header-account {
+float: right;
+padding: 19px 10px;
+}
+.btns {
+display: inline-block;
+ padding: 12px 20px;
+margin: 0 3px 0 0;
+font-family: Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+font-size: 14px;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background: #3b3b3b;
+color: #fff;
+border: 0 none;
+-webkit-appearance: none;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+.header-account .btn-signin {
+padding: 5px 20px;
+font-size: 14px;
+line-height: 20px;
+vertical-align: middle;
+margin-right: 10px;
+}
+.btn-outline {
+border: 1px solid #19549C;
+color: #19549C;
+background: 0;
+}
+.header-account .btn-signup {
+padding: 6px 21px;
+font-size: 14px;
+line-height: 20px;
+vertical-align: middle;
+}
+.btn-primary {
+background: #19549C;
+color: #fff;
+}
+.btn-outline:hover {
+    background: none repeat scroll 0% 0% #19549C;
+    color: #FFF;
+}
+
+.header-nav {
+margin: 0;
+padding: 0;
+float: right;
+margin-right: 20px;
+/* border:1px solid red;
+height:80px; */
+}
+
+
+.header-nav .nav-item {
+	display:inline-block;
+	top:0;
+	left:0;
+}
+
+.header-nav li {
+margin-top: 0;
+padding-top: 0;
+/*  float:left;  */
+}
+.header-nav .nav-item a {
+display: block;
+color: #fff;
+padding: 24px 20px 32px;
+text-align: center;
+vertical-align: middle;
+font-size: 16px;
+cursor: pointer;
+outline: 0;
+}
+.header-nav .nav-item a {
+padding: 32px 20px 32px;
+/* color:red; */
+}
+
+
+
+
+
+
+
+
+
+.header-nav .items {
+display: none;
+position: absolute;
+left: -40px;
+top: 67px;
+background: #57b382;
+padding: 0;
+margin: 0;
+width: 150px;
+z-index: 3;
+}
+.products .items, .customers .items, .pricing	.items, .about .items {
+width: 100%;
+background: #19549c;
+position: absolute;
+top: 80px;
+left: 0 !important;
+}
+/*菜单部分*/
+.header-nav .items li a {
+color: #fff;
+display: block;
+padding: 5px 10px 0 5px;
+text-align: left;
+line-height: 32px;
+font-size: 14px;
+}
+.customers .cpmain {
+    height: 60px;
+    overflow: hidden;
+}
+.customers .cpmain ul {
+    width: 800px;
+    padding-left: 300px;
+}
+.products .cpmain {
+height: 210px;
+}
+.customers .cpmain ul {
+width: 800px;
+padding-left: 300px;
+}
+
+.customers .cpmain ul li {
+    float: left;
+    padding: 10px 10px 0px;
+}
+.header-nav .items li {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+/*价格部分*/
+.pricing .cpmain {
+    height: 60px;
+    overflow: hidden;
+}
+
+.pricing .cpmain ul {
+    width: 500px;
+    padding-left: 600px;
+}
+
+.pricing .cpmain ul li {
+    float: left;
+    padding: 10px 10px 0px;
+}
+
+
+/*关于*/
+.about .cpmain {
+    height: 60px;
+    overflow: hidden;
+}
+.about .cpmain ul {
+    width: 420px;
+    padding-left: 680px;
+}
+
+.about .cpmain ul li {
+    float: left;
+    padding: 10px 10px 0px;
+}
+
+.header-nav .nav-item:hover .items {
+	display:block
+}
+.products .cpnav {
+width: 675px;
+padding-left: 425px;
+}
+.products .cpnav	ul {
+display: block;
+float: left;
+padding-top: 10px;
+}
+
+
+/*尾巴样式*/
+
+.footer-logo {
+
+	display:block;
+
+	background-image:url(../img/footer_logo_1x.png);
+
+	background-position: top center;
+
+	background-repeat: no-repeat;
+
+	text-indent: -9999px;
+
+	height: 120px;
+
+	width: 195px;
+
+	margin: 0 auto;
+
+}
+
+.footer-navs {
+
+	background:#3e3d49;
+
+	padding:50px 0 0px;
+
+	overflow: hidden;
+
+}
+
+.footer-navs .footer-nav {
+
+	margin:0;
+
+	padding:0
+
+}
+
+.footer-navs .grid_3 {
+
+	width:16%;
+
+	margin:0
+
+}
+
+.footer-navs p {
+
+	color:rgba(255, 255, 255, .6);
+
+	font-size:12px;
+
+	text-align:center
+
+}
+
+.footer-navs p a {
+
+	color:rgba(255, 255, 255, .6)
+
+}
+
+.footer-navs p a:hover {
+
+	color:#fff
+
+}
+
+.footer-navs li {
+
+	padding:0 0 6px;
+
+	list-style-type:none
+
+}
+.grid_20 {
+width: 75%;
+}
+[class^="grid_"] {
+display: inline;
+float: left;
+margin-left: 2%;
+margin-right: 2%;
+}
+h4 {
+    font-size: 16px;
+    line-height: 30px;
+}
+.footer-navs h4 {
+
+	line-height:20px;
+	padding-bottom:10px;
+
+}
+h4 {
+    font-size: 16px;
+    line-height: 30px;
+}
+.footer-navs h4 a {
+
+	font-weight: 100;
+
+	color:#fff;
+
+}
+
+.footer-navs h4 span {
+
+	font-size:12px;
+
+	font-weight:400;
+
+	text-transform:capitalize;
+
+	color:#eee;
+
+	display:block
+
+}
+.btn {
+display: inline-block;
+padding: 12px 20px;
+margin: 0 3px 0 0;
+font-family: Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+font-size: 14px;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background: #3b3b3b;
+color: #fff;
+border: 0 none;
+-webkit-appearance: none;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+.btn-huge {
+padding: 10px 30px;
+margin-right: 20px;
+-webkit-border-radius: 50px;
+-moz-border-radius: 50px;
+border-radius: 50px;
+font-size: 18px;
+line-height: 42px;
+}
+.btn-primary {
+background: #19549C;
+color: #fff;
+}
+.btn-huge .icon {
+font-size: 18px;
+}
+.btn [class^=icon-], .btn [class*=" icon-"] {
+vertical-align: top;
+}
+.icon-signup {
+width: 44px;
+height: 44px;
+float: left;
+display: block;
+background: url(../img/bg.png) -44px 0;
+}
+[class^=icon-], [class*=" icon-"] {
+vertical-align: baseline;
+font-size: 14px;
+}
+Pseudo ::before element
+[class^=icon-]:after, [class*=" icon-"]:after, [class^=icon-]:before, [class*=" icon-"]:before {
+font-family: Entypo;
+font-weight: 400;
+font-style: normal;
+text-align: center;
+display: inline-block;
+width: 1em;
+text-decoration: none;
+}
+Pseudo ::after element
+[class^=icon-]:after, [class*=" icon-"]:after, [class^=icon-]:before, [class*=" icon-"]:before {
+font-family: Entypo;
+font-weight: 400;
+font-style: normal;
+text-align: center;
+display: inline-block;
+width: 1em;
+text-decoration: none;
+}
+Pseudo ::selection element
+::selection {
+color: #fff;
+background: #164b8c;
+}
+Inherited from a.btn.btn-primary.btn-huge
+.btn-primary {
+background: #19549C;
+color: #fff;
+}
+
+
+
+.footer-navs .items {
+
+	padding:0;
+
+	margin-bottom:20px;
+
+	line-height:1.6em
+
+}
+
+.footer-navs .items a {
+
+	color:rgba(255, 255, 255, .6)
+
+}
+
+.footer-navs .items a:hover {
+
+	color:#fff
+
+}
+
+.footer-signup {
+
+	background:#353644;
+
+	color:#fff
+
+}
+
+.footer-signup .viewport-inner {
+
+	overflow:hidden;
+
+	padding:20px 0
+
+}
+
+.footer-signup p {
+
+	font-size:22px;
+
+	line-height:20px;
+
+	float:left
+
+}
+
+.footer-signup .btn {
+
+	float:right;
+
+	margin-right:0
+
+}
+
+.clearfix {
+clear: both;
+}
+.fhdb {
+width: 100%;
+height: 50px;
+position: fixed;
+bottom: 0;
+text-align: center;
+}
+.icon-weibo	i {
+width: 22px;
+height: 22px;
+display: block;
+background: url(../img/bg.png) no-repeat;
+float: left;
+}
+.icon-email	i {
+width: 22px;
+height: 22px;
+display: block;
+background: url(../img/bg.png) -22px 0;
+float: left;
+}

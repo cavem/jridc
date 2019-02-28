@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>管理员日志列表</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle">管理员日志列表</h1>
+            <span class="pagedesc">说明</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                    <colgroup>
+                        <col class="con1" />
+                        <col class="con0" />
+                        <col class="con1" />
+                        <col class="con0" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head1">登陆者</th>
+                            <th class="head0">最后登录IP</th>
+                            <th class="head1">地点(仅供参考)</th>
+                            <th class="head0">登录时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+             <volist name="data" id="vo">
+                <tr id="list_{$vo.u_id}">
+                    <td>{$vo.u_name}</td>
+                    <td>{$vo.log_ip}</td>
+                    <td>{$vo.ip_location.country} / {$vo.ip_location.area}</td>
+                    <td>{$vo.log_create|default="0000-00-00 00:00:00"}</td>
+                </tr>
+            </volist>
+                      
+                    </tbody>
+                </table>    
+                <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+                <div class="paginationnew">{$page}</div>
+             </div>     
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+    
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

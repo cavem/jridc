@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加菜单</title>
+<include file="inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">添加菜单</h1>
+			<span class="pagedesc">添加菜单</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/menuadd')}" method="post">
+				<p><label>上级菜单</label>
+				<span class="field">
+					<select name='pid' class="selectwidth40-1">
+						<option value='0'>顶级菜单</option>
+						<volist name="menu" id="vo">
+							<option value='{$vo.id}'>{$vo.cat_name}</option>
+						</volist>
+					</select>
+				</span></p>
+				<p><label>菜单名称</label>
+				<span class="field">
+					<input type="text" name="cat_name" id="cat_name" class="smallinput" value='{$data.cat_name}' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>排序</label>
+					<span class="field">
+					<input type="text" name="sort_order" id="sort_order" class="smallinput" value='{$data.sort_order}' value='10' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>动作类型</label>
+					<span class="field">
+					<input type="radio" name='weixin_type' id="weixin_type" value='0' checked />点击
+					<input type="radio" name='weixin_type' id="weixin_type" value='1' />查看
+				
+				</span></p>
+				<p><label>Key值或URL</label>
+					<span class="field">
+					<textarea name='weixin_key_links' id="weixin_key_links" rows="10" cols="40"></textarea>
+				</span></p>
+				<p class="stdformbutton">
+					<input type="submit" class="submit radius2 submitadd" value="添加"  />
+				</p>
+			</form>
+			</div>             
+		
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

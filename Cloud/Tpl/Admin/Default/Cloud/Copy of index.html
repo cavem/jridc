@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>云主机管理</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">云主机管理</h1>
+			<span class="pagedesc">云主机管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div class="tableoptions">
+                	<form action="{:U('Admin/Cloud/manage')}" method="get">
+                	用户名
+					<input type="text" name="username" id="username" value='' value="" class="smallinput20"/>
+                   或云主机		<input type="text" name="cloudname" id="cloudname"  value="" class="smallinput20"/>
+                    <button class="radius3">查询</button>
+	                  	<a href="{:U('Admin/Cloud/index',array('status'=>urlencode('正常')))}">正常</a> 
+	                  	<a href="{:U('Admin/Cloud/index',array('status'=>urlencode('已删除')))}">已删除</a> 
+	                  	<a href="{:U('Admin/Cloud/index',array('day'=>'31'))}">一个月到期  </a> 
+	                  	<a href="{:U('Admin/Cloud/index',array('day'=>'15'))}">15天到期</a> 
+	                  	<a href="{:U('Admin/Cloud/index',array('day'=>'7'))}">7天到期</a>
+	                  	<a href="{:U('Admin/Cloud/incloud')}">转入云主机</a> 
+                     </form>
+                </div><!--tableoptions-->
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<colgroup>
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+						<col class="con0" />
+						 <col class="con1" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="head1">编号</th>
+							<th class="head0">产品类型</th>
+							<th class="head1">所属机房</th>
+							<th class="head0">用户名</th>
+							<th class="head1">云主机名</th>
+							<th class="head0">状态</th>
+							<th class="head1">IP</th>
+							<th class="head0">开通日期</th>
+							<th class="head1">到期日期</th>
+							<th class="head0">状态</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>{$vo.id}<input type="hidden" name="vmid[]" value='{$vo.id}' /></td>
+							<td>{$vo.Cloudtype}</td>
+							<td>{$vo.jfname}</td>
+							<td><a href="{:U('Admin/User/edit',array('id'=>$vo['user_id']))}">{$vo.username}</a>({$vo.kefuname})</td>
+							<td>
+								{$vo.cloudname}(VM_ID: {$vo.vm_id} )
+							</td>
+							<td id='vm_state_td_{$vo.id}'>
+							<img id='vm_state_{$vo.id}' src='__PUBLIC__/Admin/images/loadings.gif' alt="loading" title="loading" state='loading'/>
+							</td>
+							<td id='vm_ip_{$vo.id}'>
+							<img src='__PUBLIC__/Admin/images/loadings.gif' alt="loading" title="loading"/>
+							</td>
+							<td>
+								{$vo.starttime|date='Y-m-d H:i:s',###}
+							</td>
+							<td>
+								{$vo.endtime|date='Y-m-d H:i:s',###}
+							</td>
+							<td>{$vo.status}<if condition="$vo[istest] eq 'y'"><br><font color="red">试用</font></if></td>
+							<td class="center">
+				 				<a href="{:U('Admin/Cloud/manage',array('id'=>$vo['id']))}">管理</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+				 <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate">
+					<div class="paginationnew">{$page}</div>
+			 </div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+function openjiance(){
+	var url="{:U('Admin/Cloud/cloudcheck')}";
+	window.open(url);	
+}
+var getvmstatusurl="{:U('Admin/Cloud/vmstate')}";
+</script>
+<script type="text/javascript">
+var vmstates='{';
+vmstates+="running:{'image':'/Public/Admin/images/running.png','title':'运行'},";
+vmstates+="halted:{'image':'/Public/Admin/images/halted.png','title':'停止'},";
+vmstates+="creating:{'image':'/Public/Admin/images/loadings.gif','title':'创建中'},";
+vmstates+="error:{'image':'/Public/Admin/images/error.png','title':'创建失败'},";
+vmstates+="unknow:{'image':'/Public/Admin/images/except.png','title':'异常'},";
+vmstates+="suppending:{'image':'/Public/Admin/images/starting.png','title':'操作中'},";
+vmstates+="nocloud:{'image':'/Public/Admin/images/except.png','title':'虚拟机未找到'},";
+vmstates+="loading:{'image':'/Public/Admin/images/loadings.gif','title':'加载中'}";
+vmstates+='}';
+var vmstate=eval("(" + vmstates + ")");
+function get_vm_status() {
+    var vms = $("input[name='vmid[]']");
+    if (vms.length == 0) {
+        if (vm_interval) {
+            clearInterval(vm_interval);
+        }
+        return;
+    }
+    for (var i=0; i<vms.length; i++) {
+        vmid = vms[i].value;
+        $.get(getvmstatusurl,{'act':'vmstate','id':vmid},function(vminfo){
+			if(vminfo['statusinfo']=='正常'){
+				if(vminfo['cloudstatus']==true){
+					$("#vm_state_"+vminfo['id']).attr('src',vmstate[vminfo.power_state.toLowerCase()].image);
+					$("#vm_state_"+vminfo['id']).attr('alt',vmstate[vminfo.power_state.toLowerCase()].title);
+					$("#vm_state_"+vminfo['id']).attr('title',vmstate[vminfo.power_state.toLowerCase()].title);
+					$("#vm_state_"+vminfo['id']).attr('state',vminfo.power_state.toLowerCase());
+					if (vminfo.current_operations){
+						for(var i = 0; i< vminfo.current_operations.length; i++) {
+							if(vminfo.current_operations[i] == 'migrate_send') {
+								$("#vm_state_"+vminfo['id']).attr('alt', '正在迁移');
+								$("#vm_state_"+vminfo['id']).attr('title', '正在迁移');
+							}
+						}
+					}
+				}else{
+					
+					$("#vm_state_td_"+vminfo['id']).html(vminfo['info']);
+					
+				}
+			
+			}else if(vminfo['statusinfo']=='配置中'){
+				$("#vm_state_"+vminfo['id']).attr('alt',vminfo['statusinfo']);
+				$("#vm_state_"+vminfo['id']).attr('title',vminfo['statusinfo']);
+				$("#vm_state_"+vminfo['id']).attr('state',vminfo['statusinfo']);
+			
+			}else if(vminfo['statusinfo']=='开通失败'){
+			$("#vm_state_"+vminfo['id']).attr('alt',vminfo['statusinfo']);
+			$("#vm_state_"+vminfo['id']).attr('title',vminfo['statusinfo']);
+			$("#vm_state_"+vminfo['id']).attr('state',vminfo['statusinfo']);
+			
+			}else{
+					$("#vm_state_"+vminfo['id']).attr('src',vmstate['error'].image);
+					$("#vm_state_"+vminfo['id']).attr('alt',vminfo['info']);
+					$("#vm_state_"+vminfo['id']).attr('title',vminfo['info']);
+					$("#vm_state_"+vminfo['id']).attr('state',vminfo['info']);
+			}
+        },'json');
+        $.get(getvmstatusurl,{'act':'vmnetwork','id':vmid},function(network){
+				if(network['statusinfo']=='正常'){
+					if(network['cloudstatus']==true){
+						$("#vm_ip_"+network['id']).html(network['value']);
+						
+					}else{
+						$("#vm_ip_"+network['id']).html(network['info']);
+					}
+				}else if(vminfo['statusinfo']=='配置中'){
+					
+					
+				}else if(vminfo['statusinfo']=='开通失败'){
+					
+					
+				}else{
+					$("#vm_ip_"+network['id']).html(network['info']);
+				}
+        },'json');
+    }
+}
+</script>
+<script type="text/javascript">
+get_vm_status();
+if (!vm_interval) {
+   //var vm_interval = setInterval(get_vm_status,30000);
+}
+</script>
+</body>
+</html>

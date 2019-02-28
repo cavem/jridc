@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加负载均衡</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">添加负载均衡</h1>
+            <span class="pagedesc">负载均衡</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+<form class="stdform formvalidate" action="{:U('Admin/Loadb/osadd')}" method="post">
+    <p>
+    <label>名称</label>
+       <span class="field">
+        <input type="text" name="osname" id="osname" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+        </span>
+    </p>
+    					   <p>
+<label>主控选择</label>
+<span class="field">
+<select name="masterid" id="masterid" onChange="changemasterid(this.value)"  class="selectwidth40-1" validate='{required:true,messages:{required:"请选择"}}'>
+<option value="" >--请选择--</option>
+<volist name="master" id="vo">
+<option value="{$vo.id}" >{$vo.mastername}</option>
+</volist>
+</select>
+</span>
+                        </p>
+                          <p>
+                         <label>资 源 池</label>
+                           <span class="field">
+							<select name="cid" id="cid" onChange="changeos(this.value)"  class="selectwidth40-1" validate='{required:true,messages:{required:"请选择"}}'>
+							<option value="" selected>--请选择--</option>
+							</select>
+                            </span>
+                        </p>
+                          <p>
+                         <label>操作系统</label>
+                   <span class="field">
+					<select name="image_uuid" id="image_uuid"  class="selectwidth40-1" validate='{required:true,messages:{required:"请选择"}}'>
+					<option value="" selected>--请选择--</option>
+					</select>
+                    </span>
+                        </p>
+                          <p>
+                         <label>系统类型</label>
+<span class="formwrapper">
+<input type="radio" name="ostype" checked="checked"  value="2"/> Linux  &nbsp; &nbsp;    
+</span>
+                        </p>
+                         <p>
+                         <label>启用</label>
+                              <span class="formwrapper">
+							<input type="radio" name="status" checked="checked" value="1"/> 是 &nbsp; &nbsp;
+                            <input type="radio" name="status"  value="0"/> 否 &nbsp; &nbsp;                  
+                             </span>
+                        </p>
+                         <p>
+                         <label>排序</label>
+                              <span class="field">
+                               <input type="text" name="sort" id="sort" value="1" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                       		<input type="submit" class="submit radius2 submitadd" value="添加"  />
+                        </p>
+</form>
+                    </div>
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+function changemasterid(serverid){
+	$("#cid").children().remove();	
+	$("#image_uuid").children().remove();
+	if(serverid=="0" || serverid=="" ){
+	var cx_option = $("<option value=''>无此资源</option>");
+	$("#cid").append(cx_option);
+	var cx_options = $("<option value=''>无此资源</option>");
+	$("#image_uuid").append(cx_options);		
+	return false;
+	}
+	getcidname(serverid);
+}
+function getcidname(serverid){
+	$("#cid").children().remove();	
+	$.get('{:U("Admin/Ajax/getpool")}',{'id':serverid},function(data){
+		if(data.status=="success"){
+			if (data.value && data.value.length > 0) {
+			var cx_option = $("<option value=''>--请选择--</option>");
+			$("#cid").append(cx_option);	
+			for (var i=0; i<data.value.length; i++) {
+			var cx_option = $("<option value='"+data.value[i].cid+"' selected>"+unescape(data.value[i].name)+"</option>");
+			$("#cid").append(cx_option);
+			}
+		}else{
+			var cx_option = $("<option value=''>暂无</option>");
+			$("#cid").append(cx_option);		
+		}
+			var cid=$("#cid").val();
+			getimagename(serverid,cid);
+		}
+	});	
+}
+function getimagename(serverid,cid){
+$("#image_uuid").children().remove();
+	$.get('{:U("Admin/Ajax/getimageloadb")}',{'id':serverid,'cid':cid,},function(objimage){
+		if(objimage.status=="success"){
+			if (objimage.value && objimage.value.length > 0) {
+			var cx_option = $("<option value=''>--请选择--</option>");
+			$("#image_uuid").append(cx_option);	
+			for (var i=0; i<objimage.value.length; i++) {
+			var cx_option = $("<option value='"+objimage.value[i].vdi_uuid+"' selected>"+unescape(objimage.value[i].vdi_name)+"</option>");
+			$("#image_uuid").append(cx_option);
+			}
+		}else{
+			var cx_option = $("<option value=''>暂无</option>");
+			$("#image_uuid").append(cx_option);		
+		}
+		}
+	});	
+}
+function changeos(cid){
+	$("#image_uuid").children().remove();	
+	if(cid=="0" || cid=="" ){
+	var cx_option = $("<option value=''>无此资源</option>");
+	$("#image_uuid").append(cx_option);	
+	return false;
+	}
+	var serverid=$("#masterid").val();
+	getimagename(serverid,cid);
+}
+</script>
+
+</body>
+</html>

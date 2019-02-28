@@ -1,0 +1,33 @@
+
+<!--头部-->
+<div id="header">
+	<a href="/"><img alt="" src="__PUBLIC__/User/Default//images/logo.png"></a>
+	<div class="topR topUser">
+		<p>欢迎您，<span>{$user_info.username}</span></p>
+		<dl>
+			<dt></dt>
+			<dd>
+			<a href="{:U('User/Center/basicdata')}">账户设置</a>
+			<a href="{:U('User/Money/index')}">财务记录</a>
+			<a href="{:U('User/Center/dologout')}">退出</a></dd>
+		</dl>
+	</div>
+<style type="text/css">
+<!--
+.zs2 { width:150px; border:1px solid #ddd; background:#fff; border-radius:5px; padding:10px; margin:8px 20px 0 0; float:right;}
+.zs2 a{ width:80px; height:20px; background:url(__PUBLIC__/User/Default/images/kf_img2.png) no-repeat; text-indent:-9999px; float:left;}
+-->
+</style>
+  <div>
+  	<div class="zs2">
+		<p>
+			<span style="float:left; line-height:20px;">专有客服：</span>
+			{$user_kefu.kefuname}
+		</p>
+		<p style="margin-top:10px; float:left;">
+			<span style="float:left; line-height:20px;">在线客服：</span>
+			<a href="http://wpa.qq.com/msgrd?v=3&uin={$user_kefu.kefuqq}&site=qq&menu=yes" target="_blank">客服QQ</a>
+		</p>
+	</div>
+  </div>
+</div>

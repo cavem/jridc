@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>掌上主机管理平台</title>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web/js/iscroll/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web/js/iscroll/iscroll.js"></script>
+<script type="text/javascript">
+var myScroll,
+	pullDownEl, pullDownOffset,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+function pullDownAction () {
+	location.reload();
+}
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		var el, li, i;
+		el = document.getElementById('thelist');
+		//==========================================
+		$.getJSON("{:U('wechat/web/moneymoreajax')}",{page:generatedCount},
+			function(data){
+				if(data){
+					$.each(data,function(idx,item){
+						li = document.createElement('li');
+						htmlstr = "<table width='100%;' border=0>";
+						htmlstr +="<tr onclick=\"location.href='"+item.url+"'\"><td width='10%'>";
+						htmlstr +="<img width='30px' src='/public/Wechat/Web/images/cloud_pc.png'/>";
+						htmlstr +="</td><td width='30%' style='text-align:left;'>"+item.username+"</td>";
+						htmlstr +="<td width='30%' style='text-align:left;'>￥:"+item.usermoney+"</td>";
+						htmlstr +="<td width='30%' style='text-align:left;padding-right:5px;'>"+item.addtimef+"</td>";
+						htmlstr +="</tr></table>";
+						li.innerHTML = htmlstr; 
+						el.appendChild(li, el.childNodes[0]);
+					});
+				}
+			}
+		);
+		generatedCount++;
+	    //============================================
+		myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+
+function loaded() {
+	pullDownEl = document.getElementById('pullDown');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+
+	myScroll = new iScroll('wrapper', {
+		useTransition: true,
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+			if (pullDownEl.className.match('loading')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新页面...';
+			} else if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉获取更多信息...';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y > 5 && !pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'flip';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '刷新...';
+				this.minScrollY = 0;
+			} else if (this.y < 5 && pullDownEl.className.match('flip')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新页面';
+				this.minScrollY = -pullDownOffset;
+			} else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '刷新...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载数据';
+				this.maxScrollY = pullUpOffset;
+			}
+		},
+		onScrollEnd: function () {
+			if (pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'loading';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';				
+				pullDownAction();	//上拉刷新
+			} else if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';				
+				pullUpAction();	//下拉刷新 
+			}
+		}
+	});
+	
+	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+</script>
+
+<style type="text/css" media="all">
+body,ul,li {
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+}
+
+#header {
+	position:absolute; z-index:2;
+	top:0; left:0;
+	width:100%;
+	height:45px;
+	line-height:45px;
+	background-color:#d51875;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fe96c9), color-stop(0.05, #d51875), color-stop(1, #7b0a2e));
+	background-image:-moz-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	background-image:-o-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	padding:0;
+	color:#eee;
+	font-size:20px;
+	text-align:center;
+}
+
+#header a {
+	color:#f3f3f3;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#wrapper {
+	position:absolute; z-index:1;
+	top:45px; bottom:0px; left:-9999px;
+	width:100%;
+	background:#aaa;
+	overflow:auto;
+}
+
+#scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+#scroller ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+#scroller li {
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#fafafa;
+	font-size:14px;
+}
+
+#myFrame {
+	position:absolute;
+	top:0; left:0;
+}
+
+/**
+ *
+ * Pull down styles
+ *
+ */
+#pullDown, #pullUp {
+	background:#fff;
+	height:40px;
+	line-height:40px;
+	padding:5px 10px;
+	border-bottom:1px solid #ccc;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; float:left;
+	width:40px; height:40px;
+	background:url(__PUBLIC__/wechat/web/js/iscroll/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+.toptitle{ 
+  line-height:50px;
+  height:50px;
+  text-align:center;
+  color:white;
+  background:#1F90C8;
+  position:relative;
+}
+.toptitle span{font-size:18px;}
+.top_link{ position:absolute; left:5px;}
+.top_link>a>img{width:25px; height:25px; margin-top:6px;}
+.refresh{position:absolute; right:15px!important;}
+.refresh>a>img{width:25px; height:25px; margin-top:12px;}
+
+
+</style>
+</head>
+<body>
+<div class="toptitle" style="position:fixed;left:0px;top:0px;width:100%;">
+	<div class="top_link" onclick="location.href='{:U('wechat/web/usercenter')}'">
+		<img width="50px;" style="margin-top:5px;" src="__PUBLIC__/Wechat/Web/images/btn_setting_n.png"/>
+	</div>
+	<div class="refresh">
+		<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+			<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+		</a>
+	</div>
+	<span>财务列表</span>
+</div>
+<div id="wrapper" class='changebar'>
+	<div id="scroller">
+		<div id="pullDown">
+			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+		</div>
+		<ul id="thelist">
+		<li><table width='100%;' border=0>
+		 	<tr>
+		 		<td></td>
+		 		<td style='text-align:left;'>操作账户</td>
+		 		<td style='text-align:left;'>金额</td>
+		 		<td style='text-align:left;padding-right:5px;'>时间</td>
+		 	</tr></table>
+		</li>
+		<volist name='trans_list' id='data'> 
+		<li><table width='100%;' border=0>
+		 	<tr onclick="location.href='{$data[url]}'">
+		 		<td width='10%'>
+			 		<img width='30px' src="__PUBLIC__/Wechat/Web/images/cloud_pc.png"/>
+			 	</td>
+		 		<td width='30%' style='text-align:left;'>{$data['username']}</td>
+		 		<td width='30%' style='text-align:left;'>￥:{$data['usermoney']}</td>
+		 		<td width='30%' style='text-align:left;padding-right:5px;'>{$data['addtime']|date=("Y-m-d"),###}</td>
+		 	</tr></table></li>
+			</volist>
+		</ul>
+		<div id="pullUp">
+			<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多数据...</span>
+		</div>
+	</div>
+</div>
+</body>
+</html>

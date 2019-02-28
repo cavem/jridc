@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>财务信息</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">财务信息</h1>
+			<span class="pagedesc">财务详情</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="" method="post">
+						<p><label>编号：</label>
+						<span class="field">
+						{$data.id}
+						</span></p>
+						<p><label>时间：</label>
+						<span class="field">
+						{$data.addtime|date='Y-m-d H:i:s',###}
+						</span></p>
+						<p><label>金额：</label>
+						<span class="field">
+						{$data.usermoney}
+					</span></p>
+					
+						<p><label>用户名：</label>
+						<span class="field">
+						{$data.username}
+					</span></p>
+					
+						<p><label>操作前余额：</label>
+						<span class="field">
+						{$data.oldusermoney}
+					</span></p>
+						<p><label>操作后余额：</label>
+						<span class="field">
+						{$data.newusermoney}
+					</span></p>
+					
+						<p><label>原因：</label>
+						<span class="field">
+						{$data.forwhat}
+					</span></p>
+					
+						<p><label>操作区：</label>
+						<span class="field">
+						{$data.acspace}
+					</span></p>
+					<if condition="!empty($data['whichProduct'])">
+					
+						<p><label>产品分类：</label>
+						<span class="field">
+						{$data.whichProduct}
+					</span></p>
+					
+						<p><label>产品类型：</label>
+						<span class="field">
+						{$data.ptype}
+					</span></p>
+						
+						<p><label>相关产品编号：</label>
+						<span class="field">
+						{$data.pid}
+						</span></p>
+					
+						<p><label>产品开通时间：</label>
+						<span class="field">
+						{$data.paddtime|date='Y-m-d H:i:s',###}
+					</span></p>
+					
+						<p><label>产品到期时间：</label>
+						<span class="field">
+						{$data.pendtime|date='Y-m-d H:i:s',###}
+					</span></p>
+					</if>
+		
+				<p class="stdformbutton">
+					<input type="button" onclick="location.href='{:U('Sale/Money/index')}'" value="返回"  />
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

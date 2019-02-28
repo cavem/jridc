@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的工单-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+
+<body>
+
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>我的工单</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Support/add')}">工单提交</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="forms" id="search">
+				<form action="{:U('User/Support/index')}" method="get">
+				<div class="item">
+					工单类型
+					<select  id="type" name="type" class=''>
+						<option value="0">请选择</option>
+						<option value='' disabled>产品问题</option>
+						<option value='9999'>&nbsp;&nbsp;&nbsp;&nbsp;已购买产品问题</option>
+						<volist name='cates' id='cate' >
+							<option value="{$cate.id}"<if condition='$prm_type eq $cate[id]' > selected</if>>{$cate.name}</option>
+							<volist name='cate.childs' id='child' >
+							<option value="{$child.id}"<if condition='$prm_type eq $child[id]' > selected</if>>&nbsp;&nbsp;&nbsp;{$child.name}</option>
+							</volist>
+						</volist>
+					</select>
+				</div>
+				<div class="item">
+					工单状态
+					<select  id="status" name="status" class=''>
+						<option value="0">请选择</option>
+						<volist name='status' id='state' >
+							<option value="{$key}"
+							<if condition='$prm_status eq $key' >selected</if>
+							>{$state}</option>
+						</volist>
+					</select>
+				</div>
+				<div class="item">
+					开始时间
+					<input  class="time hasDatepicker" name="starttime" value="{$prm_starttime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"/>
+					结束时间
+					<input  class="time hasDatepicker" name="endtime"  value="{$prm_endtime}" onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"/>
+				</div>
+				<button class="btn btnOrg2" type="submit">查询</button>
+				</form>
+			</div>
+			<table class="table">
+				<tbody>
+					<tr class="tdColor">
+						<th>工单类型</th>
+						<th>标题</th>
+						<th>状态</th>
+						<th>提交时间</th>
+						<th>最后更新</th>
+						<th>操作</th>
+					</tr>
+					<volist name="data" id="vo">
+					<tr>
+						<td><if condition="$vo['type'] eq 9999">产品问题<else/>{$vo.type_name}</if></td>
+						<td>{$vo.title}</td>
+						<td>
+							<if condition="$vo.status eq 1">已提交</if>
+							<if condition="$vo.status eq 2">处理中</if>
+							<if condition="$vo.status eq 3">已回复</if>
+							<if condition="$vo.status eq 4">追问</if>
+							<if condition="$vo.status eq 5">已完成</if>
+							<if condition="$vo.status eq 9">已取消</if>
+						</td>
+						<td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
+						<td>{$vo.last_update|date='Y-m-d H:i:s',###}</td>
+						<td>
+							<a href="{:U('User/Support/edit',array('id'=>$vo['id']))}">查看详情</a>
+							<if condition="($vo.status neq 5) and ($vo.status neq 9)">
+							<a href="{:U('User/Support/finish',array('id'=>$vo['id']))}" class="confirmbutton">完成</a>
+							<a href="{:U('User/Support/cancel',array('id'=>$vo['id']))}" class="confirmbutton">取消</a>
+							</if>
+						</td>
+					</tr>
+					</volist>
+					<empty name="data">
+					<tr>
+						<td colspan="6">暂无数据</td>
+					</tr>
+					</empty>
+					<tr>
+						<td colspan="6">
+						<div class="pagediv">
+							<div class="pageinfo">{$pageinfo}</div>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+
+</body>
+</html>

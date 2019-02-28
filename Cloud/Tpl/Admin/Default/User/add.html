@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>控制台首页</title>
+<include file="Common:inc_css_js" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/custom/submitcheck.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left_user" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle">添加表单</h1>
+            <span class="pagedesc">用户信息添加</span>
+            
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	        <form class="stdform" action="{:U('Admin/Main/index')}" method="post" onSubmit="return checkuserform(this)">
+                        <p>
+                        	<label>Small Input</label>
+                            <span class="field">
+                            <input type="text" name="input1" id="input1" class="smallinput" />
+                            </span>
+                            <small class="desc">Small description of this field.</small>
+                        </p>
+                        
+                        <p>
+                        	<label>Medium Input</label>
+                            <span class="field"><input type="text" name="input2" class="mediuminput" /></span>
+                        </p>
+                        
+                        <p>
+                        	<label>Long Input</label>
+                            <span class="field"><input type="text" name="input3" class="longinput" /></span>
+                        </p>
+                        
+                        <p>
+                        	<label>Textarea</label>
+                            <span class="field"><textarea cols="80" rows="5" class="longinput"></textarea></span> 
+                        </p>
+                        
+                        <p>
+                        	<label>Textarea with Character Count</label>
+                            <span class="field">
+                                <textarea cols="80" rows="5" id="textarea2" class="longinput"></textarea>
+                            </span> 
+                        </p>
+                        
+                        <p>
+                        	<label>Select</label>
+                            <span class="field">
+                            <select name="select" class="uniformselect">
+                            	<option value="">Choose One</option>
+                                <option value="">Selection One</option>
+                                <option value="">Selection Two</option>
+                                <option value="">Selection Three</option>
+                                <option value="">Selection Four</option>
+                            </select>
+                            
+                            </span>
+                        </p>
+                        <p>
+                        	<label>Radio Buttons</label>
+                            <span class="formwrapper">
+                            	<input type="radio" name="radiofield" /> Unchecked Radio &nbsp; &nbsp;
+                            	<input type="radio" name="radiofield" checked="checked" /> Checked Radio &nbsp; &nbsp;
+                                <input type="radio" name="radiofield" disabled="disabled" /> Disabled Radio  &nbsp; &nbsp;
+                                <input type="radio" name="radiofield" checked="checked" disabled="disabled" /> Disabled Radio 
+                            </span>
+                        </p>
+                                                                        
+                        <p>
+                        	<label>Checkboxes</label>
+                            <span class="formwrapper">
+                            	<input type="checkbox" name="check2" /> Unchecked Checkbox<br />
+                            	<input type="checkbox" name="check2" checked="checked" /> Checked Checkbox <br />
+                            </span>
+                        </p>
+                        
+                        <br clear="all" /><br />
+                        
+                        <p class="stdformbutton">
+                        	<button class="submit radius2">保存</button>
+                            <input type="reset" class="reset radius2" value="重置" />
+                        </p>
+                        
+                        
+                    </form>
+	        
+	        
+	        
+	        </div>
+                
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+    
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

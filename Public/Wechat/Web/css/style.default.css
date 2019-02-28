@@ -1,0 +1,202 @@
+/***** 1. RESET STYLE *****/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+/***** 2. GENERAL STYLES *****/
+body { font-size: 12px; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; color: #666; line-height: 21px; }
+input, select, textarea, button { font-size: 12px; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; outline: none; margin: 0; }
+a { text-decoration: none; color: #666; outline: none; }
+button { outline: none; }
+a img { border: 0; }
+h1,h2,h3,h4,h5, span.h3 { font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; font-weight: normal; }
+small { font-size: 11px; }
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; }
+h4 { font-size: 18px; }
+h5 { font-size: 14px; }
+div { 
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+.content{
+ width:100%;
+ height:100%;
+ background:red;
+}
+
+
+.toptitle{ 
+  line-height:50px;
+  height:50px;
+  text-align:center;
+  color:white;
+  background:#1F90C8;
+  position:relative;
+}
+.toptitle span{font-size:18px;}
+.top_link{ position:absolute; left:5px;}
+.top_link>a>img{width:25px; height:25px; margin-top:6px;}
+.refresh{position:absolute; right:15px!important;}
+.refresh>a>img{width:25px; height:25px; margin-top:12px;}
+
+
+.changebar{
+   height:100%; 
+   width:100%;
+
+}
+.changebar>ul{border-bottom:1px solid #eee;
+  height:auto;
+  overflow:hidden;
+}
+
+.changebar>ul>li{
+	font-size:16px;
+    float:left;
+	list-style:none;
+	width:49.8%;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background:white;
+}
+.changebar>ul>li:hover{
+ /*  background:#DC4F4F; */
+}
+.changebar>div{
+     clear:left; 
+     height:auto; width:100%;
+     overflow:hidden;	 
+	/*  background:green; */
+	display:none;
+}
+.changebar div.on{
+	display:block;
+}
+
+.blue{color:#00acee; border-bottom:1px solid #00acee; }
+.myhost>li{width:33.0%!important; font-size:16px;}
+
+
+.commomlist li{
+          border-bottom:1px solid #eee;
+		  line-height:35px;
+		  list-style:none;
+}
+
+.commomlist li img{
+ float:left; margin:3px 0 0 10px;
+
+}
+/**云主机列表**/
+.hostlist{list-style:none;}
+.hostlist li{
+	list-style:none;
+	border-bottom:1px solid #eee;
+	height: 45px;
+	line-height: 45px;
+	}
+.hostlist li img{float:left;margin: 7px 0 0 10px;}
+.hoststatelist li{}
+.hoststatelist li{
+	border-bottom:1px solid #eee;
+	height:auto;
+	overflow:hidden;
+	line-height:35px;
+	list-style:none;
+}
+.hoststatelist li img{
+ float:left; margin:3px 0 0 10px;
+
+}
+.commomlist li span{ display:table-cell;vertical-align:middle;}
+
+.host_name{padding-left:10px; }
+.paddingright{padding-right:20px;}
+.host_state{padding-right:30px;}
+.flo_left{float:left;}
+.flo_right{float:right;}
+
+
+.hostinfo_tbl{ width:100%;border-spacing:0px;border-collapse: collapse;}
+.hostinfo_tbl tr{ }
+.hostinfo_tbl tr th{width:10%; border-bottom:1px solid #eee;padding:5px 0 5px 3px;}
+.hostinfo_tbl tr th img{width:30px; height:30px; margin-top:5px;}
+.hostinfo_tbl tr td{padding:5px 0 5px 3px; border-bottom:1px solid #eee;}
+.hostinfo_tbl tr td span{text-align:right;}
+
+.tdsecond{line-height:30px;font-size:16px;}
+
+
+/** 云主机详情页 **/
+.msg_title{
+    position:relative;
+    height:40px;
+    background: linear-gradient(top, #172344,#172344 );
+			    background: -moz-linear-gradient(top, #172344,#172344 );
+              background: -webkit-linear-gradient(top, #172344,#172344 );
+}
+.msg_title>div{
+ position:absolute;
+ overflow:hidden;
+
+}
+.msg_title>h3{ text-align:center; line-height:40px;color:white; font-size:17px;font-weight:lighter;}
+.showstate{ 
+            height:300px;
+			  background: linear-gradient(top, #172344,#3189AF );
+			    background: -moz-linear-gradient(top, #172344,#3189AF );
+              background: -webkit-linear-gradient(top, #172344,#3189AF );
+			
+			
+			position:relative;
+			}
+.showpic{ height:50px; width:100%;position:absolute;top:25%; }	
+.showpic div{  text-align:center; color:white;font-weight:lighter;}	
+.showpic div a img{ width:80px; height:80px;}	
+.showtext{ position:absolute; 
+          bottom:3px;
+	      width:100%;
+		/*   border:1px solid white; */
+}
+.showtext h4{text-align:center; color:white;font-weight:lighter; }
+.pc_name{font-size:15px;}
+.pc_state{font-size:14px;}
+
+.hostmsg_tbl { width:100%;border-spacing:0px;border-collapse: collapse;}
+.hostmsg_tbl tr td{ text-align:center;}
+.hostmsg_tbl tr td a{ display:block;height:60px;}
+.hostmsg_tbl tr td a img{ width:47px;height:60px;}
+
+.message_tbl{ width:100%;border-spacing:0px;border-collapse: collapse; }
+.message_tbl tr td{  vertical-align: middle; padding:10px;border-bottom:1px solid #eee; }
+.message_tbl tr td h6 { font-size:16px; color:#111; margin-bottom:0px;}
+.message_tbl tr td img { padding-top:0px;margin-bottom:0px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$data.keyword}">
+<meta name="description" content="{$data.description}">
+<title>活动机型_{$Web.Config.site_name}</title>
+<link href="__PUBLIC__/Home/Default/css/index.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/Default/css/page.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/css/cloud.css" rel="stylesheet" type="text/css">
+<script language="javaScript" src="__PUBLIC__/Home/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/layer/layer.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/ul/jquery-ui.js"></script>
+<link href="__PUBLIC__/Home/js/ul/jquery-uinew.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<include file="Common:inc_header"/>
+	<div class="twonav">
+	  <div class="viewport-inner"></div>
+	</div>
+	<div class="document">
+		<div class="sphinxsidebar">
+		<div class="sphinxsidebarwrapper">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/Cloud/buy')}">云主机</a>
+				<ul>
+					<li class="toctree-l2">
+					<a class="reference internal" href="{:U('Home/Cloud/buy')}">弹性购买</a>
+					</li>
+				  <Cloud:page  where="type_id=3"  limit="10" result="page" order="sort desc">
+					<li class="toctree-l2">
+						<a class="reference internal" href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+				  </Cloud:page>
+				</ul>
+			</li>
+		</ul>				
+			
+		</div>
+		</div>
+	  <div class="documentwrapper" style="width:830px;">
+		<div class="bodywrapper">
+		  <div class="body">
+		  <!-- start cloud -->
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">
+		  <tr>
+		   <td>
+			 <ul class="hothost_list">
+			 	<volist name="activity" id="vo">
+			 		<li>
+					 <p><span class="price_span">{$vo.name}</span></p>
+					 <p><span>机房:{$vo['Product']['jfname']}</span></p>
+					 <p><span>CPU:{$vo.cpu}核</span></p>
+					 <p><span>内存:{$vo.mem}G</span></p> 
+					 <p><span>数据盘:{$vo.disk}G</span></p>
+					 <p><span>IP类型: <if condition="$vo['iptype'] eq 1">独立<else/>共享</if></span></p>
+					 <p><span>开放数量:{$vo.number}台</span></p>
+					 <p>费用:<span class="price_span">{$vo.money}元</span></p>
+					 <p><span>期限:
+						 <if condition="$vo['cycletext'] eq 'PAY_Month'">一个月</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_Season'">一季度</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_halfyear'">半年</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_1year'">一年</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_2year'">两年</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_3year'">三年</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_4year'">四年</if>
+						 <if condition="$vo['cycletext'] eq 'PAY_5year'">五年</if>
+					 </p>
+					 <p><span>系统类型:
+						<select name="image_type" id="image_type" onchange="getSys({$vo['id']},this.value);">
+							<option value="0" selected>--请选择--</option>
+							<option value="1" >--Windows-</option>
+							<option value="2" >--Centos-</option>
+							<option value="3" >--Ubuntu-</option>
+						</select>
+						</span></p>
+					 <p><span>操作系统:
+						<select id="image_uuid_{$vo['id']}">
+							<option value='no'>-请选择操作系统-</option>
+						</select></span></p>
+					 <p><a class="buynow_type3" onclick='buypostform({$vo["id"]})'>立即购买</a></p>
+				   </li>
+			 	</volist>
+				 </ul>
+			</td>
+			</tr>
+		</table>
+		  </div>
+		</div>
+	  </div>
+	  <div class="clearer"></div>
+</div>
+<form action="{:U('user/order/hotcloud')}" method="post">
+	<input type='hidden' name='id' id='id' value=''/>
+	<input type='hidden' name='image_uuid' id='image_uuid' value=''/>
+</form>
+<script type="text/javascript">
+var isuser={$isuser};
+var Loginurl="{:U('Home/User/login')}";
+function buypostform(id){
+	alert(id);
+	$("#id").val(id);
+	$("#image_uuid").val($("#image_uuid_"+id).val());
+	if(isuser==0){
+		layer.msg("请选登录",2,8);
+		setTimeout(function(){
+		 location.href =Loginurl;
+		},2000);
+		return false;
+	}
+	if($("#imageuuid").val()=="no"){
+		layer.msg("请选择操作系统",2,8);
+		return false;
+	}
+}
+function getSys(id,sid){
+	$.getJSON("{:U('home/activity/getsysos')}",{id:id,ostypeid:sid,rtime:new Date().getTime()},
+			function(data){
+				$("#image_uuid_"+id).children().remove();
+				var year_option_xz = $("<option value='no'>"+"-请选择操作系统-"+"</option>");
+				$("#image_uuid_"+id).append(year_option_xz);
+				$("#image_uuid_"+id).append(year_option_xz);
+				$.each(data,function(idx,item){
+					var template_option = $("<option value='"+item.image_uuid+"'>"+item.osname+"</option>");
+					$("#image_uuid_"+id).append(template_option);
+				});
+	});
+}
+</script>
+<include file="Common:inc_footer"/>
+<style>
+.pro_item_inner{ padding:10px 20px;background:white;}
+.hothost_list{ height:auto;overflow:hidden;margin:30px 0 10xp; }
+.hothost_list li{ float:left;margin:5px 5px 5px 10px;border:1px solid #eee;
+       padding:10px;width:45%;cursor:pointer; }
+.hothost_list li:hover{ background:#fcfcfc ;border:1px solid #006ecc;}
+
+.hothost_list li p{ margin:5px 20px 5px 40px;font-size:13px;}
+.price_span{ font-size:15px; color:orange;}
+.hothost_list li p a{}
+.buynow_type3{ display:block; width:100px; height:25px; border-radius:4px;border:1px solid orange;
+       color:orange; text-align:center; line-height:25px;margin:15px auto 5px;
+}
+.buynow_type3:hover{ background:#ff7e00;color:white;}
+</style>
+</body>
+</html>

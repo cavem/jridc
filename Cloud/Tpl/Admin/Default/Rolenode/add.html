@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加节点</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">添加控制节点</h1>
+            <span class="pagedesc">1. 只填写模块，为模块的公共授权 
+2. 填写操作与模块，为指定模块中节点的授权</span>
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	        <form class="stdform formvalidate" action="{:U('Admin/Rolenode/add')}" method="post">
+                        <p>
+                        	<label>操作</label>
+                            <span class="field">
+                            <input type="text" name="action" id="action" class="smallinput20" />
+                            
+                            </span>
+                            <small class="descf"> (请填写控制器的相应Action，如pageList...)</small>
+                        </p>
+                         <p>
+                        	<label>操作名称</label>
+                            <span class="field">
+                             <input type="text" name="action_name" id="action_name" class="smallinput20" />
+                            </span>
+                        </p>
+                        <p>
+                        <label><span style="color:red">*</span>模块:</label>
+                            <span class="field">
+                            <input type="text" name="module" id="module" value="" class="smallinput20" validate='{required:true,messages:{required:"模块不能为空"}}' />
+                            </span>
+                             <small class="descf"> (请填写控制器的相应名称，如RoleNode,Article...)</small>
+                        </p>
+                       <p>
+                       	<p>
+                        	<label><span style="color:red">*</span>模块名称</label>
+                            <span class="field">
+                            <input type="text" name="module_name" id="module_name" class="smallinput20" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p>
+                         	<p>
+                        	<label>所属导航</label>
+                            <span class="field">
+                             <select name="nav_id" class="selectwidth40-1" validate='{required:true,messages:{required:"请选择所属导航"}}'>
+                            	<option value="">选择导航</option>
+                            	<foreach name="navs" item="vo">
+                            	<option value="{$vo.id}">{$vo.name}</option>
+                            	</foreach>
+                            </select>
+                            </span>
+                        </p>
+                        <p>
+                        	<label>状态</label>
+                            <span class="field">
+                            <input type="radio" name="status" id="status" checked="checked" value="1"/> 是 &nbsp; &nbsp;
+                           	<input type="radio" name="status" id="status"  value="0"/> 否 &nbsp; &nbsp;
+                            </span>
+                        </p>
+                       <p>
+                        	<label>菜单显示</label>
+                            <span class="field">
+                            <input type="radio" name="is_show" checked="checked" value="1"/> 是 &nbsp; &nbsp;
+                            	<input type="radio" name="is_show"  value="0"/> 否 &nbsp; &nbsp;
+                            </span>
+                        </p>
+                        <label>节点排序</label>
+                            <span class="formwrapper">
+                            <input type="text" name="sort" id="sort" value="1" class="smallinput20" />	
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                        	<button class="submit radius2 submitadd">保存</button>
+                            <input type="reset" class="reset radius2" value="重置" />
+                        </p>
+                    </form>
+                    </div>
+                
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+
+</body>
+</html>

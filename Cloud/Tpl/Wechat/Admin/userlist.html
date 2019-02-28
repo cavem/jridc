@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<include file="inc_css_js" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>微信管理平台</title>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">微信用户管理</h1>
+			<span class="pagedesc">微信用户管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div class="tableoptions">
+		 		<form action="{:U('Wechat/Admin/userlist')}" method="get">
+				OpenId:
+				<input type="text" name="wx_id" id="wx_id" value='{$prm_wx_id}' autocomplete="off" class="smallinput20"/>
+				绑定用户:
+				<input type="text" name="uname" id="uname" value='{$prm_uname}' autocomplete="off" class="smallinput20"/>
+				<button class="radius3">查询</button>
+				</form>
+			</div><!--tableoptions-->
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/optuser')}" method="post">
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head0">
+								<input type='checkbox' name='checkboxall' id='checkboxall' value='0'/>
+							</th>
+							<th class="head0">公众号编号</th>
+							<th class="head1">OpenId</th>
+							<th class="head1">微信昵称</th>
+							<th class="head0">绑定用户</th>
+							<th class="head0">是否关注</th>
+							<th class="head1">关注时间</th>
+							<th class="head1">更新时间</th>
+							<th class="head1">添加时间</th>
+							<th class="head0">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>
+								<input type='checkbox' name='chkb{$vo.id}' id='chkb{$vo.id}' value="{$vo.id}"/>
+							</td>
+							<td>{$vo.wechat_id}</td>
+							<td>{$vo.wxid}</td>
+							<td>{$vo.nickname}</td>
+							<td>{$vo.uname}</td>
+							<td>
+								<if condition="$vo[subscribe] eq 1">
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_1.png" alt="已关注" title="已关注">
+								<else/>
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_0.png" alt="未关注" title="未关注">
+								</if>
+							</td>
+							<td>{$vo.subscribe_time|date="Y-m-d H:i:s",###}</td>
+							<td>{$vo.upd_time|date="Y-m-d H:i:s",###}</td>
+							<td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+							<td class="center">
+				 				<a href="{:U('Wechat/Admin/useredit',array('id'=>$vo['id']))}" class="editbutton">编辑</a>
+				 				<a href="{:U('Wechat/Admin/userdel',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					<empty name="data" >
+					<tr>
+						<td colspan="10">暂无数据</td>
+					</tr>
+					</empty>
+				</tbody>
+				</table>
+				<div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate" style="height:30px;">
+					<div  style='float:left;border:0px solid #F78A29;padding:3px 3px 3px 3px;cursor:pointer;' >
+						<input type='hidden' name='opttype' id='opttype' value=''/>
+						<input type="submit" class="submit radius2 submitdel" onclick="setOptType('del')" value="删除"  />
+						<input type="submit" class="submit radius2 submitdel" onclick="setOptType('tb')" value="同步粉丝信息"  />
+					</div>
+				<div class="paginationnew">{$page}</div>
+			 </div>
+			 </form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+function setOptType(type){
+	$("#opttype").val(type);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑回复规则</title>
+<include file="inc_css_js" />
+<style type="">
+.reply_msg { width:100%;margin-top:5px;border:0px solid #ccc;-moz-border-radius: 0px; -webkit-border-radius: 0px}
+.reply_msg .top { 
+		background-color:#eee; 
+		border-bottom:1px solid #ccc; 
+		-moz-border-radius: 0px 0px 0 0; 
+		-webkit-border-radius: 0px 0px 0 0
+		}
+.top .title { padding:10px;font-size:1.2em;}
+.reply_msg img{ margin-top:8px;-moz-border-radius: 0px; -webkit-border-radius: 0px}
+.reply_msg label{ font-weight:bold}
+.btnmr {
+	width: auto; margin: 0; font-weight: bold; color: #eee; background: #FB9337; border: 1px solid #F0882C; padding: 7px 10px; 
+	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; cursor: pointer; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+	border-radius: 2px;
+	}
+.btnmr:hover { background: #485B79; border: 1px solid #3f526f; }
+</style>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">编辑规则</h1>
+			<span class="pagedesc">编辑回复规则</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/replyedit')}" method="post">
+			<div id="basicform" class="subcontent">
+				<p><label>标题</label>
+				<span class="field">
+					<input type="text" name="name" id="name" class="smallinput" value='{$data.name}' validate='{required:true}' />
+				</span></p>
+				<p><label>规则[关键字]</label>
+				<span class="field">
+					<input type="text" name="keyword" id="keyword" class="smallinput" value='{$data.keyword}' validate='{required:true}' />
+				</span></p>
+				<p><label>排序</label>
+					<span class="field">
+					<input type="text" name="sort" id="sort" class="smallinput" value='{$data.sort}' validate='{required:true,isIntGteZero:true}' />
+				</span></p>
+				<p><label>类型</label>
+					<span class="field">
+					<if condition='$data[type] eq 1'>基本文字消息</if>
+					<if condition='$data[type] eq 2'>图文消息</if>
+					<if condition='$data[type] eq 3'>音乐消息</if>
+				</span></p>
+			</div>
+			<div id='reply_msg' class='reply_msg ' >
+				<div id='reply_msg_top' class='top'>
+					<div class='title'>回复内容</div>
+				</div>
+				<div id='reply_content' style='display:'>
+					<p><label>标题</label>
+					<span class="field">
+						<input type="text" name="title" id="title" value='{$datan.title}' class="smallinput" placeholder="回复消息的标题" validate='{required:true}' />
+					</span></p>
+					<p><label>排序</label>
+					<span class="field">
+						<input type="text" name="rsort" id="rsort" value='{$datan.sort}' class="smallinput" placeholder="添加排序" validate='{required:true,isIntGteZero:true}' /><br/>
+						排序只能在提交后显示。按照从大到小的顺序对图文排序
+					</span></p>
+					<p><label>封面</label>
+					<span class="field">
+						<input type="text" name="img" id="img" value='{$datan.img}' class="smallinput"/>
+						<a href="javascript:upImage('img');" id="button1" value="" class="type-file-button">上传</a><br/>
+						<img id='img_p' src="{$datan.img}" style='width:180px;height:100px;'/><br/>
+						<font size='1.2em'><b>封面（大图片建议尺寸：360像素 * 200像素）</b></font>
+					</span></p>
+					<p><label>简述</label>
+					<span class="field">
+						<textarea name='disc' rows="5" placeholder="添加图文消息的简短描述" >{$datan.disc}</textarea>
+					</span></p>
+					<p><label>详细内容</label>
+					<span class="field">
+						<script id="editor" name="content" type="text/plain">{$datan.content}</script>
+					</span></p>
+				</div>
+				<div id='div_sub' style='text-align:center;border:0px solid #eee;padding:10px;'>
+					<input type='hidden' name='id' value='{$data[id]}' />
+					<input type='hidden' name='nid' value='{$datan.id}'/>
+					<input type="submit" class="submit radius2" value="保存"  />
+			<!-- 	<a class="radius2 btnmr btncopy">添加回复消息</a> -->
+				</div>
+			</div>
+			</form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<include file="inc_uedit" />
+<script type="text/javascript">
+	var dom;
+	var editor = new UE.ui.Editor({
+		imageRealPath:"images"
+	});
+	editor.render("myEditor");
+	var dialog_img;
+	editor.ready(function(){
+		editor.hide();
+		dialog_img = editor.getDialog("insertimage");
+		editor.addListener('beforeInsertImage',function(t, arg){
+			jQuery("#"+dom).val(arg[0]['src']);
+			jQuery("#img_p").attr('src',arg[0]['src']);
+		});
+		editor.addListener('afterUpfile',function(t, arg){
+			jQuery("#"+dom).val(arg[0]['url']);
+		});
+	});
+	function upImage(pid) {
+		dom = pid;
+		dialog_img.open();
+	}
+</script>
+</body>
+</html>

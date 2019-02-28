@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style type="text/css">
+	input[type='text']{
+		border:none;
+		border: solid 1px silver;
+		height:25px;
+	}
+	.support_yw { 
+		float:left;
+	}
+	.support_time { 
+		float:right;
+		margin-right:5px;
+	}
+	.support_fj { 
+		float:left;
+		margin-left:35px;
+	}
+	.grey { 
+		background:#eee;
+	}
+	.white { 
+		background:white;
+	}
+	.support_detail { 
+		box-sizing:border-box;
+		width:88%;
+		float:left;
+		border:1px solid #666;
+		-moz-box-sizing:border-box; /* Firefox */ 
+		-webkit-box-sizing:border-box; /* Safari */ 
+		border-radius:4px;
+	}
+	.clear { 
+		clear:both;
+	}
+	.answer_box {
+		border:0px solid #eee;
+		float:left
+	}
+	</style>
+<script>
+function setTempContent(){
+	var type = $("#type").val();
+	if(type==9999){ //如果选择具体产品问题 则执行显示产品列表 
+		$("#contenttext").html("");//清空内容 
+		//显示产品分类 及 云主机列表
+		$("#products").show();
+	} else {
+		$("#products").hide();
+		$.ajax({
+			url:'{:U("Home/Ajax/getWOtc")}',
+			cache:false,
+			dataType:"json",
+			data:{'id':$("#type").val()},
+			type:"GET",
+			success:function(data){
+				$("#contenttext").html(data);
+			}
+		});
+	}
+}
+function chgp(obj){
+	var typep = $(obj).val();
+	$.ajax({
+		url:'{:U("Wechat/Ajax/getProducts")}',
+		cache:false,
+		dataType:"json",
+		data:{'id':$("#product_type").val()},
+		type:"GET",
+		success:function(data){
+			$("#product_id option").each(function(){
+				$(this).remove();
+			});	
+			if(data){
+				$.each(data, function(i,val){
+					retstr = "<option value='"+val['id']+"'>"+val['name']+"("+val['type']+")</option>"; 
+					$(retstr).appendTo($("#product_id"));
+				});
+			}else{
+				retstr = "<option value=''>暂无数据</option>"; 
+				$(retstr).appendTo($("#product_id"));
+			}
+		}
+	});
+}
+function createPro(data){
+	var retstr = "";
+	for(var i=0;i<data.length;i++){
+		retstr += "<option value='"+data['id']+"'>"+data['cloudname']+"</option>";
+	}
+	return retstr;
+}
+
+//验证上传文件大小
+var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+function filechange(target){
+	var e_id = $(target).attr('id');
+	//验证文件类型
+	photoExt=target.value.substr(target.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+	if(photoExt!='.jpg' & photoExt!='.jpeg' & photoExt!='.pjpeg' & photoExt!='.png' & photoExt!='.gif' & photoExt!='.bmp'){
+		alert("图片格式不正确!");
+		clearObj(e_id);
+		return false;
+	}
+	//验证图片大小
+	var fileSize = 0;
+	if (isIE && !target.files) {
+		var filePath = target.value;
+		var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+		var file = fileSystem.GetFile (filePath);
+		fileSize = file.Size;
+	} else {
+		fileSize = target.files[0].size;
+	}
+	var size = fileSize / (1024*1024);
+	if(size>10){
+		alert("附件不能大于10M");
+		clearObj(e_id);
+	}
+}
+function clearObj(e_id){
+	if (document.getElementById(e_id).outerHTML) {
+		document.getElementById(e_id).outerHTML = document.getElementById(e_id).outerHTML;
+	} else {
+		document.getElementById(e_id).value = "";
+	}
+	document.getElementById(e_id).focus();
+}
+</script>
+</head>
+<body >
+<div style="width:100%;border:0px solid blue;">
+	<div class="toptitle" style="width:100%;position:fixed;left:0px;top:0px;">
+		<div class="top_link">
+			<img width="30px;" style="margin-top:10px;" onclick="location.href='{:U('wechat/web/usercenter')}'" src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+		</div>
+		<div class="refresh">
+			<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+				<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+			</a>
+		</div>
+		<span>发起工单</span>
+	</div>
+	<!-- 发起工单 -->
+	<form id='zwform' class="stdform formvalidate" action="{:U('wechat/web/supportadd')}" method="post" enctype="multipart/form-data">
+	<div style="margin-top:55px;border:0px solid red;">
+		<span class='support_yw'>标题：</span>
+		<span><input type='text' name='title' size='40'/></span>
+		<div class='clear'/>
+	</div>
+	<div style="margin-top:5px;border:0px solid red;">
+		<span class='support_yw'>类型：</span>
+		<span>
+			<select name='type' id='type' class='' onchange='setTempContent();'>
+				<option value='' disabled>产品问题</option>
+				<option value='9999'>&nbsp;&nbsp;&nbsp;&nbsp;已购买产品问题</option>
+				<volist name='types' id='vo'>
+				<option value='{$vo.id}' disabled>{$vo.name}</option>
+					<volist name='vo.childs' id='voo'>
+					<option value='{$voo.id}'>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.name}</option>
+					</volist>
+				</volist>
+			</select>
+		</span>
+	</div>
+	<div id='products' style="margin-top:5px;border:0px solid red;">
+		<span class='support_yw'>产品：</span>
+		<span>
+			<select name='product_type' id='product_type' onchange='chgp(this);'>
+				<option value='1'>云主机</option>
+				<option value='2'>域名</option>
+				<option value='3'>托管租用</option>
+			</select>
+			<select name='product_id' id='product_id'>
+				<volist name='clouds' id='vo'>
+				<option value='{$vo.id}'>{$vo.cloudname}({$vo.Cloudtype})</option>
+				</volist>
+			</select>
+		</span>
+	</div>
+	<div style="margin-top:5px;border:0px solid red;margin-bottom:10px;">
+		<span class='support_yw'>描述：</span>
+		<div class="answer_box">
+			<textarea name='content' id='contenttext' rows="15" cols="40" style='border: 1px solid #e2e2e2;'></textarea><br/>
+			<input type="file" name="upfile1" id='upfile1' onchange='filechange(this);'/><br/>
+			<input type="file" name="upfile2" id='upfile2' onchange='filechange(this);'/><br/>
+			<input type="file" name="upfile3" id='upfile3' onchange='filechange(this);'/><br/>
+			<input type='submit' value='提交'/>
+		</div>
+	</div>
+	</form>
+</div>
+</body>
+</html>

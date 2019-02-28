@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线充值-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>在线充值</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="money"><b>充值金额：</b>
+			<input name="money" id="money" type="text" value="10">元 </div>
+			<div class="payment">
+				<div class="tabTbox">
+					<ul class="tabT" id="tabT1">
+						<li class="now">支付宝</li>
+					</ul>
+				</div>
+				<div class="blockBody" id="tabB1">
+					<div class="tabBlock now">
+						<div class="item"></div>
+						<div class="item">
+							<div class="paymentBox">
+								<label class="now">
+								<input name="payment1" value="alipay" id="payment1_1" checked="checked" type="radio">
+								<img src="__PUBLIC__/User/Default/images/yh/qr_yh22.png">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="btn btnOrg1" type="button" onclick="openBlank()">确认支付</button>
+		</div>
+
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+function openBlank(){
+	var action="{:U('User/Payment/doalipay')}";
+	var data={money:$('#money').val()};
+    var form = $("<form/>").attr('action',action).attr('method','post');
+    form.attr('target','_blank');
+    var input = '';
+    $.each(data, function(i,n){
+        input += '<input type="hidden" name="'+ i +'" value="'+ n +'" />';
+    });
+    form.append(input).appendTo("body").css('display','none').submit();
+}
+</script>
+
+</body>
+</html>

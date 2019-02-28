@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>自定义镜像-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>我的云主机</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Vlan/index')}">VLAN管理</a>
+				<a class="btn btnBlue2" href="{:U('User/Ghost/index')}">自定义镜像</a>
+				<a class="btn btnBlue2" href="{:U('User/Beian/index')}">备案服务号</a>
+			</span>
+		</div>
+		<div class="mainM">
+		<form action="{:U('User/Ghost/handlesave')}" method="post" class="formvalidate">
+			<div class="mainHalf3">
+				<p class="mainTson">镜像详情</p>
+				
+				<table class="table">
+				<tr>
+					<th width="150px;">镜像名称</th>
+					<td style="text-align:left;">{$data.temname}</td>
+				</tr>	
+				<tr>
+					<th>产品类型</th>
+					<td style="text-align:left;">{$data.cloudtype}</td>
+				</tr>	
+				<tr>
+					<th>CPU</th>
+					<td style="text-align:left;">
+					<div id="cpu_s" style="padding-left:1px;padding-bottom:1px;">
+		   				 <div id="cpu_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left;"></div>
+					 	<span id="cpu_show" style="margin-left:10px;">{$cloud.cpu}</span>个
+					</div>
+						
+</td>
+				</tr>
+				<tr>
+					<th>内存</th>
+					<td style="text-align:left;">
+			 <div id="mem_s" style="padding-left:1px;padding-bottom:1px;">
+   				 <div id="mem_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left;"></div>
+				 <span id="mem_show" style="margin-left:10px;">{$cloud['memory']/1024}</span>G
+			 </div>
+					</td>
+				</tr>	
+				<tr>
+					<th>带宽</th>
+					<td style="text-align:left;">
+					<div id="qos_s" style="padding-left:1px;padding-bottom:1px;">
+   					 <div id="qos_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left;"></div>
+					 <span id="qos_show" style="margin-left:10px;">{$product.dqos}</span>M
+			 		</div></td>
+				</tr>
+				<tr>
+					<th>硬盘</th>
+					<td style="text-align:left;">{$cloud.disk}G</td>
+				</tr>
+				<tr>
+					<th>云主机名</th>
+					<td style="text-align:left;"><input style="width:140px;" id="vmname" name="vmname" value=""  type="text">
+					</td>
+				</tr>
+				<tr>
+					<th>IP类型</th>
+					<td style="text-align:left;">
+					<if condition="$product.iptypeid0 neq '0'">
+						<input type="radio" name="dlip" id="dlip1" value="1" onclick="getprice()" checked="checked">独立IP
+					</if>
+					<if condition="$product.iptypeid1 neq '0'">
+						<input type="radio" name="dlip" id="dlip2" onclick="getprice()" value="2">共享IP
+					</if>
+					</td>
+				</tr>
+				<tr>
+					<th>付款周期</th>
+					<td style="text-align:left;">
+						<if condition="$product['canmonth'] eq '1'">
+						<input type="radio" name="year" value="{$product.PAY_Month}" onclick="getprice()">月付
+						</if>
+						<if condition="$product['canseason'] eq '1'">
+						<input type="radio" name="year" value="{$product.PAY_Season}" onclick="getprice()">季度
+						</if>
+						<if condition="$product['canhalfyear'] eq '1'">
+						<input type="radio" name="year" value="{$product.PAY_halfyear}" onclick="getprice()">半年
+						</if>
+						<input type="radio" name="year" checked value="{$product.PAY_Nextyear}" onclick="getprice()">一年付
+						<input type="radio" name="year" value="{$product.PAY_2year}" onclick="getprice()">两年付
+						<input type="radio" name="year" value="{$product.PAY_3year}" onclick="getprice()">三年付
+						<input type="radio" name="year" value="{$product.PAY_4year}" onclick="getprice()">四年付
+						<input type="radio" name="year" value="{$product.PAY_5year}" onclick="getprice()">五年付
+					</td>
+				</tr>
+				<tr>
+					<th>金额</th>
+					<td style="text-align:left;">
+					<span id="moneynow">0.00</span>元
+					</td>
+				</tr>				
+			</table>
+			</div>
+			<hr class="dotted">
+				<input type="hidden" name="id" id="id" value="{$data.id}">
+				<input type="hidden" name="cpu" id="cpu" value="{$cloud.cpu}">
+				<input type="hidden" name="mem" id="mem" value="{$cloud.memory}">
+				<input type="hidden" name="disk" id="disk" value="10">
+				<input type="hidden" name="qos" id="qos" value="{$product.dqos}">
+				<button class="btn btnOrg1 btnsubmitcloudopen" type="submit">付款开通</button>
+				<input class="btn btnOrg1 btnsubmitpost" type="button" onclick="location.href='{:U('User/Ghost/index')}'" value="返回"/>
+		</div>
+		</form>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<link rel="stylesheet" href="__PUBLIC__/User/Default/css/updown.css" />
+<script type="text/javascript" src="__PUBLIC__/User/js/ul/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/User/js/ul/jquery-uinew.css" >
+<script>
+$(function () {
+	$("#cpu_slider").slider({
+		range: "max",
+		min: 1,
+		max:{$product.mcpu},
+		value:{$cloud.cpu},
+		step: 1,
+		slide: function( event, ui ) {
+			pos=ui.value;
+			$("#cpu").val(pos);
+			$("#cpu_show").html(pos);
+			getprice();
+		}
+	});	
+	$( "#mem_slider" ).slider({
+		range: "max",
+		min: 0.5,
+		max:{$product.mmem},
+		value:{$cloud['memory']/1024},
+		step: 0.5,
+		slide: function( event, ui ) {
+			pos=ui.value;
+			$("#mem").val(pos*1024);
+			$("#mem_show").html(pos);
+			getprice();
+		}
+	});
+	$( "#qos_slider" ).slider({
+		range: "max",
+		min: 1,//最小值
+		max:{$product.mqos},//最大值
+		value: 1,//默认值
+		step: 1,//此处为步长
+		slide: function( event, ui ) {
+			pos=ui.value;
+			$("#qos").val(pos);
+			$("#qos_show").html(pos);
+			getprice();
+			
+		}
+	});
+
+	
+	$(".btnsubmitcloudopen").click(function(){
+		layer.confirm('确定开通当前云主机?',function(index){
+			$(".formvalidate").ajaxSubmit({
+				dataType:  'json',
+				beforeSend: function() {
+					var loadi = layer.load('数据提交中...');//提示框
+				},
+				beforeSubmit: function() {
+				   return $(".formvalidate").valid();  //进行回调验证
+				},
+				success: function(data) {
+					layer.closeAll();
+					if(data.status == '1'){
+						layer.msg(data.info,2,1);
+						setTimeout(function(){
+							location.href =data.url;
+						},2000);
+					}else{
+						layer.msg(data.info,2,8);
+					}
+				}
+			});
+		});
+		return false;
+	});
+});
+function getprice(){
+	var id=$("#id").val();
+	var cpu=$("#cpu").val();
+	var mem=$("#mem").val();
+	var disk=$("#disk").val();
+	var iptype=$('input[name="dlip"]:checked').val();
+	var qos=$("#qos").val();
+	var year=$('input[name="year"]:checked').val();
+	//alert(mem);
+	//alert(cpu);
+	//alert(mem);
+	//alert(disk);
+	//alert(iptype);
+	//alert(qos);
+	//alert(year);
+	$.getJSON('{:U("User/Ghost/price")}',{id:id,cpu:cpu,mem:mem,disk:disk,iptype:iptype,qos:qos,year:year},function(data){
+		$("#moneynow" ).html(data.Price);
+	});
+}
+getprice();
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>微信管理平台</title>
+<include file="inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">充值卡管理</h1>
+			<span class="pagedesc">充值卡管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		                <div class="tableoptions">
+                	<form action="{:U('Admin/Card/index')}" method="get">
+                	用户名
+					<input type="text" name="username" id="username" value='{$prm_uname}' placeholder="会员名" autocomplete="off" value="" class="smallinput20"/>
+                    <button class="radius3">查询</button>
+                    </form>
+                </div><!--tableoptions-->
+			<form class="stdform formvalidate" action="{:U('Admin/Card/del')}" method="post">
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<colgroup>
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+						<col class="con0" />
+						 <col class="con1" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="head0">
+								<input type='checkbox' name='checkboxall' id='checkboxall' value='0'/>
+							</th>
+							<th class="head0">卡号</th>
+							<th class="head1">密码</th>
+							<th class="head0">面 值</th>
+							<th class="head1">充值卡类型</th>
+							<th class="head0">状态</th>
+							<th class="head1">添加时间</th>
+							<th class="head0">使用时间</th>
+							<th class="head0">用户</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>
+								<input type='checkbox' name='chkb{$vo.id}' id='chkb{$vo.id}' value="{$vo.id}"/>
+							</td>
+							<td>{$vo.cid}</td>
+							<td>{$vo.cpass}</td>
+							<td>{$vo.cmoney}</td>
+							<td>{$vo.type}</td>
+							
+							<td>
+								<if condition="$vo[status] eq 1">
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_1.png" alt="启用" title="启用">
+								<else/>
+								   <img  src="__PUBLIC__/Admin/images/icons/icon_0.png" alt="未使用" title="未使用">
+								</if>
+							</td>
+							<td>
+								<if condition="$vo[addtime]">
+								{$vo.addtime|date='Y-m-d H:i:s',###}
+								<else/>
+								-
+								</if>
+							</td>
+							<td>
+							<if condition="$vo[usetime]">
+								{$vo.usetime|date='Y-m-d H:i:s',###}
+								<else/>
+								-
+								</if>
+							</td>
+							
+							<td>
+							{$vo.username}
+							</td>
+							<td class="center">
+				 				<a href="{:U('Admin/Card/del',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					<empty name="data" >
+				<tr>
+				<td colspan="10">暂无数据</td>
+				</tr>
+				</empty>
+					
+				</tbody>
+				</table>
+				 <div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate" style="height:30px;">
+		   		<div  style='float:left;border:0px solid #F78A29;padding:3px 3px 3px 3px;cursor:pointer;' >
+		   		<input type="submit" class="submit radius2 submitdel" value="删除"  />
+		   		</div>
+				<div class="paginationnew">{$page}</div>
+			 </div>
+			 </form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工单处理</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+	<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">工单处理</h1>
+			<span class="pagedesc">工单处理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+				<div style='border:1px solid #eee'>
+					<table border=1>
+						<tr>
+							<td width='10%'>内容</td>
+							<td width='35%'><pre>{$data.content}</pre></td>
+							<td width='35%'>
+								<volist name='data.imgs' id='img'>
+									<img width='100px;' src='/{$img.path}'/>
+								</volist>
+							</td>
+							<td width='20%'>{$data.add_time|date='Y-m-d H:i:s',###}</td>
+						</tr>
+						<volist name='apd_data' id='apd'>
+						<tr>
+							<td colspan='4'><hr/></td>
+						</tr>
+						<tr>
+							<td>
+								<if condition='$apd.type eq 1'>追问</if>
+								<if condition='$apd.type eq 2'>回复</if>
+							</td>
+							<td><pre>{$apd.content}</pre></td>
+							<td>
+							<volist name='apd.imgs' id='img'>
+								<img width='100px;' src='/{$img.path}'/>
+							</volist>
+							</td>
+							<td>{$apd.add_time|date='Y-m-d H:i:s',###}</td>
+						</tr>
+						</volist>
+					</table>
+				</div>
+			<form class="stdform formvalidate" action="{:U('Admin/Support/edit')}" method="post" enctype="multipart/form-data">
+				<div >
+					回复：
+					<textarea name='content' rows="15" cols="120" style='border: 1px solid #e2e2e2;'></textarea>
+				</div>
+				<div >
+					<b style="width:180px;">上传附件：</b>
+					<input type="file" name="upfile1"/> 
+				</div>
+				<div >
+					<b style="width:180px;">上传附件：</b>
+					<input type="file" name="upfile2"/> 
+				</div>
+				<div >
+					<b style="width:180px;">上传附件：</b>
+					<input type="file" name="upfile3"/> 
+				</div>
+				<p class="stdformbutton">
+					<input type='hidden' name='wo_id' value='{$data.id}' />
+					<input type="submit" class="submit radius2 " value="编辑"  />
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

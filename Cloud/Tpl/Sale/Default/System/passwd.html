@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>修改密码</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+	   <div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">管理员修改密码</h1>
+			<span class="pagedesc">修改密码</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+				<form class="stdform formvalidate" action="{:U('Sale/System/savepasswd')}" method="post">
+					<p>
+						<label>用户名</label>
+						<span class="field">
+						{$Think.session.kefuname}
+						</span>
+					</p>
+					<p>
+						<label>密码</label>
+						<span class="field">
+							<input id="u_password" name="u_password" type="password" class="smallinput20" value=""  validate="{equalTo:'#u_password'}" /> 
+						</span>
+					</p>
+					<p>
+						<label>确认密码</label>
+						<span class="field">
+						  <input type="password" class="smallinput20" name="confirm_password" value=""  validate="{equalTo:'#u_password'}">
+						</span>
+					</p>
+					<p class="stdformbutton">
+		
+						<button class="submit radius2 submitedit">保存</button>
+						<input type="reset" class="reset radius2" value="重置" />
+					</p>
+				</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

@@ -1,0 +1,51 @@
+ <form action="{:U('User/Change/changeuser')}" method="post" name="formTop" target="_blank">
+	 <input type="hidden" name="username" id="username" />
+ </form>
+ <div class="topheader">
+        <div class="left">
+            <h1 class="logo">Cloud<span>Agent</span></h1>
+            <span class="slogan">代理平台</span>
+            <br clear="all" />
+        </div><!--left-->
+        <div class="right">
+            <div class="userinfo">
+            	<img src="{$Think.session.u_photo}" width="28px" height="28px" alt="" />
+                <span>{$Think.session.admin_name}</span>
+            </div><!--userinfo-->
+            <div class="userinfodrop">
+            	<div class="avatar">
+                	<a href="">
+                	<img src="{$Think.session.u_photo}" width="95px" height="95px" alt="" />
+                	</a>
+                    <div class="changetheme">
+                    	切换主题: <br />
+                    	<a class="default"></a>
+                        <a class="blueline"></a>
+                        <a class="greenline"></a>
+                        <a class="contrast"></a>
+                    </div>
+                </div><!--avatar-->
+                <div class="userdata">
+                	<h4>{$Think.session.admin_name}</h4>
+                    <span class="email">{$Think.session.u_email}</span>
+                    <ul>
+                        <li><a href="{:U('Admin/System/adminpasswd')}">修改密码</a></li>
+                    	<li><a href="{:U('Admin/Setting/index')}">全局设置</a></li>
+                        <li><a href="{:U('Admin/Login/doLogout')}">退出</a></li>
+                    </ul>
+                </div><!--userdata-->
+            </div><!--userinfodrop-->
+        </div><!--right-->
+    </div><!--topheader-->
+    <div class="header">
+    	<ul class="headermenu">
+    	<volist name="tops" id="nav">
+    	<li nav="{$nav.id}" id="nav_{$nav.id}"  <if condition="$nav[id] eq $navid">class="current"</if> >
+    	<a href="javascript:;" onClick="openItem('{$nav.id},{$nav.module},{$nav.action},{$nav.rn_id}');" >
+    	<span class="icon {$nav.cssstyle}"></span>{$nav.name}</a>
+    	</li>
+    	</volist>
+        </ul>
+       <div class="headerwidget">
+        </div><!--headerwidget-->
+    </div><!--header-->

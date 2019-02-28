@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系人信息-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+		<b>联系人信息</b>
+		<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+		</span>
+		</div>
+		<div class="mainM">
+			<div class="contact">
+				<p class="mainTson">联系人</p>
+				<table class="table" id="contact_list">
+					<tbody>
+						<tr class="tdColor">
+							<th>姓名</th>
+							<th>邮箱</th>
+							<th>手机</th>
+							<th>职位</th>
+							<th>操作</th>
+						</tr>
+						<volist name="user_contact" id="vo">
+						<tr>
+							<td>{$vo.name}</td>
+							<td>{$vo.email}</td>
+							<td>{$vo.mobi}</td>
+							<td>
+							<if condition="$vo['position'] eq 1">项目负责人</if>
+							<if condition="$vo['position'] eq 2">技术负责人</if>
+							<if condition="$vo['position'] eq 3">财务负责人</if>
+							<if condition="$vo['position'] eq 4">其他</if>
+							<if condition="$vo['position'] eq 0">请选择职位</if>
+							</td>
+							<td>
+							<a href="{:U('User/Center/contactinfodel',array('id'=>$vo['id']))}" class="confirmbutton">删除</a></td>
+						</tr>
+						</volist>
+						<empty name="user_contact" >
+						<tr>
+							<td colspan="5" id="nodata">暂无数据</td>
+						</tr>
+						</empty>
+					</tbody>
+				</table>
+			</div>
+			<hr class="dotted">
+			<form action="{:U('User/Center/docontactinfo')}" method="post" id="saveinfo" class="formvalidate">
+			<div class="addContact">
+				<p class="mainTson">添加联系人</p>
+				
+				<div class="forms" id="addContactM">
+					<div class="item" id="name">
+						<input value="" name="name" id="names" type="text">
+					</div>
+					<div class="item" id="email">
+						<input value="" name="email" id="emails" type="text">
+					</div>
+					<div class="item" id="phone">
+						<input value="" name="mobi" id="mobis"  type="text">
+					</div>
+					<div class="item" id="post">
+						<select name="position" id="position">
+							<option value="0">请选择职位</option>
+							<option value="1">项目负责人</option>
+							<option value="2">技术负责人</option>
+							<option value="3">财务负责人</option>
+							<option value="4">其他</option>
+						</select>
+					</div>
+					
+				</div>
+				<p class="font4" id="font4"><span>注：</span>添加相关联系人，可方便售后服务人员及时联系您，为您提供更好的服务。本公司不会将这些信息对外披露或向第三方提供。</p>
+			</div>
+			<button class="btn btnOrg1 btnsubmitcontact" type="submit">保存</button>
+			</form>
+		</div>
+		
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+</body>
+</html>

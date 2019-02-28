@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑单页</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">编辑单页</h1>
+			<span class="pagedesc">编辑单页</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Admin/Page/edit')}" method="post">
+				<p><label>标题</label>
+				<span class="field">
+					<input type="text" name="title" id="title" value='{$data.title}' class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>所属菜单编号</label>
+				<span class="field">
+					<input type="text" name="type_id" id="type_id" value='{$data.type_id}' class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>关键词</label>
+				<span class="field">
+					<input type="text" name="keyword" id="keyword" value='{$data.keyword}' class="smallinput20" />
+				</span></p>
+				<p><label>内容</label>
+					<span class="field">
+					<script id="editor" name="content" type="text/plain">{$data.content}
+					</script>
+				</span></p>
+				<p><label>模版</label>
+				<span class="formwrapper">
+					<input type='text' name='temp' id='temp' value='{$data.temp}' class="smallinput20" />
+				</span></p>
+				<p><label>排序</label>
+				<span class="formwrapper">
+					<input type='text' name='sort' id='sort' value='{$data.sort}' class="smallinput20" validate='{required:true,isIntGteZero:true,messages:{required:"不能为空"}}'/>
+				</span></p>
+				<p><label>是否显示</label>
+				<span class="formwrapper">
+					<input type="radio" name='status' id="status" value='1' 
+					<if condition='$data[status] eq 1'>checked</if>
+					/>是
+					<input type="radio" name='status' id="status" value='0' 
+					<if condition='$data[status] eq 0'>checked</if>
+					/>否
+				</span></p>
+				<p><label>描述</label>
+				<span class="formwrapper">
+					<input type='text' name='description' id='description' value='{$data.description}' class="smallinput20"/>
+				</span></p>
+				<p class="stdformbutton">
+				<input type='hidden' name='id' value='{$data.id}'/>
+					<input type="submit" class="submit radius2 " value="编辑"  />
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<include file="Common:inc_uedit" />
+</body>
+</html>

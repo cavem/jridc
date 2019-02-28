@@ -1,0 +1,43 @@
+<div class="sphinxsidebar">
+	<div class="sphinxsidebarwrapper">
+		<if condition="$data[type_id] eq 1">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/Page/Show',array('id'=>1))}">公司信息</a>
+				<ul>
+					<Cloud:page  where="type_id=1"  limit="10" result="page" order="sort desc">
+					<li class="toctree-l2">
+						<a class="reference internal select" href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+					</Cloud:page>
+				</ul>
+			</li>
+		</ul>
+		</if>
+		<if condition="$data[type_id] eq 2">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/Page/Show',array('id'=>2))}">解决方案</a>
+				<ul>
+					<Cloud:page  where="type_id=2"  limit="10" result="page" order="sort desc">
+					<li class="toctree-l2">
+						<a class="reference internal select" href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+					</Cloud:page>
+				</ul>
+			</li>
+		</ul>
+		</if>
+		<if condition="$data[type_id] eq 3">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/Page/Show',array('id'=>3))}">产品介绍</a>
+				<ul>
+					<Cloud:page  where="type_id=3"  limit="10" result="page" order="sort desc">
+					<li class="toctree-l2">
+						<a class="reference internal select" href="{:U('Home/Page/Show',array('id'=>$page[id]))}">{$page.title}</a></li>
+					</Cloud:page>
+				</ul>
+			</li>
+		</ul>
+		</if>
+	</div>
+</div>

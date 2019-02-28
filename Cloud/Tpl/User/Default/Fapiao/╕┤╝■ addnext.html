@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>申请发票-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>发票管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">申请发票</li>
+				</ul>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/address')}">发票寄送地址</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/info')}">发票信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Fapiao/add')}">索取发票</a>
+			</div>
+			<div class="blockBody">
+				<div class="money">
+				<b>您选取了：</b><span class="font2">{$count}</span>条单据开具发票
+				<b>开票金额合计：</b>￥<span class="font2">{$countmoney}</span>
+				<if condition="$Fapiaoconf['FapiaoPaypercent']">&nbsp;&nbsp;&nbsp;&nbsp;<b>收取税点：</b><span class="font2">{$Fapiaoconf['FapiaoPaypercent']}</span>%</if>
+				&nbsp;&nbsp;&nbsp;&nbsp;<b>扣除账户金额：</b>￥<span class="font2">{$paymoney}</span>
+<hr class="dotted">
+<br><br>
+<span>
+发票抬头：{$info.infotitle}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+开具类型：<if condition="$info[opentype] eq 1">个人</if>
+		<if condition="$info[opentype] eq 2">企业</if>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+发票类型：<if condition="$info[infotype] eq 1">增值税普通发票</if>
+		<if condition="$info[infotype] eq 2">增值税专用发票</if>	 
+
+		
+		
+		
+			</span> 
+
+
+				</div>
+				<hr class="dotted">
+<form action="{:U('User/Fapiao/addnextsave')}" method="post" class="formvalidate">	
+<table class="table">
+					<tbody>
+					<tr class="tdColor">
+						<th style="text-align:left;">寄送地址
+		<input type="radio" name="ifkuaidi" value="0" onclick="checkkuaidi(this.value)" class="radios">自取
+		<input type="radio" name="ifkuaidi" value="1" onclick="checkkuaidi(this.value)" class="radios">快递寄送<if condition="$Fapiaoconf['Fapiaokuai']">(费用{$Fapiaoconf['Fapiaokuai']}元)</if>
+		</th>
+</tr>
+<volist name="address" id="vo">
+<tr>
+<td style="text-align:left;">
+&nbsp;&nbsp;&nbsp;&nbsp;寄送至&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="addressid" id="addressid{$key}" value="{$vo.did}" <if condition="$vo[isdefault]">checked</if> />
+<label for="addressid{$key}">
+联系人:{$vo.addressee}&nbsp;&nbsp;&nbsp;&nbsp;
+手机号:{$vo.phone}&nbsp;&nbsp;&nbsp;&nbsp;
+详细地址:{$vo.provincename}-{$vo.cityname}-{$vo.townname}-{$vo.streetaddress}&nbsp;&nbsp;&nbsp;&nbsp;
+邮政编码:{$vo.Postcode}&nbsp;&nbsp;&nbsp;&nbsp;
+</label>
+</td>
+</tr>
+<hr>
+</volist>
+<empty name="address">
+	<tr><td>暂时没有数据!</td></tr>
+</empty>
+<tr>
+<td> 
+<input type="hidden" name="tid" id="tid" value="{$tid}">
+<input type="submit" value="提交" class="btn btnOrg2 btnsubmitnext" />
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+$(function () {
+	$(".btnsubmitnext").click(function(){ 
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			resetForm: true,//重置表单
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				if(data.status == '1'){
+	            	layer.msg(data.info,2,1);
+	            	setTimeout(function(){
+                        location.href = '{:U("User/Fapiao/index")}';
+                    },2000);
+	            }else{
+	            	layer.msg(data.info,2,8);
+	     	    }
+			}
+		});
+		return false;
+	});
+}); 
+</script>
+<style>
+.radios{
+font: 12px Verdana, Geneva, sans-serif,'宋体',tahoma, Srial, helvetica, sans-serif;
+color: #555;
+
+}
+
+</style>
+</body>
+</html>

@@ -1,0 +1,3 @@
+@CHARSET "UTF-8";
+span.errormsg {color: red;text-indent: 20px;display: inline-block;background-image: url('images/icon_error.png');background-position: 0px 1px;margin-left: 5px;background-repeat: no-repeat;}
+span.valid {background: url("images/checked.gif") no-repeat left;width: 14px;height: 13px;overflow: hidden;padding: 0;margin: 5px 0 0 5px;display: inline-block;}

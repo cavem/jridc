@@ -1,0 +1,92 @@
+<tagLib name="Cloud"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$Web.Config.site_keyword}">
+<meta name="description" content="{$Web.Config.site_description}">
+<title>{$Web.Config.site_name}</title>
+<include file="inc_css"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<div class="twonav">
+	<div class="viewport-inner">
+    	<a href="#">{$Web.Config.site_name}</a>
+    </div>
+</div>
+<section class="page" style="min-height: 500px;">
+  <div class="viewport-inner signup login">
+    <div class="form-wrapper">
+    <form class="form form-horizontal formvalidate" action="{:U('Home/User/sendemail')}" method="post">
+        <fieldset>
+          <legend>找回密码</legend>
+          <div class="item">
+            <div class="control-label"><b>*</b>用户名</div>
+            <div class="controls">
+            <input type="text" name="username" value="" validate='{required:true,messages:{required:"不能为空"}}'>
+          </div>
+          </div>
+          <div class="item">
+            <div class="control-label"><b>*</b>电子邮件</div>
+            <div class="controls">
+            <input type="text" name="email" value=""  validate='{required:true,email:true,messages:{required:"不能为空"}}'>
+          </div>
+          </div>
+          <div class="item zc">
+            <div class="controls">
+              <input class="btn btn-primary btn-session btnsubmitpost" type="submit" value="提交">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="zcyb">
+    	<p>已注册过帐号？立即登录</p>
+        <a href="{:U('Home/User/login')}" class="dlzh">登录帐号</a>
+       <p> 注册成功，即享特权：</p>
+<p>1、领取新人大礼包</p>
+<p>2、免费试用云服务器</p>
+    </div>
+  </div>
+</section>
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+$(function () {
+	$(".btnsubmitpost").click(function(){ 
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				if(data.status == '1'){
+	            	layer.msg(data.info,3,1);
+	            	//设置跳转
+	            	setTimeout(function(){
+                        location.href = '{:U("Home/User/login")}';
+                    },3000);
+	            	
+	            }else{
+	            	layer.msg(data.info,3,8);
+	     	    }
+			},
+			error:function(xhr){
+				layer.msg(xhr,3,8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>活动机型订单确认-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>活动机型</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Order/index')}">我的订单</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">订单确认</li>
+				</ul>
+			</div>
+			<div class="blockBody">
+				<div class="forms">
+					<form action="{:U('User/Activity/order')}" class='formvalidate' id="cloud_form" method="post">
+					<div class="item">
+						<b style="width:180px;">活动名称：</b>
+						{$data.name}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">机房：</b>
+						{$data.Cloudtype}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">CPU：</b>
+						{$data.cpu} 核
+					</div>
+					<div class="item">
+						<b style="width: 180px;">内存：</b>
+						{$data.mem} G
+					</div>
+					<div class="item">
+						<b style="width: 180px;">数据盘：</b>
+						{$data.disk} G
+					</div>
+					<div class="item">
+						<b style="width: 180px;">带宽：</b>
+						{$data.qos} M
+					</div>
+					<div class="item">
+						<b style="width: 180px;">期限：</b>
+						<if condition="$data['cycletext'] eq 'PAY_Month'">一个月</if>
+						<if condition="$data['cycletext'] eq 'PAY_Season'">一季度</if>
+						<if condition="$data['cycletext'] eq 'PAY_halfyear'">半年</if>
+						<if condition="$data['cycletext'] eq 'PAY_1year'">一年</if>
+						<if condition="$data['cycletext'] eq 'PAY_2year'">两年</if>
+						<if condition="$data['cycletext'] eq 'PAY_3year'">三年</if>
+						<if condition="$data['cycletext'] eq 'PAY_4year'">四年</if>
+						<if condition="$data['cycletext'] eq 'PAY_5year'">五年</if>
+					</div>
+					<div class="item">
+						<b style="width: 180px;">IP类型：</b>
+						<if condition="$data['iptype'] eq 1">独立<else/>共享</if>IP
+					</div>
+					<div class="item" id='products'>
+						<b style="width:180px;">系统：</b>
+						<select id="image_type" onchange="getSys({$data.id},this.value);">
+							<option value="0" selected>--请选择--</option>
+							<option value="1" >--Windows-</option>
+							<option value="2" >--Centos-</option>
+							<option value="3" >--Ubuntu-</option>
+						</select>
+						<select name="image_uuid" id="image_uuid">
+							<option value='no'>-请选择操作系统-</option>
+						</select>
+					</div>
+					<div class="item">
+						<b style="width: 180px;">主机名称：</b>
+						<input type="text" name='cloudname' id='cloudname'/>
+					</div>
+					<div class="item">
+						<b style="width: 180px;">初始密码：</b>
+						<input type="password" name='cloudpassword' id='cloudpassword'/>
+					</div>
+					<div class="item">
+						<input type="hidden" name="id" value="{$data.id}"/>
+						<button type="submit" class="btn btnOrg2 btnsubmitpostorder" id='submit_btn' style="margin-left:170px;">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+$(".btnsubmitpostorder").click(function(){ 
+	if($("#image_uuid").val()=="no"){
+		layer.msg("请选择操作系统",2,8);
+		return false;
+	}
+	if($("#cloudname").val()==""){
+		layer.msg("云主机名不能为空",2,8);
+		$("#cloudname").focus();
+		return false;
+	}
+	if($("#cloudpassword").val()==""){
+		layer.msg("管理密码不能为空",2,8);
+		$("#cloudpassword").focus();
+		return false;
+	}
+	layer.confirm('确定提交当前云主机活动机型订单',function(index){
+		$("#cloud_form").ajaxSubmit({		
+			dataType:  'json',
+			resetForm: true,
+			success: function(data) {
+				if(data.status == '1'){
+					layer.msg(data.info,2,1);
+					 setTimeout(function(){
+					 location.href =data.url;
+					},2000);
+				}else{
+					layer.msg(data.info,2,8);
+				}
+			}
+		});
+	});
+	return false;
+
+});
+function getSys(id,sid){
+	$.getJSON("{:U('user/activity/getsysos')}",{id:id,ostypeid:sid,rtime:new Date().getTime()},
+			function(data){
+			
+				$("#image_uuid").children().remove();
+				var year_option_xz = $("<option value='no'>"+"-请选择操作系统-"+"</option>");
+				$("#image_uuid").append(year_option_xz);
+				$("#image_uuid").append(year_option_xz);
+				$.each(data,function(idx,item){
+					var template_option = $("<option value='"+item.image_uuid+"'>"+item.osname+"</option>");
+					$("#image_uuid").append(template_option);
+				});
+	});
+}
+</script>
+</body>
+</html>

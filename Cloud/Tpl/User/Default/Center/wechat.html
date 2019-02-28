@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信绑定-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<div id="content">
+<include file="Common:inc_left"/>
+	<div class="main">
+		<div class="mainT">
+			<b>安全信息</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<p class="mainTson">已绑定的微信号</p>
+			<table class="table">
+				<tbody>
+					<tr class="tdColor">
+						<th>微信昵称</th>
+						<th>关注日期</th>
+						<th>绑定日期</th>
+						<th>操作</th>
+					</tr>
+					<volist name="wechats" id="vo">
+					<tr>
+						<td>{$vo['nickname']}<if condition="$vo['subscribe'] neq 1">（已取消关注）</if></td>
+						<td>{$vo.subscribe_time|date='Y-m-d H:i:s',###}</td>
+						<td>{$vo.upd_time|date='Y-m-d H:i:s',###}</td>
+						<td>
+						<a href="{:U('User/Center/unbinding',array('wxid'=>$vo[wxid]))}" class="confirmbutton">解除绑定</a>
+						<a href="
+						<if condition="$vo['remind']">{:U('User/Center/setSupT',array("id"=>$vo[id],"type"=>'wechat',"status"=>0))}
+						<else/>{:U('User/Center/setSupT',array("id"=>$vo[id],"type"=>'wechat',"status"=>1))}</if>" style='margin-right:20px;'>
+							<if condition="$vo['remind']">关闭<else/>开启</if>工单提醒</a></td>
+					</tr>
+					</volist>
+					<empty name="wechats">
+					<tr>
+						<td colspan="4">未绑定任何微信号</td>
+					</tr>
+					</empty>
+				</tbody>
+			</table>
+			<div class="mainHalf3">
+				<p class="mainTson">绑定流程</p>
+				<table style='width:100%;text-align:center;'>
+					<tr>
+						<td><img width='150px;' height='150px;' src="__PUBLIC__/common/QRcode.jpg" /></td>
+						<td><img width='200px;' height='150px;' src="__PUBLIC__/common/menu.jpg" /></td>
+						<td><img width='200px;' height='150px;' src="__PUBLIC__/common/bd.jpg" /></td>
+					</tr>
+					<tr style='text-align:center;'>
+						<td>第一步：关注微信号</td>
+						<td>第二步：进入账户管理</td>
+						<td>第三步：执行绑定</td>
+					</tr>
+				</table>
+			</div>
+			<hr class="dotted"/>
+			<input class="btn btnOrg1" type="button" value='返回' onclick="location.href='{:U('User/Center/index')}'"/>
+		</div>
+	</div>
+</div>
+<include file="Common:inc_footer"/>
+</body>
+</html>

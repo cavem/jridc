@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>云主机转入</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+	   <div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">云主机转入</h1>
+			<span class="pagedesc">云主机转入</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			   	<form class="stdform formvalidate" action="{:U('Admin/Cloud/incloud')}" method="post">
+					<p>
+						<label>用户名</label>
+						<span class="field">
+						<input type="text" name="username" id="username" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+						</span>
+					</p>
+					<p>
+						<label>云主机编号</label>
+						<span class="field">
+						<input type="text" name="vm_id" id="vm_id" class="smallinput20" validate='{required:true,isFloatGteZero:true,messages:{required:"不能为空"}}' />
+						</span>
+					</p>
+					<p>
+						<label>所属产品</label>
+						<span class="field">
+						<select name="newcloudpid" id="newcloudpid">
+			  
+			        		<volist name="Cloudproduct" id="vo">
+			        			<option value="{$vo.id}">{$vo.Cloudtype}</option>
+			        		</volist>        	
+			        	</select>			
+        				</span>
+					</p>
+					<p class="stdformbutton">
+				   		<input type="submit" class="submit radius2 submitadd" value="添加"  />
+					</p>
+				</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

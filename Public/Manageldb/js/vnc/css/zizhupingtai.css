@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td,dd,dt,dl{margin:0;padding:0;}
+fieldset,img{border:0;}
+body{font-family:"Microsoft Yahei","Hiragino Sans GB","arial","sans-serif","Helvetica","宋体";font-size:12px;line-height:20px;
+color:#333;background:#fff}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;vertical-align:middle}
+strong,th{font-style:normal;font-weight:normal}
+input{vertical-align:middle}
+li{list-style:none}
+h3,h4,h5,h6{font-size:100%;font-weight:normal}
+button{cursor:pointer}
+p{word-wrap:break-word}
+div{display:block}
+.clearfix {/* 触发 hasLayout */zoom:1; }
+.clearfix:after {content: "."; display: block; height:0; clear:both;visibility:hidden}
+button,input,select,textarea{margin:0;font-size:100%;vertical-align:middle}
+a{color:#434a54;text-decoration:none}
+input,button,select,textarea{outline:none;font-family:"Microsoft Yahei";}
+address, caption, cite, code, dfn, em, i, strong, th, var, optgroup {
+font-style: normal;font-weight: normal}
+button,input{line-height:normal}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"]{cursor:pointer;-webkit-appearance:button}
+label,select,button,input[type="button"],input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"]{cursor:pointer}
+.f-left{float:left}
+.clearboth{clear:both;height:0;font-size:1px;line-height:0px}
+/*景安自助管理平台公共部分 start*/
+/*header-title*/
+.zizhuheader-box{background:#59b9f0;height:30px;line-height:30px;color:#fff;text-align:right}
+.zizhuheader-title{width:1000px;margin:0 auto;text-align:right}
+.zizhuheader-title span{margin-left:20px}
+.zizhuheader-title a{color:#fff;margin-left:20px}
+.zizhuheader-title a:hover{color:#023D91}
+.zizhuheader-title span{display:inline-block}
+/*zizhuheader-nav*/
+.zizhuheader-nav{width:1000px;margin:0 auto;overflow:hidden;margin-bottom:20px}
+.navlogo{float:left}
+.logoimg{width:176px;height:59px;float:left;padding-top:10px;margin-right:10px}
+.logoline{background:url(../images/base/img3.gif) no-repeat;width:8px;height:91px;float:left}
+.logotxt{background:url(../images/base/logo2.gif) 0 10px no-repeat;width:216px;height:71px;float:left;margin-left:10px}
+.phoneimg{background:url(../images/base/140417img1.png) no-repeat;width:39px;height:40px;float:left;margin-top:17px;
+margin-left:10px}
+.txtbox1{background:url(../images/base/140417img2.png) no-repeat;width:385px;height:15px;float:left;margin-top:16px;
+margin-left:10px}
+.txtbox2{width:385px;height:15px;float:left;font-size:16px;color:#adadad;font-family:微软雅黑;margin-top:6px;margin-left:10px;}
+/*zizhumain*/
+.zizhumain{width:1000px;margin:0 auto;overflow:hidden;margin-bottom:28px}
+/*zizhuleft*/
+.zizhuleft{margint-right:20px}
+.zizhuleft a{text-decoration:none}
+.zizhuleft a:hover{text-decoration:none}
+.zizhumain .zizhuleft{width:178px;float:left}
+.zizhumain .zizhuleft ul li{margin-bottom:10px;overflow:hidden}
+.zizhumain .zizhuleft{width:178px;clear:both;overflow:hidden;zoom:1;font-size:14px}
+.zizhumain .zizhuleft li{background:#eff0f4;width:178px;height:34px;line-height:34px;cursor:pointer;padding:4px 0;
+display:block;float:left}
+.zizhumain .zizhuleft li:hover{background:#2690cf}
+.zizhumain .zizhuleft li:hover a{color:#fff}
+
+.zizhumain .zizhuleft span{background:url(../images/base/zizhupingtai20140616img2.png) no-repeat;display:block}
+.zizhumain .zizhuleft span.icon-txt{background:none}
+.zizhumain .zizhuleft .icon-img1{width:31px;height:25px;background-position:0 -28px;margin:6px 10px 0 12px;_margin:6px 10px 0 6px;float:left}/*故障申报蓝*/
+.zizhumain .zizhuleft li:hover .icon-img1{background-position:-60px -28px}/*故障申报白*/
+.zizhumain .zizhuleft .icon-img2{width:31px;height:27px;background-position:0 -77px;margin:4px 10px 0 12px;_margin:4px 10px 0 6px;float:left}/*主机业务管理蓝*/
+.zizhumain .zizhuleft li:hover .icon-img2{background-position:-60px -77px}/*主机业务管理白*/
+.zizhumain .zizhuleft .icon-img3{width:31px;height:27px;background-position:0 -128px;margin:4px 10px 0 12px;_margin:4px 10px 0 6px;float:left}/*子站点管理蓝*/
+.zizhumain .zizhuleft li:hover .icon-img3{background-position:-60px -128px}/*子站点管理白*/
+.zizhumain .zizhuleft .icon-img4{width:31px;height:31px;background-position:0 -176px;margin:2px 10px 0 12px;_margin:2px 10px 0 6px;float:left}/*数据库管理蓝*/
+.zizhumain .zizhuleft li:hover .icon-img4{background-position:-60px -176px}/*数据库管理白*/
+.zizhumain .zizhuleft .icon-img5{width:31px;height:27px;background-position:0 -229px;margin:4px 10px 0 12px;_margin:4px 10px 0 6px;float:left}/*企业邮局管理蓝*/
+.zizhumain .zizhuleft li:hover .icon-img5{background-position:-60px -229px}/*企业邮局管理白*/
+.zizhumain .zizhuleft .icon-img6{width:31px;height:19px;background-position:0 -282px;margin:10px 10px 0 12px;_margin:10px 10px 0 6px;float:left}/*自定义服务码蓝*/
+.zizhumain .zizhuleft li:hover .icon-img6{background-position:-60px -282px}/*自定义服务码白*/
+.zizhumain .zizhuleft .icon-img7{width:31px;height:31px;background-position:0 -327px;margin:2px 10px 0 12px;_margin:2px 10px 0 6px;float:left}/*自定义服务码口令蓝*/
+.zizhumain .zizhuleft li:hover .icon-img7{background-position:-60px -327px}/*自定义服务码口令白*/
+.zizhumain .zizhuleft .icon-img8{width:31px;height:35px;background-position:0 -375px;margin:-2px 10px 0 12px;_margin:-2px 10px 0 6px;float:left}/*联系信息蓝*/
+.zizhumain .zizhuleft li:hover .icon-img8{background-position:-60px -375px}/*联系信息白*/
+.zizhumain .zizhuleft .icon-img9{width:31px;height:30px;background-position:0 -428px;margin:4px 10px 0 12px;_margin:4px 10px 0 6px;float:left}/*虚拟主机帮助中心蓝*/
+.zizhumain .zizhuleft li:hover .icon-img9{background-position:-60px -428px}/*虚拟主机帮助中心白*/
+.zizhumain .zizhuleft .icon-img10{width:31px;height:20px;background-position:0 -483px;margin:8px 10px 0 12px;_margin:8px 10px 0 6px;float:left}/*云空间业务管理蓝*/
+.zizhumain .zizhuleft li:hover .icon-img10{background-position:-60px -483px}/*云空间业务管理白*/
+.zizhumain .zizhuleft .icon-img11{width:31px;height:30px;background-position:0 -528px;margin:3px 10px 0 12px;_margin:3px 10px 0 6px;float:left}/*快云VPS管理平台蓝*/
+.zizhumain .zizhuleft li:hover .icon-img11{background-position:-60px -528px}/*快云VPS管理平台白*/
+.zizhumain .zizhuleft .icon-img12{width:31px;height:25px;background-position:0 -581px;margin:5px 10px 0 12px;_margin:5px 10px 0 6px;float:left}/*云数据库管理平台蓝*/
+.zizhumain .zizhuleft li:hover .icon-img12{background-position:-60px -581px}/*云数据库管理平台白*/
+.zizhumain .zizhuleft .icon-img13{width:31px;height:24px;background-position:0 -632px;margin:5px 10px 0 12px;_margin:5px 10px 0 6px;float:left}/*景安VPS真伪辨别蓝*/
+.zizhumain .zizhuleft li:hover .icon-img13{background-position:-60px -632px}/*景安VPS真伪辨别白*/
+.zizhumain .zizhuleft .icon-img14{width:31px;height:25px;background-position:0 -732px;margin:5px 10px 0 12px;_margin:5px 10px 0 6px;float:left}/*免费升级蓝*/
+.zizhumain .zizhuleft li:hover .icon-img14{background-position:-60px -732px}/*免费升级白*/
+.zizhumain .zizhuleft .icon-img15{width:31px;height:30px;background-position:0 -768px;margin:2px 10px 0 12px;_margin:2px 10px 0 6px;float:left}/*站点备份*/
+.zizhumain .zizhuleft li:hover .icon-img15{background-position:-60px -768px}/*站点备份白*/
+/*zizhuright*/
+.zizhumain .zizhuright{width:802px;float:right}
+.zizhubottom{width:1000px;margin:0 auto;border-top:1px dashed #bfced9;padding-bottom:10px}
+/*景安自助管理平台公共部分 end*/
+.zizhubottom i{display:inline-block;vertical-align:middle;margin:0 6px;_margin:-5px 6px;width:1px;height:12px;background:#a4a4a4;
+line-height:0;overflow:hidden;font-size:0}
+.bottomlink{padding:10px 0 4px}
+.bottomlink a{margin-right:6px}
+.bottomlink a:hover{color:#008dc1;text-decoration:underline}
+.bottomp{line-height:24px}
+.bottomp a{color:#f10c68;margin-right:10px}
+.bottomp a:hover{color:#f10c68;text-decoration:underline}

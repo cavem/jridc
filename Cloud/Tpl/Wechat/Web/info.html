@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+</head>
+<body >
+<div class=" ">
+	<div class="toptitle">
+		<div class="top_link">
+			<a href="javascript:history.back(-1);">
+			<img width="30px;" style="margin-top:10px;" src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+			</a>
+		</div>
+		<div class="refresh">
+			<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+				<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+			</a>
+		</div>
+		<span>主机状况</span>
+	</div>
+	<div class="changebar">
+		  <ul class="myhost">
+			 <li style="" class="blue">基本</li>
+			 <li style="">网络</li>
+			 <li style="">硬盘</li>
+		  </ul>
+		<div class="on">
+			<table class="hostinfo_tbl net_info">
+			<tr>
+			  <th> <img src="__PUBLIC__/Wechat/Web/images/cloud_house.png"/></th>
+			  <td class='tdsecond'>所属机房</td>
+			  <td width="65%"><span class="flo_right paddingright">{$cloud_product.jfname}</span></td>
+			</tr>
+			<tr>
+				<th><img src="__PUBLIC__/Wechat/Web/images/cpu.png"/></th>
+				<td class='tdsecond'>CPU核数</td>
+				<td><span class="flo_right paddingright">{$vminfo['cpu']}</span></td>
+			</tr>
+			<tr>
+				<th style="vertical-align:;"> <img src="__PUBLIC__/Wechat/Web/images/memsize.png"/></th>
+				<td class='tdsecond'> 内存大小</td>
+				<td>
+					<span class="flo_right paddingright">{$vminfo['memory']}</span>
+				</td>
+			</tr>
+			<tr>
+			  <th> <img src="__PUBLIC__/Wechat/Web/images/system.png"/></th>
+			  <td class='tdsecond'>操作系统</td>
+			  <td><span class="flo_right paddingright">{$vminfo['osname']}</span></td>
+			</tr>
+			<tr>
+			  <th> <img src="__PUBLIC__/Wechat/Web/images/opentime.png"/></th>
+			  <td class='tdsecond'>开通时间</td>
+			  <td><span class="flo_right paddingright">{$cloud['starttime']|date=("Y-m-d H:i:s"),###}</span></td>
+			</tr>
+			<tr>
+			  <th> <img src="__PUBLIC__/Wechat/Web/images/endtime.png"/></th>
+			  <td class='tdsecond'>到期时间</td>
+			  <td><span class="flo_right paddingright">{$cloud['endtime']|date=("Y-m-d H:i:s"),###}</span></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+	  <volist name="ipqosinfo" id="vo">
+			 <table class="hostinfo_tbl net_info">
+				 <tr>
+				  <th> <img src="__PUBLIC__/Wechat/Web/images/mac.png"/></th>
+				  <td class='tdsecond'>MAC</td>
+				  <td><span class="flo_right paddingright">{$vo['MAC']}</span></td>
+				</tr>
+				<tr>
+				  <th> <img src="__PUBLIC__/Wechat/Web/images/networkcard.png"/></th>
+				  <td class='tdsecond'>带宽</td>
+				  <td><span class="flo_right paddingright">{$vo['qos']/128}M</span></td>
+				</tr>
+		 		<volist name="vo[ip_infos]" id="voo">
+				<tr>
+				  <th> <img src="__PUBLIC__/Wechat/Web/images/xianlu.png"/></th>
+				  <td class='tdsecond'>线路</td>
+					<td width="60%"><span class="flo_right paddingright">{$voo['typename']}</span></td>
+				</tr>
+				<tr>
+					<th style="vertical-align:;"> <img src="__PUBLIC__/Wechat/Web/images/ip.png"/></th>
+					<td class='tdsecond'> IP</td>
+					<td>
+						<span class="flo_right paddingright">{$voo['ip']}</span>
+					</td>
+				</tr>
+				<tr>
+					<th> <img src="__PUBLIC__/Wechat/Web/images/dns.png"/></th>
+					<td class='tdsecond'>DNS</td>
+					<td><span class="flo_right paddingright">{$voo['dns']}</span></td>
+				</tr>
+				</volist>
+			</table>
+		</volist>
+	</div>
+	<div>
+		<table class="hostinfo_tbl net_info">
+			<tr>
+				<th><img src="__PUBLIC__/Wechat/Web/images/cloud_house.png"/></th>
+				<td class='tdsecond'>系统盘</td>
+				<td><span class="flo_right paddingright">{$vminfo['syscount']}G</span></td>
+			</tr>
+			<tr>
+				<th> <img src="__PUBLIC__/Wechat/Web/images/cpu.png"/></th>
+				<td class='tdsecond'>数据盘</td>
+				<td width="60%"><span class="flo_right paddingright">{$vminfo['cloudcount']}G</span></td>
+			</tr>
+		 </table>
+	  </div>
+   </div> <!--changebar end-->
+</div>
+</body>
+</html>

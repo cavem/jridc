@@ -1,0 +1,19 @@
+<div class="sphinxsidebar">
+	<div class="sphinxsidebarwrapper">
+		<volist name="cates" id="vo">
+		<ul class="current">
+			<li class="toctree-l1 current">
+				<a class="current reference internal" href="{:U('Home/News/index',array('id'=>$vo[id]))}">{$vo.title}</a>
+				<ul style='display:
+				<if condition='$vo[id] eq $showcateid'><else/>none</if>
+				'>
+				<volist name="vo.childs" id="voo">
+					<li class="toctree-l2">
+						<a class="reference internal select" href="{:U('Home/News/index',array('id'=>$voo[id]))}">{$voo.title}</a></li>
+				</volist>
+				</ul>
+			</li>
+		</ul>
+		</volist>
+	</div>
+</div>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+
+	<style>
+		.load {
+			text-align: center;
+			z-index: 999;
+			position: absolute;
+			height: 100px;
+			margin-top: 38%;
+			margin-left: 45.8%;
+			display: none;
+		}
+		.loadshow {
+			text-align: center;
+			z-index: 998;
+			position: absolute;
+			height:100%;
+			width:100%;
+			display: none;
+		}
+	</style>
+</head>
+<body >
+<div id="load" class="load"><img src="__PUBLIC__/Wechat/Web/images/load.gif"/></div>
+<div id="loadshow" class="loadshow"></div>
+<input type="hidden" name="vmid" id="vmid" value="{$cloud_detail['id']}"/>
+<div class="host_message">
+	<div class="msg_title">
+		<div class="">
+			<a href='javascript:history.back(-1);'>
+				<img width='30px' src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+			</a>
+		</div>
+		<div class="refresh">
+			<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+				<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+			</a>
+		</div>
+		<h3>主机详情</h3>
+	</div>
+	<div class="showstate">
+		<div class="showpic">
+			<div><a><img src="__PUBLIC__/Wechat/Web/images/boot_bg.png"/></a></div>
+		</div>
+		<div class="showtext">
+			<h4 class="pc_name">{$cloud_detail['resourname']}</h4>
+			<h4 class="pc_name">{$cloud_detail['cloudname']}</h4>
+			<h4 class="pc_state">loading...</h4>
+		</div>
+	</div>
+	<div>
+	<table class="hostmsg_tbl">
+	  <tr id="cloudstate1">
+		<td><input type='hidden' id='id' name='id' value="{$cloud_detail['id']}"/>
+		<a href="javascript:void(0);" onclick="cloudhandel('start')">
+			<img id='img_boot' src="__PUBLIC__/Wechat/Web/images/boot_n.png"/></a>
+		</td>
+		<td><a href="javascript:void(0);" onclick="cloudhandel('reboot')">
+			<img id='img_reboot' src="__PUBLIC__/Wechat/Web/images/reboot_n.png"/></a>
+		</td>
+		<td><a href="javascript:void(0);" onclick="cloudhandel('stop')">
+			<img id='img_shutdown' src="__PUBLIC__/Wechat/Web/images/shutdown_n.png"/></a>
+		</td>
+	  </tr>
+	</table>
+	</div>
+	<div>
+	  <table class="message_tbl">
+		<tr onclick="location.href='{:U('wechat/web/info',array('id'=>$cloud_detail['id']))}'">
+		  <td>
+			  <h6>主机概况</h6>
+			  查看主机信息、网络信息、硬盘信息
+		  </td>
+		  <td valign="bottom">
+			<img src="__PUBLIC__/Wechat/Web/images/icon_right.png"/>
+		  </td>
+		</tr>
+		<tr onclick="location.href='{:U('wechat/web/monitor',array('id'=>$cloud_detail['id']))}'">
+		  <td>
+			 <h6>性能监控</h6>
+			  按时间段监控云服务器性能
+		  </td>
+		  <td>
+			<img src="__PUBLIC__/Wechat/Web/images/icon_right.png"/>
+		  </td>
+		</tr>
+	  </table>
+	</div>
+</div>
+<script>
+	//处理开关机重启
+	var running;
+	function cloudhandel(action){
+		var cando = false;
+		if(running){
+			if(action!='start')cando=true;
+		}else{
+			if(action=='start')cando=true;
+		}
+		if(cando)//
+		layer.confirm('确定当前操作',function(index){
+			var id = $('#id').val();
+			$(this).ajaxSubmit({
+				type:"post",  //提交方式  	
+				dataType:  'json',
+				data:{act:action,id:id},
+				url:'{:U("Wechat/Web/cloudhandel")}',
+				beforeSend: function() {
+					var loadi = layer.load('');//提示框
+				},
+				success: function(data) {
+					if(data.status == '1'){
+						setTimeout(function(){
+							layer.msg(data.info,2,1);
+							get_vm_status();
+						},3000);
+					}else{
+						layer.msg(data.info,2,8);
+					}
+				}
+			});
+		});
+		return false;
+	}
+	</script>
+<script type="text/javascript">
+var start_imgn = "__PUBLIC__/Wechat/Web/images/boot_n.png";
+var start_imgp = "__PUBLIC__/Wechat/Web/images/boot_p.png";
+var restart_imgn = "__PUBLIC__/Wechat/Web/images/reboot_n.png";
+var restart_imgp = "__PUBLIC__/Wechat/Web/images/reboot_p.png";
+var stop_imgn = "__PUBLIC__/Wechat/Web/images/shutdown_n.png";
+var stop_imgp = "__PUBLIC__/Wechat/Web/images/shutdown_p.png";
+function setState(p_running){
+	if(p_running){
+		$("#img_boot").attr('src',start_imgn);
+		$("#img_reboot").attr('src',restart_imgp);
+		$("#img_shutdown").attr('src',stop_imgp);
+	}else{
+		$("#img_boot").attr('src',start_imgp);
+		$("#img_reboot").attr('src',restart_imgn);
+		$("#img_shutdown").attr('src',stop_imgn);
+	}
+}
+//ajax实时验证主机状态
+var getvmstatusurl="{:U('Wechat/Web/vmstate')}";
+function get_vm_status() {
+	var vmid = $("#vmid").val();
+	$.get(getvmstatusurl,{'act':'vmstate','id':vmid},function(vminfo){
+		if(vminfo['statusinfo']=='正常'){
+			if(vminfo['cloudstatus']==true){
+				//判断主机状态是否正常运行中
+				if(vminfo.power_state.toLowerCase()=='running'){
+					running = true;
+				}else{
+					running = false;
+				}
+				setState(running);//处理开关机重启按钮颜色
+				$(".pc_state").html(vminfo['info']);
+			}else{
+				$(".pc_state").html(vminfo['info']);
+			}
+		}else{
+			$(".pc_state").html(vminfo['info']);
+		}
+	},'json');
+}
+get_vm_status();
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style type="text/css">
+		input[type='text']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='password']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='submit']{
+			background:#EE5B45;
+			border:none;
+			width:100%;
+			height:40px;
+			line-height:40px;
+		}
+	</style>
+</head>
+<body >
+<script>
+	function checkpost(){
+		var uid=$("#uid").val();
+		if(uid==""){
+			alert("用户名不能为空");
+			return false;
+		}
+		var ups=$("#ups").val();
+		if(ups==""){
+			alert("用户名密码不能为空");
+			return false;
+		}
+	}
+</script>
+<div style="width:100%;border:0px solid blue;">
+	<div class="toptitle" style="width:100%;border:0px solid yellow;overflow:auto;">
+		<div class="top_link" onclick="location.href='{:U('wechat/web/usercenter')}'">
+			<img width="50px;" style="margin-top:5px;" src="__PUBLIC__/Wechat/Web/images/btn_setting_n.png"/>
+		</div>
+		<h4>解除绑定</h4>
+	</div>
+	<div style="padding:15px 10px 0 10px;border:0px solid red;">
+		<form action="{:U('Wechat/Web/unbindding')}" method="post" class='sdf'>
+			<table border=0 width='100%'>
+				<tr>
+					<td height="40px;"><img style='width:30p;height:30px;' src="__PUBLIC__/Wechat/Web/images/username.png"/></td>
+					<td><input type="text" name="uid" id='uid' value=''/></td>
+				</tr>
+				<tr>
+					<td height="40px;"><img style='width:30p;height:30px;' src="__PUBLIC__/Wechat/Web/images/password.png"/></td>
+					<td><input type="password" name="ups" id="ups" value=''/></td>
+				</tr>
+				<tr>
+					<td colspan=2 height="40px;"><input type="submit" id='submit' value="解除绑定"/></td>
+				</tr>
+				<tr>
+					<td colspan=2 height="40px;" align="right"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+<script>
+$("#submit").click(function (){
+		var uid=$("#uid").val();
+		if(uid==""){
+			layer.msg("用户名不能为空",2,8);
+			return false;
+		}
+		var ups=$("#ups").val();
+		if(ups==""){
+			layer.msg("密码不能为空",2,8);
+			return false;
+		}
+		$(".sdf").ajaxSubmit({
+			type:"post",  //提交方式  	
+			dataType:'json',
+			beforeSend: function() {
+				var loadi = layer.load('doing...');//提示框
+			},
+			success: function(data) {
+				if(data.status == '1'){
+					layer.msg(data.info,2,1);
+					setTimeout(function(){
+                        location.href = data.url;
+                    },2000);
+				}else{
+					layer.msg(data.info,2,8);
+				}
+			}
+		});
+		return false;
+	});
+</script>
+</body>
+</html>

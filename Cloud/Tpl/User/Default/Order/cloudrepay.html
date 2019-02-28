@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云主机续费详情-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>订单管理</b>
+			<span>
+			 	<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="mainHalf3">
+				<p class="mainTson">订单详情</p>
+				<div class="forms">
+					<div class="item">
+						<b style="width: 180px;">编号：</b>
+						{$data.id}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">下单时间：</b>
+						{$data.addtime|date='Y-m-d H:i:s',###}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">订单类型：</b>
+						 <if condition="$data.type eq 1">云主机</if>
+					</div>
+					<div class="item">
+						<b style="width: 180px;">操作类型：</b>
+						{$data.ordertype}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">产品类型：</b>
+						{$data.producttype}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">周期：</b>
+						{$data.yearname}
+					</div>
+					<div class="item">
+						<b style="width: 180px;">金额：</b>
+						{$data.usermoney}
+					</div>
+					<div class="item">
+					<b style="width: 180px;">订单详情：</b>
+						CPU：{$data.cpunum}个
+						内存：{$data.memnum}M
+						硬盘:{$data.disknum}G
+					
+					</div>
+					<div class="item">
+					<b style="width: 180px;">IP网卡：</b>
+					<volist name="data.qosnetwork" id="vo">
+						MAC:{$vo.MAC}							QOS:{$vo[qos]/128}M						IP
+						<volist name="vo.ip_infos" id="voo">
+															{$voo.ip}							
+						</volist>
+					</volist>
+					</div>
+					<div class="item">
+						<b style="width: 180px;">状态：</b>
+						 <if condition="$data.status eq 1">未支付</if>
+						 <if condition="$data.status eq 2">已支付</if>
+						 <if condition="$data.status eq 3">已取消</if>
+					</div>
+					<if condition="$data.status eq 2">
+					<div class="item">
+							<b style="width: 180px;">产品ID：</b>
+							{$data.pid}
+					</div>
+					
+					<div class="item">
+							<b style="width: 180px;">原到期时间：</b>
+							{$data.starttime|date='Y-m-d H:i:s',###}
+					</div>
+					<div class="item">
+							<b style="width: 180px;">新到期时间：</b>
+							{$data.endtime|date='Y-m-d H:i:s',###}
+					</div>
+					<div class="item">
+							<b style="width: 180px;">说明：</b>
+							{$data.logfor}
+					</div>
+					</if>
+					
+					
+				</div>
+			</div>
+			<hr class="dotted">
+				<button class="btn btnOrg1 btnsubmitpost" type="button" onclick="location.href='{:U('User/Order/index')}'">返回</button>
+		</div>
+		</form>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+$(".btnsubmitcloudopen").click(function(){ 
+	layer.confirm('确定支付当前订单',function(index){
+		$(".formvalidate").ajaxSubmit({
+			dataType:  'json',
+			resetForm: true,
+			beforeSend: function() {
+				var loadi = layer.load('<font color="red">云主机开通中！请耐心等待!!!</font>');//提示框
+			},
+			success: function(data) {
+				if(data.status == '1'){
+					layer.msg(data.info,2,1);
+					setTimeout(function(){
+						 location.href = '{:U("User/Cloud/index")}';
+					},1000);
+	            }else{
+	                
+	            	layer.msg(data.info,2,8);
+	            	
+	     	    }
+			}
+		});
+	});
+	return false;
+});
+</script>
+</body>
+</html>

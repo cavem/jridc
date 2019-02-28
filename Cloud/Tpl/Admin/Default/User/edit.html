@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>会员详情</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader">
+			<h1 class="pagetitle">编辑用户信息</h1>
+            <ul class="hornav">
+                 <li class='current'><a href="#tabs-1">基本信息</a></li>
+                 <li><a href="#tabs-2">用户组</a></li>
+                 <li><a href="#tabs-3">重置密码</a></li>
+                 <li><a href="#tabs-4">联系人</a></li>
+            </ul>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="tabs-1" class="subcontent">
+				<form class="stdform formvalidate" action="{:U('Admin/User/edit')}"  method="post">
+					<p><label>用户名</label>
+						<span class="field">
+						{$data.username} 
+						<a href="javascript:document.formTop.action='{:U('User/Change/changeuser')}';document.formTop.username.value='{$data.username}';document.formTop.submit();"><font color="#000000">切换成此用户角色>>></font></a>
+					</span></p>
+					<p><label>客服</label>
+					<span class="field">
+						<select name='kid' class="selectwidth20" >
+							<volist name="kefus" id="vo">
+								<option value='{$vo.rank_id}' disabled='disabled'>{$vo.rank_name}</option>
+								<volist name="vo.kefus" id="voo">
+									<option value='{$voo.id}'
+									<if condition="$voo[id] eq $data['kid']">selected</if>
+									>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.kefuname}</option>
+								</volist>
+							</volist>
+						</select>
+					</span></p>
+					<p><label>Email</label>
+						<span class="field">
+						<input type="text" name="email" id="email" value='{$data.email}' class="smallinput20" />
+					</span></p>
+					<p><label>邮箱验证</label>
+					<span class="formwrapper">
+						<input type="radio" name='emailv' id="emailv" value='1' 
+						<if condition='$data[emailv] eq 1'>checked</if>
+						/>是
+						<input type="radio" name='emailv' id="emailv" value='0' 
+						<if condition='$data[emailv] eq 0'>checked</if>
+						/>否
+					</span></p>
+					<p><label>联系电话</label>
+						<span class="field">
+						<input type="text" name="mobi" id="mobi" value='{$data.mobi}' class="smallinput20" />
+					</span></p>
+					<p><label>手机验证</label>
+					<span class="formwrapper">
+						<input type="radio" name='mobiv' id="mobiv" value='1' 
+						<if condition='$data[mobiv] eq 1'>checked</if>
+						/>是
+						<input type="radio" name='mobiv' id="mobiv" value='0' 
+						<if condition='$data[mobiv] eq 0'>checked</if>
+						/>否
+					</span></p>
+					<p><label>QQ</label>
+						<span class="field">
+						<input type="text" name="qq" id="qq" value='{$data.qq}' class="smallinput20" />
+					</span></p>
+					<p><label>默认联系人</label>
+						<span class="field">
+						<input type="text" name="conname" id="conname" value='{$data.conname}' class="smallinput20" />
+					</span></p>
+					<p><label>身份证号（或营业执照号）</label>
+						<span class="field">
+						<input type="text" name="concode" id="concode" value='{$data.concode}' class="smallinput20" />
+					</span></p>
+					<p><label>所在地</label>
+						<span class="field">
+						<select name='province' id='province' class="selectwidth20" onchange="loadRegion('province',2,'city','town','{:U('Admin/Ajax/getregion')}');">
+							<volist name="provinces" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['province']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>省
+						<select name='city' id='city' class="selectwidth20" onchange="loadRegion('city',3,'town','','{:U('Admin/Ajax/getregion')}');">
+							<volist name="citys" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['city']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>市
+						<select name='town' id='town' class="selectwidth20">
+							<volist name="towns" id="vo">
+								<option value='{$vo.id}'
+								<if condition="$vo.id eq $data['town']">selected</if>
+								>{$vo.name}</option>
+							</volist>
+						</select>区
+					</span></p>
+					<p><label>联系地址</label>
+						<span class="field">
+						<input type="text" name="address" id="address" value='{$data.address}' class="smallinput20" />
+					</span></p>
+					<p><label>邮编</label>
+						<span class="field">
+						<input type="text" name="zipcode" id="zipcode" value='{$data.zipcode}' class="smallinput20" />
+					</span></p>
+					<p><label>状态</label>
+					<span class="formwrapper">
+						<input type="radio" name='status' id="status" value='1' 
+						<if condition='$data[status] eq 1'>checked</if>
+						/>显示
+						<input type="radio" name='status' id="status" value='0' 
+						<if condition='$data[status] eq 0'>checked</if>
+						/>不显示
+					</span></p>
+					<p class="stdformbutton">
+						<input type='hidden' name='id' value='{$data.user_id}' />
+						<input type='hidden' name='formtype' value='userinfo' />
+					   	<input type="submit" class="submit radius2 submitedit" value="编辑"  />
+					</p>
+				</form>
+			</div>
+			<div id="tabs-2" class="subcontent" style='display:none'>
+				<form class="stdform formvalidate formuserrank" action="{:U('Admin/User/edit')}" method="post">
+					<p><label>用户名</label>
+						<span class="field">
+						{$data.username}
+						</span></p>
+					<p><label>用户组</label>
+						<span class="field">
+							<select name='user_rank' id='user_rank' class="selectwidth20">
+								<volist name="ranks" id="vo">
+									<option value='{$vo.rank_id}'
+									<if condition="$vo[rank_id] eq $data['user_rank']">selected</if>
+									>{$vo.rank_name}</option>
+								</volist>
+							</select>
+						</span></p>
+					<p class="stdformbutton">
+						<input type='hidden' name='id' value='{$data.user_id}' />
+						<input type='hidden' name='formtype' value='userrank' />
+                        <input type="submit" class="radius2" id="subuserrank" value="设置"  />
+					</p>
+				</form>
+			</div>
+			<div id="tabs-3" class="subcontent" style='display:none'>
+				<form class="stdform formvalidate formuserpass" action="{:U('Admin/User/edit')}" method="post">
+					<p><label>用户名</label>
+						<span class="field">
+						{$data.username}
+						</span></p>
+					<p><label>新密码</label>
+						<span class="field">
+							<input type='text' name='password' class="smallinput20"/>
+						</span></p>
+					<p class="stdformbutton">
+						<input type='hidden' name='id' value='{$data.user_id}' />
+						<input type='hidden' name='formtype' value='userpass' />
+                        <input type="submit" class="radius2" id="subuserpass" value="设置"  />
+					</p>
+				</form>
+			</div>
+			<div id="tabs-4" class="subcontent" style='display:none'>
+				<div class="tableoptions divusercontact" style='display:none'>
+					<form class="stdform formvalidate formusercontact" action="{:U('Admin/User/edit')}" method="post">
+						联系人<input type="text" name="name" id="contact_name" class="smallinput20"/>
+						联系邮箱<input type="text" name='email' id="contact_email" class="smallinput20" />
+						电话<input type="text" name='mobi' id="contact_mobi" class="smallinput20" />
+						职务<select name="position" id="contack_position" class="selectwidth20">
+								<option value="0">请选择职位</option>
+								<option value="1">项目负责人</option>
+								<option value="2">技术负责人</option>
+								<option value="3">财务负责人</option>
+								<option value="4">其他</option>
+							</select>
+						<input type="hidden" name='id' id="contact_id" value=''/>
+						<input type='hidden' name='formtype' value='usercontact' />
+                        <input type="submit" class="radius2" id="subusercontact" value="修改"  />
+					</form>
+				</div><!--tableoptions-->
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head0">编号</th>
+							<th class="head1">联系人</th>
+							<th class="head0">邮箱</th>
+							<th class="head1">电话</th>
+							<th class="head0">职务</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<volist name="contacts" id="vo">
+						<tr>
+							<td id='conid_{$vo.id}'>{$vo.id}</td>
+							<td id='conname_{$vo.id}'>{$vo.name}</td>
+							<td id='conemail_{$vo.id}'>{$vo.email}</td>
+							<td id='conmobi_{$vo.id}'>{$vo.mobi}</td>
+							<td id='conposi_{$vo.id}' data="{$vo.position}">
+								<if condition="$vo['position'] eq 1">项目负责人</if>
+								<if condition="$vo['position'] eq 2">技术负责人</if>
+								<if condition="$vo['position'] eq 3">财务负责人</if>
+								<if condition="$vo['position'] eq 4">其他</if>
+								<if condition="$vo['position'] eq 0">请选择职位</if>
+							</td>
+							<td class="center">
+								<a href="javascript:void(0);" onclick='openeditcontacts({$vo.id});' class="edit">编辑</a> &nbsp;
+								<a href="#del" >
+								<span href="{:U('Admin/User/del',array('id'=>$vo[id],'actiondel'=>'usercontact'))}" class="confirmbutton">删除</span>
+						  		</a>&nbsp;
+							</td>
+						</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script>
+function openeditcontacts(id){
+	if(id==""){
+		layer.msg("id 错误",2,8);
+	}
+	posi = $("#conposi_"+id).attr('data');
+	$("#contact_name").val($("#conname_"+id).html());
+	$("#contact_email").val($("#conemail_"+id).html());
+	$("#contact_mobi").val($("#conmobi_"+id).html());
+	$("#contack_position").val(posi);
+	$("#contact_id").val(id);
+	$(".divusercontact").show();
+}
+$("#subusercontact").click(function(){ 
+	$(".formusercontact").ajaxSubmit({
+		dataType:  'json',
+		beforeSend: function() {
+			var loadi = layer.load('数据提交中...');//提示框
+		},
+		beforeSubmit: function() {
+		   return $(".formvalidate").valid();  //进行回调验证
+		},
+		success: function(data) {
+			layer.closeAll();
+			if(data.status==1){
+				layer.msg(data.info,2,1);
+				$(".divusercontact").hide();
+				var id = $("#contact_id").val();
+				$("#conname_"+id).html($("#contact_name").val());
+				$("#conemail_"+id).html($("#contact_email").val());
+				$("#conmobi_"+id).html($("#contact_mobi").val());
+				var pid = $("#contack_position").val();
+				if(pid == 1)$("#conposi_"+id).html("项目负责人");
+				if(pid == 2)$("#conposi_"+id).html("技术负责人");
+				if(pid == 3)$("#conposi_"+id).html("财务负责人");
+				if(pid == 4)$("#conposi_"+id).html("其他");
+				if(pid == 0)$("#conposi_"+id).html("请选择职位");
+				$("#conposi_"+id).attr('data',pid);
+			}else{
+				layer.msg(data.info,2,8);
+			}
+		}
+	});
+	return false;
+});
+$("#subuserrank").click(function(){ 
+	$(".formuserrank").ajaxSubmit({
+		dataType:  'json',
+		beforeSend: function() {
+			var loadi = layer.load('数据提交中...');//提示框
+		},
+		beforeSubmit: function() {
+		   return $(".formvalidate").valid();  //进行回调验证
+		},
+		success: function(data) {
+			layer.closeAll();
+			layer.msg("设置成功",2,1);
+		}
+	});
+	return false;
+});
+$("#subuserpass").click(function(){ 
+	$(".formuserpass").ajaxSubmit({
+		dataType:  'json',
+		beforeSend: function() {
+			var loadi = layer.load('数据提交中...');//提示框
+		},
+		beforeSubmit: function() {
+		   return $(".formvalidate").valid();  //进行回调验证
+		},
+		success: function(data) {
+			layer.closeAll();
+			layer.msg("设置成功",2,1);
+		}
+	});
+	return false;
+});
+</script>
+</body>
+</html>

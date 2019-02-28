@@ -1,0 +1,103 @@
+<tagLib name="Cloud"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$data.keyword}">
+<meta name="description" content="{$data.description}">
+<title>{$data.title}_{$Web.Config.site_name}</title>
+<link href="__PUBLIC__/Home/Default/css/index.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/Default/css/page.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<include file="Common:inc_header"/>
+	<div class="twonav">
+	  <div class="viewport-inner"></div>
+	</div>
+	<section class="page" style="min-height: 500px;">
+	 <div class="products">
+    <section class="intro products">
+      <div class="viewport-inner">
+        <h1>公有云会像水、电一样服务于每个人的生活</h1>
+        <blockquote>我们致力于提供一个平台，使计算资源的交付更加简单、高效、可靠，甚至更环保</blockquote>
+        <ul class="page-tab">
+          <li class="computing "><a href="{:U('Home/Page/show',array('id'=>8))}" >云计算业务合作</a></li>
+          <li class="network "><a href="{:U('Home/Page/show',array('id'=>9))}" >数据中心资源</a></li>
+          <li class="storage "><a href="{:U('Home/Page/show',array('id'=>10))}" >服务器集群</a></li>
+          <li class="security selected"><a href="{:U('Home/Page/show',array('id'=>11))}" >部署与管理</a></li>
+          <li class="management"><a href="{:U('Home/Cloud/buy')}" >弹性购买</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    
+    <section class="products-features">
+
+      <div class="product-item overview">
+
+        <div class="viewport-inner">
+
+          <h2>部署与管理  Web Console</h2>
+
+          <p class="lead">简单方便实现对资源的部署，包括：<a href="#image">IDC数据中心</a>&nbsp;、&nbsp;<a href="#image">服务器集群</a>&nbsp;、&nbsp;<a href="#instance">业务平台</a>...</p>
+
+          <div class="grid_8 product-feature">
+
+            <div class="product-icon performance pro-icon8"></div>
+
+            <h3>IDC数据机房</h3>
+
+            <p>全球顶级IDC数据中心机房资源巨力呈现让数据中心节点更加便捷易用</p>
+
+          </div>
+
+          <div class="grid_8 product-feature">
+
+            <div class="product-icon stable pro-icon9"></div>
+
+            <h3>服务器集群</h3>
+
+            <p>SAS-SAN架构，最大96G吞吐量，最高近100万IOPS，最大超1PB的容量</p>
+
+          </div>
+
+          <div class="grid_8 product-feature">
+
+            <div class="product-icon snapshot pro-icon10"></div>
+
+            <h3>业务平台</h3>
+
+            <p>独立的业务平台、图形化界面和开放API一个小品牌，都有一个专属云</p>
+
+          </div>
+
+          <div class="grid_8 product-feature">
+
+            <div class="product-icon performance pro-icon11"></div>
+
+            <h3>港湾云系统</h3>
+
+            <p>强大的承载能力让每个节点资源有效整合云之基石，自由计算</p>
+
+          </div>
+          <div class="grid_8 product-feature">
+            <div class="product-icon stable pro-icon12"></div>
+            <h3>技术支持服务</h3>
+            <p>专业的技术服务标准，让每个云梦想者省心每一个问题都会即时响应</p>
+          </div>
+          <div class="grid_8 product-feature">
+            <div class="product-icon snapshot pro-icon13"></div>
+            <h3>备案服务</h3>
+            <p>快速备案，快速接入</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    </section>
+	<include file="Common:inc_footer"/>
+</body>
+</html>

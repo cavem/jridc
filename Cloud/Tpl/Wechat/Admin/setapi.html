@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>设置API</title>
+<include file="inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">设置API</h1>
+			<span class="pagedesc">设置API</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/setapi')}" method="post">
+				<p><label>Token</label>
+				<span class="field">
+					<input type="text" name="token" id="token" class="smallinput" value='{$data.token}' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>Appid</label>
+				<span class="field">
+					<input type="text" name="appid" id="appid" class="smallinput" value='{$data.appid}' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>AppSecret</label>
+					<span class="field">
+					<input type="text" name="appsecret" id="appsecret" class="smallinput" value='{$data.appsecret}' validate='{required:true,messages:{required:"不能为空"}}' />
+				</span></p>
+				<p><label>关注回复内容</label>
+					<span class="field">
+					<textarea class="text-input textarea" id="replycontext" name="replycontext" rows="10" cols="20" >{$data.replycontext}</textarea>
+				</span></p>
+				<p class="stdformbutton">
+					<input type="submit" class="submit radius2 submitedit" value="修改"  />
+				</p>
+			</form>
+			</div>             
+		
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

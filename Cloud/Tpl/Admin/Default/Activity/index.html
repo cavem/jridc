@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>活动机型</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">活动机型</h1>
+			<span class="pagedesc">活动机型</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+				<div class="tableoptions">
+					<form action="{:U('Admin/Activity/index')}" method="get">
+						活动名称<input type="text" name="name" id="name" value='{$prm_name}' placeholder="活动名称" autocomplete="off" value="" class="smallinput20"/>
+						<button class="radius3">查询</button>
+					</form>
+				</div><!--tableoptions-->
+			<form class="stdform formvalidate" action="{:U('Admin/Activity/del')}" method="post">
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<thead>
+						<tr>
+							<th class="head1">
+								<input type='checkbox' name='checkboxall' id='checkboxall' value='0'/>
+							</th>
+							<th class="head0">编号</th>
+							<th class="head1">活动名称</th>
+							<th class="head1">所属产品</th>
+							<th class="head0">总价</th>
+							<th class="head0">活动周期</th>
+							<th class="head1">CPU</th>
+							<th class="head0">内存</th>
+							<th class="head1">硬盘</th>
+							<th class="head0">带宽</th>
+							<th class="head1">IP类型</th>
+							<th class="head1">数量</th>
+							<th class="head0">排序</th>
+							<th class="head1">操作</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="data" id="vo">
+						<tr>
+							<td>
+								<input type='checkbox' name='chkb{$vo.id}' id='chkb{$vo.id}' value="{$vo.id}"/>
+							</td>
+							<td>{$vo.id}</td>
+							<td>{$vo.name}</td>
+							<td>{$vo.Cloudtype}</td>
+							<td>{$vo.money}</td>
+							<td>{$zktexts[$vo[cycletext]]}</td>
+							<td>{$vo.cpu}核</td>
+							<td>{$vo.mem}G</td>
+							<td>{$vo.disk}G</td>
+							<td>{$vo.qos}M</td>
+							<td><if condition="$vo[iptype] eq 1">独立<else/>共享</if></td>
+							<td>{$vo.number}</td>
+							<td>{$vo.orderby}</td>
+							<td class="center">
+				 				<a href="{:U('Admin/Activity/edit',array('id'=>$vo['id']))}" >修改</a>
+				 				<a href="{:U('Admin/Activity/del',array('id'=>$vo['id']))}" class="confirmbutton">删除</a>
+							</td>
+						</tr>
+					</volist>
+					<empty name="data" >
+				<tr>
+				<td colspan="14">暂无数据</td>
+				</tr>
+				</empty>
+					
+				</tbody>
+				</table>
+				<div class="dataTables_paginate paging_full_numbers" id="dyntable_paginate" style="height:30px;">
+		   		<div  style='float:left;border:0px solid #F78A29;padding:3px 3px 3px 3px;cursor:pointer;' >
+		   		<input type="submit" class="submit radius2 submitdel" value="删除"  />
+		   		</div>
+				<div class="paginationnew">{$page}</div>
+			 </div>
+			 </form>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

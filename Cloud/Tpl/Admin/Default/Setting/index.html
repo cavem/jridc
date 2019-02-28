@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>控制台首页</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+        <div class="pageheader">
+            <h1 class="pagetitle">站点设置</h1>
+            <ul class="hornav">
+                 <li class="current"><a href="#tabs-1">站点信息</a></li>
+                 <li><a href="#tabs-2">验证码</a></li>
+                 <li><a href="#tabs-3">邮箱</a></li>
+                 <li><a href="#tabs-4">支付设置</a></li>
+                 <li><a href="#tabs-5">注册登录</a></li>
+                 <li><a href="#tabs-6">发票配置</a></li>
+            </ul>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+        
+       		<div id="tabs-1" class="subcontent">
+        	                              <form class="stdform formvalidate formvalidateconfig" action="{:U('Admin/Setting/setconfig')}" method="post">
+                        <p>
+                        	<label><span style="color:red">*</span>网址</label>
+                            <span class="field">
+                            <input type="text" name="site_url" id="site_url" value="{$webConf.site_url}" class="smallinput" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p>
+                         <p>
+                        	<label><span style="color:red">*</span>网站名称</label>
+                            <span class="field">
+                            <input type="text" name="site_name" id="site_name" value="{$webConf.site_name}" class="smallinput" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p>
+                         <p>
+                        	<label><span style="color:red">*</span>网站标题</label>
+                            <span class="field">
+                            <input type="text" name="site_title" id="site_title" value="{$webConf.site_title}" class="smallinput" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p> 
+                         <p>
+                        	<label><span style="color:red">*</span>网站关键词</label>
+                            <span class="field">
+                            <input type="text" name="site_keyword" id="site_keyword" value="{$webConf.site_keyword}" class="smallinput" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p> 
+                         <p>
+                        <label><span style="color:red">*</span>网站内容</label>
+                            <span class="field">
+                        <textarea name="site_description" class="text-input textarea" rows="8" cols="50">{$webConf.site_description}</textarea> 
+                          
+                            </span>
+                        </p>
+                        <p>
+                        <label><span style="color:red">*</span>ICP备案号</label>
+                            <span class="field">
+                            <input type="text" name="site_icp" value="{$webConf.site_icp}" id="site_icp" class="smallinput" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p>
+                        <p>
+                        <label><span style="color:red">*</span>统计代码</label>
+                            <span class="field">
+							<textarea name="site_code" class="text-input textarea" rows="8" cols="50">{$webConf.site_code}</textarea> 
+                            </span>
+                        </p>   
+                        <p>
+                        <label><span style="color:red">*</span>网站状态</label>
+                            <span class="field">
+ <input type="radio" value="1" <if condition="$webConf.site_status eq '1'">checked="checked"</if> name="site_status">开启
+  <input type="radio"  value="0" <if condition="$webConf.site_status eq '0'">checked="checked"</if> name="site_status">关闭
+ 
+                           </span>
+                        </p> 
+                         <p>
+                        <label><span style="color:red">*</span>关闭说明</label>
+                            <span class="field">
+							<textarea name="site_close" class="text-input textarea" rows="8" cols="50">{$webConf.site_close}</textarea> 
+                            </span>
+                        </p>  
+                         <p class="stdformbutton">
+                        	<input type="submit" id="subconfig" class="radius2" value="设置"  />
+                        </p>
+                        </form>
+            </div><!-- #updates -->
+            <div id="tabs-2" class="subcontent" style="display: none;">
+           <form class="stdform formvalidate formvalidatecode" action="{:U('Admin/Setting/setcode')}" method="post">
+	                        <p>
+                        	<label><span style="color:red">*</span>开启系统验证码</label>
+                            <span class="field">
+                             <input type="checkbox" <if condition="$vercode.MREGISTER eq '1'">checked="checked"</if> value="1" name="MREGISTER" />用户注册
+                            <input type="checkbox" <if condition="$vercode.RELOGIN eq '1'">checked="checked"</if> value="1" name="RELOGIN" />前台登陆
+                             <input type="checkbox" <if condition="$vercode.BALOGIN eq '1'">checked="checked"</if> value="1" name="BALOGIN" />后台登陆
+					       </span>
+                     	   </p>
+	                   <p>
+                        <label><span style="color:red">*</span>验证码生成类型</label>
+                            <span class="field">
+							<input type="radio" checked="checked" <if condition="$vercode.BUILDTYPE eq '1'">checked="checked"</if> value="1" name="BUILDTYPE">
+							数字
+							 <input type="radio" <if condition="$vercode.BUILDTYPE eq '2'">checked="checked"</if> value="2" name="BUILDTYPE">字母
+							  <input type="radio" <if condition="$vercode.BUILDTYPE eq '4'">checked="checked"</if> value="4" name="BUILDTYPE">中文
+							   <input type="radio" <if condition="$vercode.BUILDTYPE eq '5'">checked="checked"</if> value="5" name="BUILDTYPE">数字+字母
+                            </span>
+                        </p>
+                            <p>
+                        <label><span style="color:red">*</span>选择验证码文件类型</label>
+                            <span class="field">
+<input type="radio" <if condition="$vercode.EXPANDTYPE eq 'png'">checked="checked"</if> value="png" name="EXPANDTYPE">png
+ <input type="radio" <if condition="$vercode.EXPANDTYPE eq 'gif'">checked="checked"</if> value="gif" name="EXPANDTYPE">gif                            </span>
+                       </span>  </p>
+                        
+                          <p>
+                        <label><span style="color:red">*</span>前台验证码图片大小</label>
+                            <span class="field">
+ 宽:<input type="text" name="REWIDTH" value="{$vercode.RECODESIZE.width}" class="smallinput20" size="10">
+                        高:<input type="text" name="REHEIGHT" value="{$vercode.RECODESIZE.height}" class="smallinput20" size="10">                         </p>
+                         </span>  <p>
+                        <label><span style="color:red">*</span>后台验证码图片大小</label>
+                            <span class="field">
+  宽:<input type="text" name="BAWIDTH" value="{$vercode.BACODESIZE.width}" class="smallinput20" size="10">
+                        高:<input type="text" name="BAHEIGHT" value="{$vercode.BACODESIZE.height}" class="smallinput20" size="10">  
+                           </span>  </p>
+                        
+                 <p>
+                 <label><span style="color:red">*</span>前台验证码字数</label>
+                <span class="field">
+				<input type="text" name="RECODENUMS" value="{$vercode.RECODENUMS}" class="smallinput20" size="10" validate='{ required:true,messages:{required:"前台验证码字数不能为空"}}'> 
+				</span>
+				 
+                </p>
+                           <p>
+                        <label><span style="color:red">*</span>后台验证码字数</label>
+                            <span class="field">
+   <input type="text" name="BACODENUMS" value="{$vercode.BACODENUMS}" class="smallinput20" size="10" validate='{ required:true,messages:{required:"后台验证码字数不能为空"}}'>  
+   
+    </span>
+      </p>
+	                         <p class="stdformbutton">
+                        		<input type="submit" id="subcode" class="radius2" value="设置"  />
+	                        </p>
+	                       
+	                       </form>   
+            </div>
+             <div id="tabs-3" class="subcontent" style="display: none;">
+            <form  class="stdform formvalidate formvalidateemail" action="{:U('Admin/Setting/setemail')}" method="post">
+                <p>
+                 <label><span style="color:red">*</span>发送Email方式</label>
+                <span class="field">
+				 <input type="radio" checked="checked" <if condition="$mailconf.email_type eq '1'">checked="checked"</if> value="1" name="email_type">
+                	第三方SMTP方式</span>
+				 
+                </p>
+                 <p>
+                 <label><span style="color:red">*</span>发送邮件的地址</label>
+                <span class="field">
+				 <input type="text" name="mail_address" value="{$mailconf.mail_address}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                 <p>
+                 <label><span style="color:red">*</span>SMTP地址</label>
+                <span class="field">
+				<input type="text" name="smtp" value="{$mailconf.smtp}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                 <p>
+                 <label><span style="color:red">*</span>用户名</label>
+                <span class="field">
+				 <input type="text" name="smtp_user" value="{$mailconf.smtp_user}" class="smallinput20" size="40" validate='{ required:true,messages:{required:"前台验证码字数不能为空"}}'>  
+				  </span>
+				 
+                </p> 
+                 <p>
+                 <label><span style="color:red">*</span>密码</label>
+	                <span class="field">
+					 <input type="password" name="smtp_pwd" value="{$mailconf.smtp_pwd}" class="smallinput20" size="40" validate='{ required:true,messages:{required:"后台验证码字数不能为空"}}'>  
+					</span>
+                </p> 
+                 <p>
+                 <label><span style="color:red">*</span>端口号</label>
+                <span class="field">
+				 <input type="text" name="smtp_port" value="{$mailconf.smtp_port}" class="smallinput20" size="10" validate='{ required:true,messages:{required:"后台验证码字数不能为空"}}'> 
+				</span>
+                </p> 
+                 <p>
+                 <label><span style="color:red">*</span>邮件编码</label>
+	              <span class="field">
+<input type="radio" value="UTF8" <if condition="$mailconf.smtp_code eq 'UTF8'">checked="checked"</if> name="smtp_code">UTF8
+<input type="radio"  value="GB2312" <if condition="$mailconf.smtp_code eq 'GB2312'">checked="checked"</if> name="smtp_code">GB2312
+<input type="radio"  value="BIG5" <if condition="$mailconf.smtp_code eq 'BIG5'">checked="checked"</if> name="smtp_code">BIG5
+				</span>
+                </p>  
+                
+ 
+                 <p>
+                 <label><span style="color:red">*</span>测试邮件地址</label>
+              	  <span class="field">
+				  <input type="text" name="test_address" value="{$mailconf.test_address}" class="smallinput20" size="40" validate='{ required:true,messages:{required:"后台验证码字数不能为空"}}'>  
+				  </span>
+                  </p> 
+                  <p class="stdformbutton">
+                        		<input type="submit" id="subemail" class="radius2" value="设置"  />
+                        		<input type="reset" id="subemailsend" class="reset radius2" value="测试邮件发送" onclick="testMail(this);">
+	                         
+	                        </p>
+                            </form> 
+            </div>
+             <div id="tabs-4" class="subcontent" style="display: none;">
+             <form class="stdform formvalidate formvalidatealipay" action="{:U('Admin/Setting/setalipay')}" method="post">
+                <p>
+                <label><span style="color:red">*</span>合作者ID</label>
+                <span class="field">
+				 <input type="text" name="partner" value="{$Alipay.partner}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                <p>
+                <label><span style="color:red">*</span>交易安全校证码</label>
+                <span class="field">
+				 <input type="text" name="key" value="{$Alipay.key}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                  <p>
+                <label><span style="color:red">*</span>支付宝账号</label>
+                <span class="field">
+				 <input type="text" name="selleremail" value="{$Alipay.selleremail}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                 <p class="stdformbutton">
+                 <input type="submit" id="subalipay"  class="radius2" value="设置"  />
+	             </p>
+ 			</form> 
+            </div>
+             <div id="tabs-5" class="subcontent" style="display: none;">
+             <form class="stdform formvalidate formvalidateuser" action="{:U('Admin/Setting/setuser')}" method="post">
+             	<p>
+                <label><span style="color:red">*</span>注册验证方式</label>
+                <span class="formwrapper">
+<input type="radio" value="1" <if condition="$regconf.regv eq '1'">checked="checked"</if>  name="regv">关闭
+<input type="radio"  value="2" <if condition="$regconf.regv eq '2'">checked="checked"</if> name="regv">邮件激活
+<input type="radio"  value="3" <if condition="$regconf.regv eq '3'">checked="checked"</if> name="regv">短信验证
+                </span>
+                </p>
+                <p>
+				<label><span style="color:red">*</span>是否开启邀请码</label>
+                <span class="formwrapper">
+<input type="radio"  value="0" <if condition="$regconf.regcode eq '0'">checked="checked"</if> name="regcode">关闭
+ <input type="radio" value="1" <if condition="$regconf.regcode eq '1'">checked="checked"</if> name="regcode">开启
+ 				 </span>
+                </p>
+              	 <p class="stdformbutton">
+                 <input type="submit" id="subregconf"  class="radius2" value="设置"  />
+	             </p>
+             </form> 
+             </div>
+     <div id="tabs-6" class="subcontent" style="display: none;">
+             <form class="stdform formvalidate formvalidatefapiap" action="{:U('Admin/Setting/setfapiao')}" method="post">
+             	<p>
+                <label><span style="color:red">*</span>最小的开发票金额</label>
+                  <span class="field">
+					 <input type="text" name="MinFapiaomoney" value="{$Fapiao.MinFapiaomoney}" class="smallinput20" size="40">
+				 </span>
+                </p>
+                <p>
+                <label><span style="color:red">*</span>申请发票时自动从用户帐上扣除点数</label>
+                  <span class="field">
+					 <input type="text" name="FapiaoPaypercent" value="{$Fapiao.FapiaoPaypercent}" class="smallinput20" size="40">%
+				 </span>
+                </p>
+                <p>
+				<label><span style="color:red">*</span>快递加收费用</label>
+                <span class="formwrapper">
+					<input type="text" name="Fapiaokuai" value="{$Fapiao.Fapiaokuai}" class="smallinput20" size="40">
+ 				 </span>
+                </p>
+              	 <p class="stdformbutton">
+                 <input type="submit" id="subfapiaoconf"  class="radius2" value="设置"  />
+	             </p>
+             </form> 
+             </div>
+            
+            
+        
+        
+        
+   
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+$(function () {
+	$("#subfapiaoconf").click(function(){ 
+		$(".formvalidatefapiap").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+	$("#subregconf").click(function(){ 
+		$(".formvalidateuser").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+	$("#subconfig").click(function(){ 
+		$(".formvalidateconfig").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+	$("#subcode").click(function(){ 
+		$(".formvalidatecode").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+	$("#subemail").click(function(){ 
+		$(".formvalidateemail").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+
+			
+		});
+		return false;
+	});
+	$("#subemailsend").click(function(){
+		    var loadi = layer.load('数据提交中...');//提示框 
+		    var ajaxUrl = '{:U("Admin/Ajax/sendmail")}';
+	        var data = $('input[name="test_address"]').val();
+	       	var url=ajaxUrl;
+	        $.get(ajaxUrl,{'test_address':data},function(msgObj){
+	        	layer.closeAll();
+	            if(msgObj.status == '1'){
+	            	layer.msg(msgObj.info,2,1);
+	            }else{
+	            	layer.msg(msgObj.info,2,8);
+	            }
+	        },"JSON");
+	});
+	$("#subalipay").click(function(){ 
+		$(".formvalidatealipay").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+				var loadi = layer.load('数据提交中...');//提示框
+			},
+			beforeSubmit: function() {
+			   return $(".formvalidate").valid();  //进行回调验证
+			},
+			success: function(data) {
+				layer.closeAll();
+				layer.msg("设置成功",2,1);
+			},
+			error:function(xhr){
+				layer.alert(xhr, 8);
+				location.reload();
+			}
+		});
+		return false;
+	});
+	
+	
+});
+</script>
+
+</body>
+</html>

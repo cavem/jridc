@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户中心-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+
+<body>
+
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>安全信息</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Center/account')}"">我的账户</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/index')}">安全信息</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/basicdata')}">基本资料</a>
+				<a class="btn btnBlue2" href="{:U('User/Center/contactinfo')}">联系人信息</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="user">
+				<p>用户名：{$user_info.username}</p>
+				<p>手机号：{$user_info.mobi}</p>
+				<p>用户组：{$user_rank.rank_name}
+				</p>
+			</div>
+			
+			<div class="scyText">
+				<p class="item">
+					<span class="judge">登录密码</span>
+					<span class="font4">
+					安全性高的密码可以是账号更安全，建议您定期更换密码</span>
+					<a href="{:U('User/Center/password')}">修改</a>
+				</p>
+				<p class="item">
+					<span class="judge <if condition="empty($user_info['mobiv'])">flase</if>">手机验证</span>
+					<span class="font4">
+					您的{$user_info.mobi}手机已经 <if condition="empty($user_info['mobiv'])">未通过验证<else/>通过验证</if>（您的手机为安全手机）
+					</span>
+					<a href="{:U('User/Center/mobile')}">修改</a>
+					<if condition="$user_info['mobiv']">
+					<a href="
+						<if condition="$remind['sms']">{:U('User/Center/setSupT?type=sms&status=0')}
+						<else/>{:U('User/Center/setSupT?type=sms&status=1')}</if>" style='margin-right:20px;'>
+							<if condition="$remind['sms']">关闭<else/>开启</if>工单提醒</a></if>
+				</p>
+				<p class="item ">
+					<span class="judge <if condition="empty($user_info['emailv'])">flase</if>">邮箱验证</span>
+					<span class="font4">
+					您的{$user_info.email}邮箱<if condition="empty($user_info['emailv'])">未通过验证<else/>通过验证</if>，请您尽快进行邮箱验证
+					</span>
+					<a href="{:U('User/Center/email')}">修改</a>
+					<if condition="$user_info['email']">
+					<a href="
+						<if condition="$remind['email']">{:U('User/Center/setSupT?type=email&status=0')}
+						<else/>{:U('User/Center/setSupT?type=email&status=1')}</if>" style='margin-right:20px;'>
+							<if condition="$remind['email']">关闭<else/>开启</if>工单提醒</a></if>
+				</p>
+				<p class="item noBor">
+					<span class="judge <if condition="empty($bw)">flase</if>">微信绑定</span>
+					<span class="font4">
+					您<if condition="empty($bw)">没有任何<else/>已有{$bw}个</if>微信号绑定到本帐号，请关注公众号：gwclouds进入微信管理。
+					</span>
+					<a href="{:U('User/Center/wechat')}">查看</a>
+				</p>
+			</div>
+		</div>
+	<!-- 	<a href="http://www.yunip.com/xianggang" target="_blank"><img src="http://www.yunip.com/images/xianggang.png" style="margin-top:20px; margin-left:10px;"></a>
+ -->	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+
+</body>
+</html>

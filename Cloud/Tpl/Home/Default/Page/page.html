@@ -1,0 +1,36 @@
+<tagLib name="Cloud"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$data.keyword}">
+<meta name="description" content="{$data.description}">
+<title>{$data.title}_{$Web.Config.site_name}</title>
+<link href="__PUBLIC__/Home/Default/css/index.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/Default/css/page.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<include file="Common:inc_header"/>
+	<div class="twonav">
+	  <div class="viewport-inner"></div>
+	</div>
+	<div class="document">
+	<include file="Common:inc_left"/>
+	  <div class="documentwrapper">
+	    <div class="bodywrapper">
+	      <div class="body">
+	        <div class="section" id="guide-introduction">
+	        <h1>{$data.title}</h1>
+	          {$data.content}
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="clearer"></div>
+	</div>
+	<include file="Common:inc_footer"/>
+</body>
+</html>

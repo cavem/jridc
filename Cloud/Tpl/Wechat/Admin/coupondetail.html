@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>优惠券详情</title>
+<include file="inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="inc_header" />
+<include file="inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">微信发放优惠券</h1>
+			<span class="pagedesc">详情</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+		   <div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Wechat/Admin/menuadd')}" method="post">
+				<p><label>批号</label>
+				<span class="field">
+					{$data[act_id]}
+				</span></p>
+				<p><label>open_id</label>
+				<span class="field">
+					{$data[open_id]}
+				</span></p>
+				<p><label>绑定用户编号</label>
+				<span class="field">
+					{$data[user_id]}
+				</span></p>
+				<p><label>绑定用户帐号</label>
+				<span class="field">
+					{$data[username]}
+				</span></p>
+				<p><label>优惠券类型</label>
+				<span class="field">
+					{$data['coupon_type']}
+				</span></p>
+				<p><label>面值</label>
+				<span class="field">
+					{$data[cmoney]}
+				</span></p>
+				<p><label>最低消费</label>
+				<span class="field">
+					{$data[condition]}
+				</span></p>
+				<p><label>优惠券号码</label>
+				<span class="field">
+					{$data['couponnum']}&nbsp;
+				</span></p>
+				<p><label>领取时间</label>
+				<span class="field">
+					{$data['rec_time']|date="Y-m-d H:i:s",###}&nbsp;
+				</span></p>
+				<p><label>使用过期时间</label>
+				<span class="field">
+					{$data['expire_time']|date="Y-m-d H:i:s",###}&nbsp;
+				</span></p>
+				<p><label>发放时间</label>
+				<span class="field">
+					{$data['add_time']|date="Y-m-d H:i:s",###}&nbsp;
+				</span></p>
+				<p class="stdformbutton">
+					<input type="button" class="submit radius2 " value="返回" onclick='history.go(-1);'/>
+				</p>
+				</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

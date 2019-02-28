@@ -1,0 +1,62 @@
+<tagLib name="Cloud"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$data.keywords}">
+<meta name="description" content="{$data.description}">
+<title>{$Web.Config.site_name}</title>
+<link href="__PUBLIC__/Home/Default/css/index.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/Default/css/page.css" rel="stylesheet" type="text/css">
+<style>
+table{width:100%;clear:both;}
+table caption{display:none}
+table th, table td{padding:10px;text-align:left;font-weight:normal;font-size:14px;font-family:"Microsoft Yahei","微软雅黑",Tahoma,Helvetica,Arial,sans-serif;empty-cells:show}
+table th {border:0 none;font-size:14px;font-weight:bold}
+table{max-width:100%;border-collapse:collapse ;border-spacing:0;border: 0 none;margin:0 0 40px 0}
+table td, table th{border: 0 none;border-bottom:1px solid #e8e8e8;}
+table tbody tr:hover td, table tbody tr:hover td{background:#e7f4fb}
+</style>
+</head>
+<body>
+	<include file="Common:inc_header"/>
+	<div class="twonav">
+	  <div class="viewport-inner"></div>
+	</div>
+	<div class="document">
+	<include file="Common:inc_left_news"/>
+	  <div class="documentwrapper">
+	    <div class="bodywrapper">
+	      <div class="body">
+	        <div class="section" id="guide-introduction"><span id="id1"></span>
+				<table cellpadding="0" cellspacing="0" border="0" id="table2">
+					<thead>
+						<tr>
+							<th class="head0">标题</th>
+							<th class="head1">更新时间</th>
+						</tr>
+					</thead>
+					<tbody>
+					<volist name="newslist" id="vo">
+						<tr>
+							<td><a href="{:U('Home/News/detail/',array('id'=>$vo['id']))}">{$vo.title}</a></td>
+							<td class="center">{$vo.update_time|date='Y-m-d H:i:s',###}</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+				<div class='paging_out'>
+					<div class="paginationnew">{$pageinfo}</div>
+				</div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="clearer"></div>
+	</div>
+	<include file="Common:inc_footer"/>
+</body>
+</html>

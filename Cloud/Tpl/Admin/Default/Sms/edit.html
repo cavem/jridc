@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>短信接口</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">短信接口</h1>
+            <span class="pagedesc">短信接口的设置</span>
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	       	<form class="stdform formvalidate" action="{:U('Admin/Sms/edit')}" method="post">
+                        <p>
+                        	<label>企业名称</label>
+                            <span class="field">
+                            {$data.sms_company}
+                            </span>
+                        </p>
+                        <volist name="config" id="vo">
+                        <p>
+                        	<label>{$key}</label>
+                            <span class="field">
+                            <input type="text" value="{$vo}" name="{$key}" id="{$key}" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                         </volist>
+                        <p class="stdformbutton">
+                       	  <input type="hidden" name="sms_id" value="{$data.sms_id}">
+                       		<input type="submit" class="submit radius2 submitedit" value="设置"  />
+                        </p>
+                    </form>
+                    </div>
+                
+          
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

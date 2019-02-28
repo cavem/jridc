@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+body{behavior:url("csshover.htc");}
+body,ol,ul,dl,dd,h1,h2,h3,h4,h5,h6,p,th,td,form,fieldset,input,textarea,select{margin:0;padding:0;}
+body{font:13px "微软雅黑","MicrosoftYahei", "宋体","Arial Narrow",HELVETICA;background:#fff;}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#f10c68;text-decoration:underline}
+.clearfloat{height:0;font-size:1px;clear:both;line-height:0;}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+/*topnav*/
+#header{padding:0; width:1100px;background:#EEE; margin:0 auto;}
+#page{margin-left:auto;margin-right:auto; width:100%;background:#EEE;}
+#site-nav{z-index:10000; margin: 2px auto; color: #000; line-height:24px; position:relative; height:30px}
+#site-nav a{color: #666}
+#site-nav a:hover {color: #f50}
+#site-nav .quick-menu {right: 200px; position: absolute; top: 0px}
+#site-nav .quick-menu li {padding-right: 10px; background-position: right 6px; padding-left: 10px; float: left; padding-bottom: 0px;
+margin-left:-1px; padding-top:2px}
+#site-nav .quick-menu li.last {background: none transparent scroll repeat 0% 0%}
+#site-nav .quick-menu li.menu-item {padding:0;position: relative}
+#site-nav .quick-menu .cart {padding-top: 1px; position: relative; _padding-top: 2px}
+#site-nav .quick-menu .cart a {padding-left:10px}
+#site-nav .quick-menu .cart S {background-position: -83px -21px; left: 8px; width: 14px; position: absolute; top: 6px; height: 11px}
+#site-nav .menu-hd {padding-right: 22px; display: block; padding-left: 10px; z-index:10002; padding-bottom: 0px; 
+margin: 1px 1px 0px; cursor: pointer; padding-top: 0px; position: relative; height: 20px}
+#site-nav .mytaobao .menu-hd {width: 156px; padding-top: 1px; _padding-top: 1px}
+#site-nav .search .menu-hd {width: 24px; padding-top: 1px; _padding-top: 1px}
+#site-nav .services .menu-hd {width: 48px; padding-top: 1px; _padding-top: 1px}
+#site-nav .menu-hd B {border-right: #eee 4px solid; border-top: #666 4px solid; font-size: 0px; 
+border-left: #eee 4px solid; width: 0px; line-height: 0; border-bottom: #eee 4px solid; position: absolute;
+right:75px;TOP:9px; height: 0px; -webkit-transition: -webkit-transform .2s ease-in; -moz-transition: -webkit-transform .2s ease-in; -o-transition: -webkit-transform .2s ease-in; transition: -webkit-transform .2s ease-in}
+#site-nav .search .menu-hd {padding-left: 25px; color: #666}
+#site-nav .search .menu-hd S {background-position: -67px -20px; left: 9px; width: 14px; position: absolute; top: 4px; height: 13px}
+#site-nav .menu-bd {border-right: #e1e1e1 1px solid; border-top: #e1e1e1 1px solid;
+ display: none; z-index: 10001; right: 0px;background:#FFF; 
+ border-left: #e1e1e1 1px solid; border-bottom: #e1e1e1 1px solid; 
+ position: absolute;}
+#site-nav .search .menu-bd {_right: -1px}
+#site-nav IFRAME.menu-bd {border-top-width: 0px; border-left-width: 0px; Z-INDEX: -1; background: none transparent scroll repeat 0% 0%; FILTER: alpha(opacity=0); FLOAT: left; BORDER-BOTTOM-WIDTH: 0px; border-right-width: 0px}
+#site-nav .menu-bd-panel {padding:6px 10px 6px 10px;}
+#site-nav .menu-item-opp .menu-bd {LEFT: 0px}
+#site-nav .menu-item-opp .menu-bd S.rt {LEFT: 0px}
+#site-nav .menu-item-opp .menu-bd S.lt {BACKGROUND-POSITION: -87px -55px; RIGHT: -2px; LEFT: auto}
+#site-nav .menu {POSITION: relative; left:150px;}
+#site-nav .menu:hover .menu-hd {BORDER-RIGHT: #e1e1e1 1px solid; BORDER-TOP: #e1e1e1 1px solid; BACKGROUND:#fff;
+MARGIN: 0px; BORDER-LEFT: #e1e1e1 1px solid; BORDER-BOTTOM: #e1e1e1 1px;}
+#site-nav .hover .menu-hd {BORDER-RIGHT: #e1e1e1 1px solid; BORDER-TOP: #e1e1e1 1px solid; BACKGROUND: white; MARGIN: 0px; BORDER-LEFT: #e1e1e1 1px solid; BORDER-BOTTOM: #e1e1e1 1px}
+#site-nav .menu:hover .menu-bd {DISPLAY: block}
+#site-nav .hover .menu-bd {DISPLAY: block}
+#site-nav .menu:hover .menu-hd B {BORDER-LEFT-COLOR: #fff; FILTER: progid:DXImageTransform.Microsoft.BasicImage(rotation=2); BORDER-BOTTOM-COLOR: #fff; BORDER-TOP-COLOR: #666; TOP: 5px; BORDER-RIGHT-COLOR: #fff; -moz-transform: rotate(180deg); -moz-transform-origin: 50% 30%; -webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 30%; -o-transform: rotate(180deg); -o-transform-origin: 50% 30%; transform: rotate(180deg); transform-origin: 50% 30%}
+#site-nav .hover .menu-hd B {BORDER-LEFT-COLOR: #fff; FILTER: progid:DXImageTransform.Microsoft.BasicImage(rotation=2); BORDER-BOTTOM-COLOR: #fff; BORDER-TOP-COLOR: #666; TOP: 5px; BORDER-RIGHT-COLOR: #fff; -moz-transform: rotate(180deg); -moz-transform-origin: 50% 30%; -webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 30%; -o-transform: rotate(180deg); -o-transform-origin: 50% 30%; transform: rotate(180deg); transform-origin: 50% 30%}
+#site-nav .mytaobao .menu-bd {WIDTH: 188px; LINE-HEIGHT:1.7; TOP: 21px; HEIGHT:61px;}
+#site-nav .mytaobao .menu-bd-panel { padding:5px 0;}
+.addli ul li{float:left}
+.addliborder{height:24px; border-bottom:1px solid #e1e1e1;border-top:1px solid #e1e1e1; width:167px;}
+.addliborder2{height:24px;width:167px;}
+/*container*/
+.container{width:1000px; overflow:hidden; margin:0 auto}
+.toplogo{overflow:hidden}
+.logo{width:153px; height:64px; float:left; padding:8px 0; cursor:pointer}
+.line{width:8px; height:91px; float:left; margin:0 25px;}
+.logofont{width:216px; height:71px;float:left;padding:8px 0;}
+.phone{width:191px; height:37px; float:left; margin-left:50px;padding:8px 0;}
+.phonenumber{width:173px; height:60px; float:left;margin-left:8px; margin-top:8px;padding:8px 0;}
+.kefuqq{width:150px; height:23px;margin-top:8px; margin-left:4px; cursor:pointer}
+/*main*/
+.main{width:1000px; margin:0 auto; overflow:hidden;}
+.conleft{width:170px; float:left; overflow:hidden;}
+.conleft ul{border-top:1px solid #babbbf;}
+.conleft li{height:43px; border-bottom:1px solid #babbbf;border-left:1px solid #babbbf;border-right:1px solid #babbbf;
+line-height:43px; padding-left:20px;}
+.conleft a:hover{text-decoration:none}
+.conleft li:hover{background:url(../images/img6.gif) repeat-x; height:43px;}
+.current{background:url(../images/img5.gif) repeat-x; height:43px;}
+.conright{width:810px; float:right; overflow:hidden; zoom:1;}
+/*footer*/
+.footer{line-height:22px; margin-top:20px;}
+.footline{border-top:1px dotted #bfcfda}
+.footlink{ width:100%;float:left;}
+.footlink ul li{ padding:4px 10px;float:left}
+.footlink a{color:#7c7c7c;padding-right:8px}
+.footlink a:hover{color:#f10c68;}
+.footlinkp{color:#7c7c7c;padding:4px 10px;}
+.footlinkp a{color:#f10c68;}

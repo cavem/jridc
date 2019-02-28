@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="__PUBLIC__/Wechat/Web/css/style.default.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Wechat/web/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/web/js/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/web/js/layer/layer.min.js"></script>
+<script>
+//点击changebar下的li 切换隐藏显示对应的div
+$(document).ready(function(){
+	var li=$('.changebar>ul>li');
+	var div=$('.changebar>div');
+	li.each(function(index){
+		$(this).click(function(){
+			$(this).addClass("blue").siblings().removeClass("blue");
+			div.eq(index).siblings('div').hide();
+			div.eq(index).fadeIn('slow');
+		})
+	})
+})
+</script>

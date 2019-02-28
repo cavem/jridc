@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>配置备案</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">配置备案</h1>
+            <span class="pagedesc">配置备案</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	       	<form class="stdform formvalidate" action="{:U('Admin/Beian/config')}" method="post">
+                        <p>
+                        <label>备案地址</label>
+                           <span class="field">
+                            <input type="text" value="{$data.beiurl}" name="beiurl" id="beiurl" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+    					   <p>
+                         <label>用户名</label>
+                              <span class="field">
+                            <input type="text" value="{$data.beiaccount}" name="beiaccount" id="beiaccount" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                          <p>
+                         <label>密码</label>
+                           <span class="field">
+                            <input type="text" value="{$data.beipwd}" name="beipwd" id="beipwd" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                          <p>
+                         <label>备案数量</label>
+                              <span class="field">
+                            <input type="text" value="{$data.beinum}" name="beinum" id="beinum" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                         <p>
+                         <label>备案系统对接用户</label>
+                              <span class="field">
+                            <input type="text" value="{$data.API_USERNAME}" name="API_USERNAME" id="API_USERNAME" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                         <p>
+                         <label>备案系统对接密码</label>
+                              <span class="field">
+                            <input type="text" value="{$data.API_PASSWORD}" name="API_PASSWORD" id="API_PASSWORD" class="smallinput20" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                         <p>
+                         <label>备案系统对接IP</label>
+                              <span class="field">
+                            <input type="text" value="{$data.API_IP}" name="API_IP" id="API_IP" class="smallinput" validate='{required:true,messages:{required:"不能为空"}}' />
+                            </span>
+                        </p>
+                        <p class="stdformbutton">
+                         	 <input type="hidden" id="id" name="id" value="{$data.id}">
+                       		<input type="submit" class="submit radius2 submitedit" value="修改"  />
+                        </p>
+                    </form>
+                    </div>
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

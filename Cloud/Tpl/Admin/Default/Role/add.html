@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加角色</title>
+<include file="Common:inc_css_js" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/js/plugins/validate/validate.css" />
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.validate.1.9.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/jquery.metadata.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/messages_cn.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/plugins/validate/global.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+       <div class="centercontent tables">
+        <div class="pageheader notab">
+            <h1 class="pagetitle20">添加后台角色</h1>
+            <span class="pagedesc">
+            1. 如果要指定当前模块下的所有权限，可选中该模块名称 
+			2. 如果要指定当前模块下的操作权限，可选中该模块的操作名称</span>
+        </div><!--pageheader-->
+        <div id="contentwrapper" class="contentwrapper">
+	        <div id="basicform" class="subcontent">
+	        <form class="stdform formvalidate" action="{:U('Admin/Role/add')}" method="post">
+                        <p>
+                        	<label><span style="color:red">*</span>角色名称</label>
+                            <span class="field">
+                            <input type="text" name="name" id="name" class="smallinput20" validate='{required:true,messages:{required:"名称不能为空"}}' />
+                            </span>
+                        </p> 
+                         <p>
+                         <label></label>
+              	 <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb" style="width: 80%;">
+	                          <thead>
+	                      	  <tr>
+	                            <th class="head1">模块</th>
+	                            <th class="head0">操作</th>
+	                        	</tr>
+	             </thead>
+	             <volist name="access_list" id="list">
+                    <tr>
+                        <td>
+                          <input class="module-item" type="checkbox" name="access_node[]" value="{$list.id}">
+                          <span>&nbsp;{$list.module_name}&nbsp;</span>
+                          
+                        </td>
+                        <td colspan="2">
+                                <input class="select-all" type="checkbox">&nbsp;<span>全选</span></label>
+                                <volist name="list.actions" id="action">
+                                        <input class="action-item" id="che12" type="checkbox" name="access_node[]" value="{$action.id}">
+                                        <span>&nbsp;{$action.action_name}</span>
+                                </volist>
+                        </td>
+                    </tr>
+                </volist>
+                    		</table>
+                    		 </p>
+                        <p class="stdformbutton">
+                        	<input type="submit" class="submit radius2 submitadd" value="添加"  />
+                            <input type="reset" class="reset radius2" value="重置" />
+                        </p>
+                    </form>
+                    </div>
+        </div><!--contentwrapper-->
+    </div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

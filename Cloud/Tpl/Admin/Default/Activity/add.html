@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>添加活动机型</title>
+<include file="Common:inc_css_js" />
+<include file="Common:inc_jqvalidate" />
+<script src="__PUBLIC__/Admin/JS/mydatepicker/WdatePicker.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">添加活动机型</h1>
+			<span class="pagedesc">活动机型</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Admin/Activity/add')}" method="post">
+				<p><label>活动名称</label>
+					<span class="field">
+						<input type="text" name="name" id="name" class="smallinput" validate='{required:true}' />
+					</span></p>
+				<p><label>周期</label>
+					<span class="field">
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_Month" checked/>月&nbsp;&nbsp;
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_Season" />季度
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_halfyear" />半年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_1year" />一年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_2year" />两年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_3year" />三年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_4year" />四年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_5year" />五年
+					</span></p>
+				<p><label>所属产品</label>
+					<span class="field">
+						<select name='Cloudtype' class="selectwidth40-1">
+							<volist name="products" id="vo">
+								<option value='{$vo.Cloudtype}'>{$vo.Cloudtype}</option>
+							</volist>
+						</select>
+					</span></p>
+				<p><label>总价</label>
+					<span class="field">
+						<input type="text" name="money" id="money" class="smallinput10" validate='{required:true,isFloatGteZero:true}' />
+					</span></p>
+				<p><label>cpu</label>
+					<span class="field">
+						<input type="text" name="cpu" id="cpu" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>内存</label>
+					<span class="field">
+						<input type="text" name="mem" id="mem" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>硬盘</label>
+					<span class="field">
+						<input type="text" name="disk" id="disk" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>带宽</label>
+					<span class="field">
+						<input type="text" name="qos" id="qos" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>IP类型</label>
+					<span class="field">
+						<input type='radio' name='iptype' value='1' checked/>独立
+						<input type='radio' name='iptype' value='0'/>共享
+					</span></p>
+				<p><label>活动开始时间</label>
+					<span class="field">
+						<input type="text" name="starttime" id="starttime" class='hasDatepicker' validate='{required:true}' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})"/>
+					</span></p>
+				<p><label>活动结束时间</label>
+					<span class="field">
+						<input type="text" name="endtime" id="endtime" class='hasDatepicker' validate='{required:true}' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})"/>
+					</span></p>
+				<p><label>数量</label>
+					<span class="field">
+						<input type="text" name="number" id="number" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>排序</label>
+					<span class="field">
+						<input type="text" name="orderby" id="orderby" class="smallinput10" validate='{required:true,isIntGteZero:true}' />
+					</span></p>
+				<p><label>描述</label>
+					<span class="field">
+						<textarea name='info' id='info' class='smallinput'></textarea>
+					</span></p>
+				<p class="stdformbutton">
+					<input type="submit" class="submit radius2 " value="添加"/>
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

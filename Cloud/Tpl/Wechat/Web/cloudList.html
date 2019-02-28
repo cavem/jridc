@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style>
+		a{ text-decoration:none; color:#111;}
+	</style>
+	<script>
+		//显示所有
+		function showAll(){
+            $("#call").addClass("blue").siblings().removeClass("blue");	
+			$("#clsjjdq").hide();//隐藏所有
+			$("#clsall").show();//显示即将到期
+		}
+		//显示即将到期
+		function showJjdq(){
+            $("#cjjdq").addClass("blue").siblings().removeClass("blue");	
+			$("#clsall").hide();//隐藏所有
+			$("#clsjjdq").show();//显示即将到期
+		}
+	</script>
+</head>
+<body >
+ <div class=" ">
+	<div class="toptitle">
+		<div class="top_link" onclick="location.href='{:U('wechat/web/usercenter')}'">
+			<img width="50px;" style="margin-top:5px;" src="__PUBLIC__/Wechat/Web/images/btn_setting_n.png"/>
+		</div>
+		<div class="refresh">
+			<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+				<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+			</a>
+		</div>
+		<span>我的云主机</span>
+	</div>
+	<div class="changebar">
+		<ul>
+			<li id='call' style="border-right:1px solid #1F90C8;" class="blue" onclick='showAll();'>主机列表</li>
+			<li id='cjjdq' style="" onclick='showJjdq();'>即将到期</li>
+		</ul>
+		<div id='clsall' class="on">
+			<ul class="hostlist">
+				<volist name='listcloud' id='cloud'>
+				<li>
+					<img width='30px' src="__PUBLIC__/Wechat/Web/images/cloud_pc.png"/>
+					<input type="hidden" name="vmid[]" value='{$cloud.id}' />
+					<span class="host_name flo_left " onclick="window.location.href='{:U('wechat/web/detail',array('id'=>$cloud[id]))}'">{$cloud['cloudname']}
+					</span>
+					<span style="margin-right:10px;float:right;" onclick="window.location.href='{:U('wechat/web/autorepay',array('id'=>$cloud[id]))}'">
+					自动续费(
+					<if condition="$cloud['isauto'] eq '1'">
+					<font color="red">是</font>
+					<else/>
+					<font color="red">否</font>
+					</if>
+					)
+					</span>
+					<span class="flo_right host_state" id='vm_state_td_{$cloud.id}'>
+				 	<img id='vm_state_{$cloud.id}' style='padding-top:7px;' src='__PUBLIC__/Wechat/web/stateimg/loadings.gif' alt="loading" title="loading" state='loading'/>
+					</span>
+					
+				</li>
+				</volist>
+			</ul>
+		</div>
+		<div id='clsjjdq' class="on" style='display:none'>
+			<ul class="hostlist">
+				<volist name='listcloudjjdq' id='cloud'>
+				<li>
+					<img width='30px' src="__PUBLIC__/Wechat/Web/images/cloud_pc.png"/>
+					<span class="host_name flo_left " onclick="window.location.href='{:U('wechat/web/detail',array('id'=>$cloud[id]))}'">{$cloud['cloudname']}</span>
+					<span style="margin-right:10px;float:right;" onclick="window.location.href='{:U('wechat/web/autorepay',array('id'=>$cloud[id]))}'">
+					自动续费(
+					<if condition="$cloud['isauto'] eq '1'">
+					<font color="red">是</font>
+					<else/>
+					<font color="red">否</font>
+					</if>
+					)
+					</span>
+					<span class="flo_right" style='padding-right:15px;'>{$cloud['endtime']|date=("Y-m-d H:i:s"),###}</span>
+				</li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+//ajax实时验证主机状态
+var getvmstatusurl="{:U('Wechat/Web/vmstate')}";
+function get_vm_status() {
+	var vms = $("input[name='vmid[]']");
+	if (vms.length == 0) {
+		if (vm_interval) {
+			clearInterval(vm_interval);
+		}
+		return;
+	}
+	for (var i=0; i<vms.length; i++) {
+		vmid = vms[i].value;
+		$.get(getvmstatusurl,{'act':'vmstate','id':vmid},function(vminfo){
+			if(vminfo['statusinfo']=='正常'){
+				if(vminfo['cloudstatus']==true){
+					$('#vm_state_td_'+vminfo['id']).html(vminfo['info']);
+				}else{
+					$('#vm_state_td_'+vminfo['id']).html(vminfo['info']);
+				}
+			}else{
+				$('#vm_state_td_'+vminfo['id']).html(vminfo['info']);
+			}
+		},'json');
+	}
+}
+get_vm_status();
+if (!vm_interval) {
+   //var vm_interval = setInterval(get_vm_status,30000);
+}
+</script>
+</body>
+</html>

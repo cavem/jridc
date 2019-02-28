@@ -1,0 +1,16 @@
+<form action='{$data.host}' name="jspost" id="jspost" method='post' class="formvalidate">
+	<input name="apiusername" type="hidden" value="{$data.apiusername}">
+	<input name="randomstring" type="hidden" value="{$data.randomstring}">
+	<input name="sign" type="hidden" value="{$data.sign}">
+	<input name="vm_name" type="hidden" value="{$data.vm_name}">
+	<input name="vm_id" type="hidden" value="{$data.vm_id}">
+	<input name="logouturl" type="hidden" value="{$data.logouturl}">
+ </form>
+<script>
+<!--
+function sub(){
+document.jspost.submit();
+}
+setTimeout(sub,1000);//以毫秒为单位的.1000代表一秒钟.根据你需要修改这个时间.
+//-->
+</script>

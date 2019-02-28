@@ -1,0 +1,168 @@
+<tagLib name="Cloud"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1300">
+<meta name="keywords" content="{$Web.Config.site_keyword}">
+<meta name="description" content="{$Web.Config.site_description}">
+<title>{$Web.Config.site_name}</title>
+<include file="inc_css"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<div class="twonav">
+	<div class="viewport-inner">
+    	<a href="#">{$Web.Config.site_name}</a>
+    </div>
+</div>
+<section class="page" style="min-height: 500px;">
+  <div class="viewport-inner signup login" style='width:1200px;'>
+    <div class="form-wrapper">
+    <form class="form form-horizontal formvalidate" id="lgin" action="{:U('Home/User/dologin')}" method="post">
+        <fieldset>
+          <legend>登录</legend>
+          <div class="item">
+            <div class="control-label"><b>*</b>用户名</div>
+            <div class="controls">
+            <input type="text" name="username" id="username" value="" >
+          </div>
+          </div>
+          <div class="item">
+            <div class="control-label"><b>*</b>密码</div>
+            <div class="controls">
+            <input type="password" name="password" id="password" value=""  >
+         </div>
+          </div>
+		<if condition="$RELOGIN">
+	      <div class="item yzm">
+            <div class="control-label"><b>*</b>验证码</div>
+            <div class="controls">
+              <input type="text" name="code" id="code">
+              <img class="captcha changeVerify" id="verify" src="{:U('Home/User/verify')}"  style="cursor: pointer;" title="点击更换">
+          </div>
+          </div>
+		</if>
+		<div class="item">
+            <div class="control-label"></div>
+            <div class="controls msger">
+           	
+          	</div>
+          </div>
+          <div class="item zc">
+            <div class="controls">
+              <input class="btn btn-primary btn-session" type="submit" id="submit" value="登录" >
+            </div>
+          </div>
+          <div id="doUrl" callback_url="{$callback_url}" style="display: none;"></div>
+        <div class="item">
+          <div class="controls"><a class="link" href="{:U('Home/User/passset')}">忘记密码?</a>&nbsp;<a class="link" href="{:U('Home/User/register')}" data-permalink="">注册新帐号</a></div>
+        </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="zcyb">
+    	<p>还没注册过账号？立即注册</p>
+        <a href="{:U('Home/User/register')}" class="dlzh">注册帐号</a>
+		<p>注册成功，即享特权：</p>
+		<p>1、领取新人大礼包</p>
+		<p>2、免费试用云服务器</p>
+    </div>
+  </div>
+</section>
+<include file="Common:inc_footer"/>
+<script type="text/javascript">
+$(function(){
+       var timer;
+       $(".changeVerify").click(function(){
+           clearTimeout(timer);
+           $('#verify').attr('src','{:U("Home/User/verify")}'+'?r='+Math.random());
+       });
+       $("#lgin").submit(function(){
+           login();
+           return false;
+       });
+});
+function login(){
+    var username = $("#username").val();
+    var pass = $("#password").val();
+    var code = $("#code").val();
+    if(username==""){
+        $('<span id="resultMsg" />').addClass("ajaxerror").html("用户名不能为空！").appendTo('.msger').fadeOut(2000);
+        $("#username").focus();
+        return false;
+    }
+    if(pass==""){
+        $('<span id="resultMsg" />').addClass("ajaxerror").html("密码不能为空！").appendTo('.msger').fadeOut(2000);
+        $("#password").focus();
+        return false;
+    }
+    <if condition="$RELOGIN">
+    if(code==""){
+        $('<span id="resultMsg" />').addClass("ajaxerror").html("验证码不能为空！").appendTo('.msger').fadeOut(2000);
+        $("#code").focus();
+        return false;
+    }
+    </if>
+    var url = "{:U('Home/User/dologin')}";
+    var data = $("#lgin").serialize();
+    $("#submit").disabled = true;
+    $("#submit").val('正在登录...');
+    $.ajax({
+        url:url,
+        cache:false,
+        dataType:"json",
+        data:data,
+        type:"POST",
+        error:function(){
+            $("#submit").val('登录');
+            $('<span id="resultMsg" />').addClass("ajaxerror").html("AJAX请求发生错误！").appendTo('.msger').fadeOut(3000); 
+        },
+        success:function(msgObj){
+            if(msgObj.status == '1'){
+                $("#submit").val('登录成功');
+                $("#submit").disabled = false;
+                $('<span id="resultMsg" />').removeClass("ajaxerror").css({"color":"#669533","background":"url('/Public/images/loading.gif') no-repeat 1px"});
+                setTimeout(function(){
+                    location.href = $("#doUrl").attr("callback_url");
+                },1000);
+            }else{
+                $("#submit").val('登录');
+                $("#code").val('');
+                $("#code").focus();
+                $('<span id="resultMsg" />').addClass("ajaxerror").html(msgObj.info).appendTo('.msger').fadeOut(3000); 
+				if(msgObj.info=="邮箱未验证"){
+					 setTimeout(function(){
+						 location.href = "{:U('Home/User/checkemail')}";
+		              },3000);
+					 return false;
+				}
+				if(msgObj.info=="手机未验证"){
+					 setTimeout(function(){
+						 location.href = "{:U('Home/User/checkmbi')}";
+		              },3000);
+					 return false;
+				}
+                fleshVerify();
+            }
+        }
+    });
+}
+
+function fleshVerify(){
+    var time = new Date().getTime();
+    $("#verify").attr('src','{:U("Home/User/verify")}'+'?r='+time);
+}
+</script>
+<style>
+#resultMsg {
+height: 47px;
+}
+.ajaxerror {
+color: red;
+}
+</style>
+</body>
+</html>

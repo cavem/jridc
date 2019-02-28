@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style type="text/css">
+		input[type='number']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='password']{
+			border:none;
+			border-bottom: solid 1px silver;
+			width:100%;
+			height:30px;
+		}
+		input[type='submit']{
+			background:#EE5B45;
+			border:none;
+			width:100%;
+			height:40px;
+			line-height:40px;
+		}
+		input[type='button']{
+			background:#EE5B45;
+			border:none;
+			width:100%;
+			height:40px;
+			line-height:40px;
+		}
+		.payType{
+			margin-top:180px;
+			margin-left:30px;
+			border:1px solid #666;
+			border-radius:3px;
+			background:white;
+			position:absolute;
+			width:80%;
+			z-index:2
+		}
+		.fil{
+			display:none;
+			background:black;
+			filter:alpha(opacity:30);
+			opacity:0.3;
+			height:100%;
+			position:absolute;
+			width:100%;
+			top:0;
+			z-index:1
+		}
+	</style>
+</head>
+<body >
+<div id='fil' class='fil' onclick='hidchospay();'></div>
+<div style="width:100%;border:0px solid blue;">
+	<div class="toptitle" style="width:100%;border:0px solid yellow;overflow:auto;">
+		<div class="top_link" onclick='history.go(-1);'>
+			<img width="30px;" style="margin-top:10px;" src="__PUBLIC__/Wechat/Web/images/btn_return_n_2.png"/>
+		</div>
+		<span>账户充值</span>
+	</div>
+	<div style="padding:15px 10px 0 10px;border:0px solid red;">
+		<form id='theform' action="{:U('wechat/web/recharge')}" method="post" onsubmit="return checkpost()">
+			<table border=0 width='100%'>
+				<tr>
+					<td height="40px;">充值金额:</td>
+					<td><input id='money' width="100%" height='30px;' type="number" name="money" /></td>
+				</tr>
+				<tr>
+					<td colspan=2 height="40px;">
+						<input type='hidden' id='act' name='act' value=''/>
+						<input type="button" value="充值" onclick='chosePayType();'/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 height="40px;" style='text-align:center;padding:30px 40px 0 40px'>
+					因支付宝屏蔽了从微信端发起的支付请求，将暂停支付宝充值功能。
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+	<script>
+	function chosePayType(){
+		if(!checkpost()){
+			alert("请正确输入充值金额!");
+			return;
+		}
+		$("#theform").submit();
+	}
+	function checkpost(){
+		var number = $("#money").val();
+		if(!number)return false;
+		return true;
+	}
+	</script>
+</body>
+</html>

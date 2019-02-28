@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>云主机管理</title>
+<include file="Common:inc_css_js" />
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">云主机管理</h1>
+			<span class="pagedesc">云主机管理</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+				<if condition="$user">
+		           <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb overviewtable2">
+                            <colgroup>
+                                <col class="con1" width="10%" />
+                                <col class="con0" width="90%" />
+                            </colgroup>
+                            <tbody>
+                                <tr class="first-tr">
+                                    <td>用户名</td>
+                                    <td>{$user.username}</td>
+                                </tr>
+                                <tr>
+                                    <td>金额</td>
+                                    <td>{$user.usermoney}</td>
+                                </tr>
+                                <tr>
+                                    <td>电子邮件</td>
+                                    <td>{$user.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>QQ</td>
+                                    <td>{$user.qq}</td>
+                                </tr>
+                                  <tr>
+                                    <td>手机</td>
+                                    <td>{$user.mobi}</td>
+                                   
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                      </if>
+                        <br>
+		   
+		   
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+					<colgroup>
+						<col class="con1" />
+						<col class="con0" />
+						<col class="con1" />
+						<col class="con0" />
+						 <col class="con1" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="head1">选择</th>
+							<th class="head0">编号</th>
+							<th class="head1">产品类型</th>
+							<th class="head0">用户名</th>
+							<th class="head1">云主机名</th>
+							<th class="head0">状态</th>
+							<th class="head1">IP</th>
+							<th class="head0">开通日期</th>
+							<th class="head1">到期日期</th>
+							<th class="head0">状态</th>
+						</tr>
+					</thead>
+					<tbody id='tablelist'>
+					<volist name="cloudlist" id="vo">
+						<tr>
+							<td>
+							<input type="radio" name="id" value="{$vo.id}" <if condition="$id eq $vo['id']">checked</if> onClick="window.location='{:U('Sale/Cloud/manage',array('id'=>$vo['id']))}'">
+							<input type="hidden" name="vmid[]" value='{$vo.id}' /></td>
+							<td>{$vo.id}</td>
+							<td>{$vo.Cloudtype}</td>
+							<td><a href="{:U('Sale/User/show',array('id'=>$vo['user_id']))}">{$vo.username}</a></td>
+							<td>
+								{$vo.cloudname}(VM_ID: {$vo.vm_id} )
+							</td>
+							<td id='vm_state_td_{$vo.id}'>
+							<img id='vm_state_{$vo.id}' src='__PUBLIC__/Sale/images/loadings.gif' alt="loading" title="loading" state='loading'/>
+							</td>
+							<td id='vm_ip_{$vo.id}'>
+							<img src='__PUBLIC__/Sale/images/loadings.gif' alt="loading" title="loading"/>
+							</td>
+							<td>
+								{$vo.starttime|date='Y-m-d H:i:s',###}
+							</td>
+							<td>
+								{$vo.endtime|date='Y-m-d H:i:s',###}
+							</td>
+							<td>{$vo.status}</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+				<br>
+				<if condition="$id">
+				<form>
+				<table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb overviewtable2">
+                            <colgroup>
+                                <col class="con1" width="10%" />
+                                <col class="con0" width="90%" />
+                            </colgroup>
+                            <tbody>
+                                <tr class="first-tr">
+                                    <td>云服务器状态</td>
+                                    <td>{$vmstatus}</td>
+                                </tr>
+                               
+                                  <tr>
+                                    <td>单独设置续费价格</td>
+                                    <td>{$cloud.repaymoney}
+        </td>
+                                   
+                                </tr>
+                                 <tr>
+                                    <td>更改主机的备注信息</td>
+                                    <td>
+                                    {$cloud.corewhat}
+                   
+</td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                        </form>
+				</if>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+<script type="text/javascript">
+
+
+var getvmstatusurl="{:U('Sale/Cloud/vmstate')}";
+</script>
+<script type="text/javascript">
+var vmstates='{';
+vmstates+="running:{'image':'/Public/Sale/images/running.png','title':'运行'},";
+vmstates+="halted:{'image':'/Public/Sale/images/halted.png','title':'停止'},";
+vmstates+="creating:{'image':'/Public/Sale/images/loadings.gif','title':'创建中'},";
+vmstates+="error:{'image':'/Public/Sale/images/error.png','title':'创建失败'},";
+vmstates+="unknow:{'image':'/Public/Sale/images/except.png','title':'异常'},";
+vmstates+="suppending:{'image':'/Public/Sale/images/starting.png','title':'操作中'},";
+vmstates+="nocloud:{'image':'/Public/Sale/images/except.png','title':'虚拟机未找到'},";
+vmstates+="loading:{'image':'/Public/Sale/images/loadings.gif','title':'加载中'}";
+vmstates+='}';
+var vmstate=eval("(" + vmstates + ")");
+function get_vm_status() {
+    var vms = $("input[name='vmid[]']");
+    if (vms.length == 0) {
+        if (vm_interval) {
+            clearInterval(vm_interval);
+        }
+        return;
+    }
+    for (var i=0; i<vms.length; i++) {
+        vmid = vms[i].value;
+        $.get(getvmstatusurl,{'act':'vmstate','id':vmid},function(vminfo){
+			if(vminfo['statusinfo']=='正常'){
+				if(vminfo['cloudstatus']==true){
+					$("#vm_state_"+vminfo['id']).attr('src',vmstate[vminfo.power_state.toLowerCase()].image);
+					$("#vm_state_"+vminfo['id']).attr('alt',vmstate[vminfo.power_state.toLowerCase()].title);
+					$("#vm_state_"+vminfo['id']).attr('title',vmstate[vminfo.power_state.toLowerCase()].title);
+					$("#vm_state_"+vminfo['id']).attr('state',vminfo.power_state.toLowerCase());
+					if (vminfo.current_operations){
+						for(var i = 0; i< vminfo.current_operations.length; i++) {
+							if(vminfo.current_operations[i] == 'migrate_send') {
+								$("#vm_state_"+vminfo['id']).attr('alt', '正在迁移');
+								$("#vm_state_"+vminfo['id']).attr('title', '正在迁移');
+							}
+						}
+					}
+				}else{
+					
+					$("#vm_state_td_"+vminfo['id']).html(vminfo['info']);
+					
+				}
+			
+			}else{
+					$("#vm_state_"+vminfo['id']).attr('src',vmstate['error'].image);
+					$("#vm_state_"+vminfo['id']).attr('alt',vminfo['info']);
+					$("#vm_state_"+vminfo['id']).attr('title',vminfo['info']);
+					$("#vm_state_"+vminfo['id']).attr('state',vminfo['info']);
+			}
+        },'json');
+        $.get(getvmstatusurl,{'act':'vmnetwork','id':vmid},function(network){
+				if(network['statusinfo']=='正常'){
+					if(network['cloudstatus']==true){
+						$("#vm_ip_"+network['id']).html(network['value']);
+						
+					}else{
+						$("#vm_ip_"+network['id']).html(network['info']);
+					}
+				}else{
+					$("#vm_ip_"+network['id']).html(network['info']);
+				}
+        },'json');
+    }
+}
+</script>
+<script type="text/javascript">
+get_vm_status();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.updown{background-color:#FFFFFF;text-align:left;}
+.cp_box{width:928px; margin:auto; overflow:hidden; padding-top:80px; margin-top:20px;}
+.jp_01{background:url(../images/jp_01.jpg) no-repeat top center;}
+.jp_02{background:url(../images/jp_02.jpg) no-repeat top center;}
+.jp_03{background:url(../images/jp_03.jpg) no-repeat top center;}
+.jp_04{background:url(../images/jp_04.jpg) no-repeat top center;}
+.jp_05{background:url(../images/jp_05.jpg) no-repeat top center;}
+
+.cp_box01{width:830px; overflow:hidden; margin:auto; text-align:center; margin-bottom:10px;}
+.cp_box02{width:805px; height:18px; padding-left:25px; overflow:hidden; margin:auto;background:url(../images/ico897.gif) no-repeat top left; margin-bottom:30px; font-size:13px;}
+.cp_box03{width:830px; overflow:hidden; margin:auto; margin-bottom:10px;}
+.cp_box03 table tr td{ font-size:15px; line-height:26px; color:#333;}
+.cp_box04{width:830px; overflow:hidden; margin:auto;margin-bottom:10px;}
+.cp_box05{width:830px; margin:auto;  margin-bottom:10px;}
+.slider_md{ width:580px; height:auto; text-align:center; font-size:14px; font-weight:bold; line-height:32px;}
+.slider_ts{color:#999; font-size:13px; font-weight:normal;}
+.slider_pri{color:#f00; font-family:Arial; font-size:18px; padding:0 5px;}
+.slider_red{color:#f00; font-size:13px; font-weight:normal;}
+.slider_md_b{ width:580px; overflow:hidden; margin-top:25px; text-align:center;}

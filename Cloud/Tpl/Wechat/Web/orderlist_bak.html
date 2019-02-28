@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>掌上主机管理平台</title>
+	<include file="inc_css_js" />
+	<style>
+	a{ text-decoration:none; color:#111;}
+	</style>
+</head>
+<body >
+<div class="toptitle" style="position:fixed;left:0px;top:0px;width:100%;">
+	<div class="top_link" onclick="location.href='{:U('wechat/web/usercenter')}'">
+		<img width="50px;" style="margin-top:5px;" src="__PUBLIC__/Wechat/Web/images/btn_setting_n.png"/>
+	</div>
+	<div class="refresh">
+		<a href="javascript:void(0)" onclick='javascript:location.reload();'>
+			<img src="__PUBLIC__/Wechat/Web/images/refresh_ico.png"/>
+		</a>
+	</div>
+	<span>订单列表</span>
+</div>
+<div class="changebar" style='margin-top:50px;'>
+	<ul>
+		<li onclick="location.href='{:U('wechat/web/moneylog')}'">财务记录</li>
+		<li style="border-left:1px solid #1F90C8;" class="blue">订单记录</li>
+	</ul>
+	<div class="on">
+		 <table width='100%;' border=0>
+		 	<tr>
+		 		<td></td>
+		 		<td style='text-align:left;'>操作账户</td>
+		 		<td style='text-align:right;'>金额</td>
+		 		<td style='text-align:center;padding-right:5px;'>时间</td>
+		 	</tr>
+			<volist name='orderlist' id='data'> 
+		 	<tr onclick="location.href='{:U('wechat/web/orderdetail',array('id'=>$data['id']))}'">
+		 		<td>
+			 		<img width='30px' src="__PUBLIC__/Wechat/Web/images/cloud_pc.png"/>
+			 	</td>
+		 		<td style='text-align:left;'>{$data['username']}</td>
+		 		<td style='text-align:right;'>￥:{$data['usermoney']}</td>
+		 		<td style='text-align:center;padding-right:5px;'>{$data['addtime']|date=("Y-m-d H:i:s"),###}</td>
+		 	</tr>
+			</volist>
+		</table>
+	</div>
+</div>
+</body>
+</html>

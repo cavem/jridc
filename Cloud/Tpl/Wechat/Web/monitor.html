@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/Wechat/Web/css/style.default.css" type="text/css" />
+	<style type="text/css">
+		input[type='button']{
+			background:#EE5B45;
+			border:none;
+			width:22%;
+			height:40px;
+			line-height:40px;
+		}
+	</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+	<div class="toptitle" onclick="javascript:history.back(-1);">
+		<div class="top_link" >
+		</div>
+		<span>返回我的云主机</span>
+	</div>
+<TABLE width=100% align="center" cellPadding=0 cellSpacing=0>
+<TBODY>
+<TR>
+<TD align="center">
+<br>
+    <input name="submit" type="button" onclick="btnclickinfo({$id},5)" value="10分钟" class="submit_box">
+   <input name="submit" type="button" onclick="btnclickinfo({$id},60)" value="2小时" class="submit_box">
+   <input name="submit" type="button" onclick="btnclickinfo({$id},3600)" value="1周" class="submit_box">
+   <input name="submit" type="button" onclick="btnclickinfo({$id},86400)" value="1年" class="submit_box">
+<br>
+<br>
+  <div id="cpucontainer" style="width:98%;height:400px;"></div><p></p>
+  <div id="memcontainer" style="width:98%;height:400px;"></div><p></p>
+  <div id="diskcontainer" style="width:98%;height:400px;"></div><p></p>
+  <div id="qoscontainer" style="width:98%;height:400px;"></div><p></p>
+  </TD>
+</TR>
+</TBODY>
+</TABLE>
+  <TABLE width=780 align="center" cellPadding=0 cellSpacing=0>
+  <TBODY>
+  <TR>
+<TD bgColor=#dadada height=1></TD></TR></TBODY></TABLE>
+<input type="hidden" value="{$porid}" id='porid'>
+<input type="hidden" value="{$id}" id='id'>
+<script language="javaScript" src="__PUBLIC__/Wechat/Web/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web//js/layer/layer.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web/js/Highcharts/highcharts.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web/js/Highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wechat/Web/js/Highcharts/modules/no-data-to-display.js">
+</script>
+<script type="text/javascript">
+function get_Float(str){
+	return parseFloat(str.toFixed(2));
+} 
+$(function () {
+	Highcharts.setOptions({
+		    chart: {
+			    defaultSeriesType: 'line', //图表类型为曲线图
+			    plotBorderWidth:1, //内边框线条
+				borderWidth:1,//外边框线条
+				events: { 
+				    load: function() {  
+				  	  var series = this.series[0]; 
+				    } 
+			    } 
+		    },
+		    global: {
+		        useUTC: false
+		    },
+			credits: {
+		    	enabled: false
+		    },
+			legend: { 
+		  	  enabled: true  //设置图例不可见 
+		    }, 
+		    exporting: { 
+		 	   enabled: false  //设置导出按钮不可用 
+		    },
+		    plotOptions: {
+			    line: {
+				    pointInterval: 0.1,  //显示图数据点的间隔
+					lineWidth:1, //线条粗细
+				    marker: {
+					    enabled: false,
+					    symbol: 'circle',
+					    radius: 1,
+					    states: {
+						    hover: {
+						    	enabled: true
+						    }
+					    }
+				    }
+			    }
+		    }, 
+		});
+		var cpuchart = new Highcharts.Chart(cpuoptions);
+		var memchart = new Highcharts.Chart(memoptions);
+		var diskchart = new Highcharts.Chart(diskoptions);
+		var qoschart = new Highcharts.Chart(qosoptions);
+		var loadi = layer.load('loading....');//提示框	
+});
+var cpuoptions = {
+		chart: {
+			renderTo: 'cpucontainer'
+		},
+		title: {
+		text: 'CPU使用记录走势图'
+		},
+		xAxis: {
+		type: 'datetime', 
+		<if condition="( $porid eq 3600 ) or ( $porid eq 86400 )" >
+		max:"{$endtime}",
+		min:"{$starttime}",
+		</if>
+		labels: {
+				rotation:1,
+				formatter: function(){
+					  <if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+						return Highcharts.dateFormat('%H:%M:%S',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 3600 )" >
+						return Highcharts.dateFormat('%m-%d',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 86400 )" >
+						return Highcharts.dateFormat('%Y-%m-%d',this.value*1000);
+					  </if>		 
+				}
+			}		
+		},
+		yAxis: { //设置Y轴 
+		labels: {
+		    formatter: function() {
+		   	 return get_Float((this.value))+"%";
+		    }
+		},
+		title: {
+			text: ''
+		}
+		},
+		tooltip: {
+		formatter: function() {
+			 <if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+				 return Highcharts.dateFormat('%H:%M:%S',this.x*1000)+'CPU使用率'+get_Float(this.y)+"%"; 
+			 </if>
+			 <if condition="( $porid eq 3600 )" >
+				 return Highcharts.dateFormat('%m-%d',this.x*1000)+'CPU使用率'+get_Float(this.y)+"%"; 
+			 </if>
+			  <if condition="( $porid eq 86400 )" >
+			 	 return Highcharts.dateFormat('%Y-%m-%d',this.x*1000)+'CPU使用率'+get_Float(this.y)+"%"; 
+			  </if>	
+			} 
+		}
+};
+var memoptions = {
+		chart: {
+			renderTo: 'memcontainer'
+		},
+		title: {
+		    text: '内存使用记录走势图'
+		},
+		xAxis: {
+			type: 'datetime',
+			<if condition="( $porid eq 3600 ) or ( $porid eq 86400 )" >
+			max:"{$endtime}",
+			min:"{$starttime}",
+			</if> 
+			labels: {
+				rotation:1,
+				formatter: function(){
+					  <if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+						return Highcharts.dateFormat('%H:%M:%S',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 3600 )" >
+						return Highcharts.dateFormat('%m-%d',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 86400 )" >
+						return Highcharts.dateFormat('%Y-%m-%d',this.value*1000);
+					  </if>		  
+				}
+			}	
+		},
+		yAxis: { //设置Y轴 
+			labels: {
+		        formatter: function() {
+		       	 return get_Float((this.value))+"M";
+		        }
+		    },
+			//max: {$vminfo.memory},
+			title: {
+				text: ''
+			}
+		},
+		tooltip: {
+		    formatter: function() {
+				<if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+				 return Highcharts.dateFormat('%H:%M:%S',this.x*1000)+'内存使用'+get_Float(this.y)+"M"; 
+		 		</if>
+		 		<if condition="( $porid eq 3600 )" >
+			 	return Highcharts.dateFormat('%m-%d',this.x*1000)+'内存使用'+get_Float(this.y)+"%"; 
+				 </if>
+		 		 <if condition="( $porid eq 86400 )" >
+		 		 return Highcharts.dateFormat('%Y-%m-%d',this.x*1000)+'内存使用'+get_Float(this.y)+"M"; 
+		  		</if>	
+			} 
+		}
+			
+};
+var diskoptions = {
+		chart: {
+			renderTo: 'diskcontainer'
+		},
+		title: {
+		    text: '硬盘使用'
+		},
+		xAxis: {
+			type: 'datetime', 
+			<if condition="( $porid eq 3600 ) or ( $porid eq 86400 )" >
+			max:"{$endtime}",
+			min:"{$starttime}",
+			</if>
+			labels: {
+				rotation:1,
+				formatter: function(){
+					  <if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+						return Highcharts.dateFormat('%H:%M:%S',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 3600 )" >
+						return Highcharts.dateFormat('%m-%d',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 86400 )" >
+						return Highcharts.dateFormat('%Y-%m-%d',this.value*1000);
+					  </if>		  
+				}
+			}
+		},
+		yAxis: { //设置Y轴 
+			labels: {
+		        formatter: function() {
+					return get_Float((this.value/1024))+"M/s";
+		        }
+		    },
+			title: {
+				text: ''
+			}
+		},
+		tooltip: {
+		    formatter: function() {
+			<if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+			 return Highcharts.dateFormat('%H:%M:%S',this.x*1000)+'使用'+get_Float(this.y/1024)+"M/s"; 
+		 </if>
+		 <if condition="( $porid eq 3600 )" >
+			 return Highcharts.dateFormat('%m-%d',this.x*1000)+'使用'+get_Float(this.y/1024)+"M/s"; 
+		 </if>
+		  <if condition="( $porid eq 86400 )" >
+		 	 return Highcharts.dateFormat('%Y-%m-%d',this.x*1000)+'使用'+get_Float(this.y/1024)+"M/s"; 
+		  </if>	
+		     
+				} 
+		}
+};
+var qosoptions = {
+		chart: {
+			renderTo: 'qoscontainer'
+		},
+		title: {
+		    text: '带宽使用'
+		},
+		xAxis: {
+			type: 'datetime',
+			<if condition="( $porid eq 3600 ) or ( $porid eq 86400 )" >
+			max:"{$endtime}",
+			min:"{$starttime}",
+			</if> 
+			labels: {
+				rotation:1,
+				formatter: function(){
+					  <if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+						return Highcharts.dateFormat('%H:%M:%S',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 3600 )" >
+						return Highcharts.dateFormat('%m-%d',this.value*1000);
+					  </if>
+					  <if condition="( $porid eq 86400 )" >
+						return Highcharts.dateFormat('%Y-%m-%d',this.value*1000);
+					  </if>		  
+				}
+			}	
+		},
+		yAxis: { //设置Y轴 
+			labels: {
+		        formatter: function() {
+					return  get_Float(((this.value*8)/1024))+"M/s";
+		        }
+		    },
+			title: {
+				text: ''
+			}
+		},
+		tooltip: {
+		    formatter: function() {
+			<if condition="( $porid eq 5 ) or ( $porid eq 60 )" >
+			 return Highcharts.dateFormat('%H:%M:%S',this.x*1000)+'使用'+get_Float(this.y*8/1024)+"M/s"; 
+		 </if>
+		 <if condition="( $porid eq 3600 )" >
+			 return Highcharts.dateFormat('%m-%d',this.x*1000)+'使用'+get_Float(this.y*8/1024)+"M/s"; 
+		 </if>
+		  <if condition="( $porid eq 86400 )" >
+		 	 return Highcharts.dateFormat('%Y-%m-%d',this.x*1000)+'使用'+get_Float(this.y*8/1024)+"M/s"; 
+		  </if>	
+				} 
+		}
+};
+getmonitor();
+	if (!vm_interval){
+	 	var vm_interval = setInterval(getmonitor,10000);
+	}
+function getmonitor(){
+	var porid=$("#porid").val();
+	var id=$("#id").val();
+	$.getJSON('{:U("Wechat/Web/monitorajax")}',{porid:porid,id:id},function(data){
+		if(data.status=='0'){
+			clearInterval(vm_interval);
+			layer.msg(data.info,2,8);
+			return false;
+		}else{
+			layer.closeAll();
+			var cpuchart = new Highcharts.Chart(cpuoptions);
+			var memchart = new Highcharts.Chart(memoptions);
+			var diskchart = new Highcharts.Chart(diskoptions);
+			var qoschart = new Highcharts.Chart(qosoptions);
+			$.each(data.cpu,function(key,item){
+				var data=item.substr(1);
+					data=data.substring(0,data.length-1)
+    			cpuchart.addSeries({                  
+    				   name:key,
+    				   data:eval("[" + data + "]")
+    		    },false);
+			});
+			$.each(data.mem,function(key,item){
+				var data=item.substr(1);
+					data=data.substring(0,data.length-1)
+    			memchart.addSeries({                  
+    				   name:key,
+    				   data:eval("[" + data + "]")
+    		    },false);
+			});
+			$.each(data.disk,function(key,item){
+				var data=item.substr(1);
+					data=data.substring(0,data.length-1)
+    			diskchart.addSeries({                  
+    				   name:key,
+    				   data:eval("[" + data + "]")
+    		    },false);
+			});
+			$.each(data.qos,function(key,item){
+				var data=item.substr(1);
+					data=data.substring(0,data.length-1)
+    			qoschart.addSeries({                  
+    				   name:key,
+    				   data:eval("[" + data + "]")
+    		    },false);
+			});
+			cpuchart.redraw();
+			memchart.redraw();
+			diskchart.redraw();
+			qoschart.redraw();
+		}
+		
+	});
+}
+function btnclickinfo(id,pid){
+	if(pid==5){
+		location.href="{:U('Wechat/Web/monitor')}"+"?id="+id+"&proid=5";
+	}
+	if(pid==60){
+		location.href="{:U('Wechat/Web/monitor')}"+"?id="+id+"&proid=60";
+	}
+	if(pid==3600){
+		location.href="{:U('Wechat/Web/monitor')}"+"?id="+id+"&proid=3600";
+	}
+	if(pid==86400){
+		location.href="{:U('Wechat/Web/monitor')}"+"?id="+id+"&proid=86400";
+	}
+	
+}
+  </script>
+</body>
+</html> 

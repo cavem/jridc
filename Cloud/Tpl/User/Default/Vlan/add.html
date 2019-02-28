@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建Vlan-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>VLAN管理</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('index.php/User/Cloud/index')}">我的云主机</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<br></br>
+			<div class="blockBody">
+				<div class="forms">
+				<form action="{:U('User/Vlan/add')}" class='formvalidate' method="post" enctype="multipart/form-data">
+					<div class="item">
+						<b style="width: 180px;">私有网络名称：</b>
+						<input type='text' name='vlanname' id='vlanname' class='edit_inp'  validate='{required:true}'/>
+							
+					</div>
+					<div class="item">
+						<b style="width:180px;">所属机房：</b>
+						<select name="pid" id="pid" validate='{required:true}'>
+							<option value="">请选择机房</option>
+							<volist name="cloud_product" id="vo">
+							<option value="{$vo.id}">{$vo.Cloudtype}</option>
+							</volist>
+						</select>
+					</div>
+					<div class="item">
+						<button type="submit" class="btn btnOrg2 btnsubmitpostvlan" style="margin-left:190px;">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+$(".btnsubmitpostvlan").click(function(){ 
+	$(".formvalidate").ajaxSubmit({
+		dataType:  'json',
+		beforeSubmit: function() {
+		   return $(".formvalidate").valid();
+		},
+		success: function(data) {
+			if(data.status == '1'){
+            	layer.msg(data.info,2,1);
+            	setTimeout(function(){
+            		location.href="{:U('User/Vlan/index')}";
+            	},2000);
+            }else{
+            	layer.msg(data.info,2,8);
+     	    }
+		}
+	});
+	return false;
+});
+</script>
+</body>
+</html>

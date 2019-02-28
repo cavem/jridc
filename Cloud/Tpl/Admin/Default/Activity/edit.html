@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>编辑活动机型</title>
+<include file="Common:inc_css_js" />
+<include file="Common:inc_jqvalidate" />
+<script src="__PUBLIC__/Admin/JS/mydatepicker/WdatePicker.js"></script>
+</head>
+<body class="withvernav">
+<div class="bodywrapper">
+<include file="Common:inc_header" />
+<include file="Common:inc_left" />
+		<div class="centercontent tables">
+		<div class="pageheader notab">
+			<h1 class="pagetitle20">编辑活动机型</h1>
+			<span class="pagedesc">活动机型</span>
+		</div><!--pageheader-->
+		<div id="contentwrapper" class="contentwrapper">
+			<div id="basicform" class="subcontent">
+			<form class="stdform formvalidate" action="{:U('Admin/Activity/edit')}" method="post">
+				<p><label>活动名称</label>
+					<span class="field">
+						<input type="text" name="name" id="name" class="smallinput" validate='{required:true}' value='{$data.name}'/>
+					</span></p>
+				<p><label>周期</label>
+					<span class="field">
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_Month" <if condition="$data['cycletext'] eq 'PAY_Month'">checked</if>/>月&nbsp;&nbsp;
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_Season" <if condition="$data['cycletext'] eq 'PAY_Season'">checked</if>/>季度
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_halfyear" <if condition="$data['cycletext'] eq 'PAY_halfyear'">checked</if>/>半年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_1year" <if condition="$data['cycletext'] eq 'PAY_1year'">checked</if>/>一年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_2year" <if condition="$data['cycletext'] eq 'PAY_2year'">checked</if>/>两年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_3year" <if condition="$data['cycletext'] eq 'PAY_3year'">checked</if>/>三年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_4year" <if condition="$data['cycletext'] eq 'PAY_4year'">checked</if>/>四年
+						<input type="radio" name="cycletext" id="cycletext" value="PAY_5year" <if condition="$data['cycletext'] eq 'PAY_5year'">checked</if>/>五年
+					</span></p>
+				<p><label>所属产品</label>
+					<span class="field">
+						{$data.Cloudtype}
+					</span></p>
+				<p><label>总价</label>
+					<span class="field">
+						<input type="text" name="money" id="money" class="smallinput10" validate='{required:true,isFloatGteZero:true}'  value='{$data.money}'/>
+					</span></p>
+				<p><label>cpu</label>
+					<span class="field">
+						<input type="text" name="cpu" id="cpu" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.cpu}'/>
+					</span></p>
+				<p><label>内存</label>
+					<span class="field">
+						<input type="text" name="mem" id="mem" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.mem}'/>
+					</span></p>
+				<p><label>硬盘</label>
+					<span class="field">
+						<input type="text" name="disk" id="disk" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.disk}'/>
+					</span></p>
+				<p><label>带宽</label>
+					<span class="field">
+						<input type="text" name="qos" id="qos" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.qos}'/>
+					</span></p>
+				<p><label>IP类型</label>
+					<span class="field">
+						<input type='radio' name='iptype' value='1' <if condition="$data['iptype'] eq 1">checked</if>/>独立
+						<input type='radio' name='iptype' value='0' <if condition="$data['iptype'] eq 0">checked</if>/>共享
+					</span></p>
+				<p><label>活动开始时间</label>
+					<span class="field">
+						<input type="text" name="starttime" id="starttime" class='hasDatepicker' validate='{required:true}' value='{$data.starttime|date="Y-m-d H:i:s",###}' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})"/>
+					</span></p>
+				<p><label>活动结束时间</label>
+					<span class="field">
+						<input type="text" name="endtime" id="endtime" class='hasDatepicker' validate='{required:true}' value='{$data.endtime|date="Y-m-d H:i:s",###}' onFocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd H:m:s'})"/>
+					</span></p>
+				<p><label>数量</label>
+					<span class="field">
+						<input type="text" name="number" id="number" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.number}'/>
+					</span></p>
+				<p><label>排序</label>
+					<span class="field">
+						<input type="text" name="orderby" id="orderby" class="smallinput10" validate='{required:true,isIntGteZero:true}'  value='{$data.orderby}'/>
+					</span></p>
+				<p><label>描述</label>
+					<span class="field">
+						<textarea name='info' id='info' class='smallinput'>{$data.info}</textarea>
+					</span></p>
+				<p class="stdformbutton">
+					<input type='hidden' name="id" value="{$data.id}"/>
+					<input type="submit" class="submit radius2" value="编辑"/>
+				</p>
+			</form>
+			</div>
+		</div><!--contentwrapper-->
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

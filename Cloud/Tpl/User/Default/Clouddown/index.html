@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>降级-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>我的云主机</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Clouddown/index',array('id'=>$id))}">减配</a>
+			</span>
+		</div>
+		<div class="mainM">
+		<div id="search" class="forms">
+			
+		</div>
+<table class="table">
+				<tr>
+					<th width="150px;">云主机名</th>
+					<td style="text-align:left;background: #ffffff;">{$cloud.cloudname}</td>
+					<th>开通时间</th>
+					<td style="text-align:left;background: #ffffff;">{$cloud.starttime|date='Y-m-d H:i:s',###}</td>
+					<th>结束时间</th>
+					<td style="text-align:left;background: #ffffff;">{$cloud.endtime|date='Y-m-d H:i:s',###}</td>
+				</tr>
+</table>
+<div class="updown">
+<form action="{:U('User/Clouddown/downhandle')}" method="post" class="formvalidate">
+	<div class="cp_box jp_01">
+	<div class="cp_box01">
+		<div id="cpu" style="padding-left:10px;padding-bottom:10px;">
+		    <div id="cpu_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left;"></div>
+			&nbsp;&nbsp;
+			<input type="text" id="cpu_slider_value" value="{$cpunum}" style="border:0;" name="cpu_slider_value" readonly onKeyPress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" size="5"/>核
+		</div>
+	</div>
+	<div class="cp_box02">(以1核为步长减少，最小可调整至1核，返还费用根据云服务器到期时间计算得出)</div>
+	<div class="cp_box03">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td width="60">当前：</td>
+	    <td width="150"><span class="slider_pri">{$cpunum}</span>核</td>
+	    <td width="90">本次降级：</td>
+	    <td><span class="slider_pri" id="amount_cpu_show">0</span>核</td>
+	    <td rowspan="2" style="text-align:right;">
+	    <button class="btn btnOrg1 btnsubmitdowncpu" type="submit" >确定调整</button>
+		</td>
+	  </tr>
+	  <tr>
+	    <td>单价：</td>
+	    <td><span class="slider_pri">{$cloudproduct.moneycpu}</span></td>
+	    <td>返还费用：</td>
+	    <td><span class="slider_pri" id="moneynowcpu_show">0</span>元</td>
+	    </tr>
+	</table>
+	 </div>
+		<div class="cp_box04"><span class="red">注意：</span>升级CPU时，系统会强制关闭云服务器，升级前请先正常关闭云服务器，以免造成数据丢失</div>
+	</div>
+	</form>
+<form action="{:U('User/Clouddown/downhandle')}" method="post" class="formvalidate">
+	<div class="cp_box jp_02">
+  <div class="cp_box01">
+	<div id="mem" style="padding-left:10px;padding-bottom:10px;">
+    <div id="mem_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left;"></div>
+	&nbsp;&nbsp;
+	<input type="text" id="mem_slider_value" value="{$memorynum}" name="mem_slider_value" style="border:0;" readonly onKeyPress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" size="5"/>G
+</div></div>
+          	<div class="cp_box02">(以0.5G为步长减少，最小可减少至0.5G，返还费用根据云服务器到期时间计算得出)</div>
+          	<div class="cp_box03">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="60">当前：</td>
+    <td width="150"><span class="slider_pri">{$memorynum}</span>G</td>
+    <td width="90">本次降级：</td>
+    <td><span class="slider_pri" id="amount_mem_show">0</span>G</td>
+    <td rowspan="2" style="text-align:right;">
+    <button class="btn btnOrg1 btnsubmitdownmem" type="submit" >确定调整</button>
+	</td>
+  </tr>
+  <tr>
+    <td>单价：</td>
+    <td><span class="slider_pri">{$cloudproduct.moneymemory}</span></td>
+    <td>返还费用：</td>
+    <td>
+    <span class="slider_pri" id="moneynowmem_show">0</span>元
+   	</td>
+    </tr>
+</table>
+            </div>
+          	<div class="cp_box04"><span class="red">注意：</span>升级内存时，系统会强制关闭云服务器，升级前请先正常关闭云服务器，以免造成数据丢失</div>
+		</div>
+	</form>
+
+<form action="{:U('User/Clouddown/downhandle')}" method="post" class="formvalidate">
+<div class="cp_box jp_04">
+ <div class="cp_box05">
+ </div>
+<div class="cp_box01">
+<div id="qosnetwork" style="padding-bottom:10px;padding-left:0px">
+网卡
+<select name="vif_uuid" id="vif_uuid">
+	<option value="no">请选择网卡</option>
+	<volist name="cloudipqosinfo" id="vo">
+		<if condition="!$vo[shared]">
+		<option value="{$vo.uuid}">{$vo.MAC}</option>
+		</if>
+	</volist>
+</select>
+<volist name="cloudipqosinfo" id="vo">
+	<input type="hidden" id="qosmac_{$vo.uuid}" value="{$vo[qos]/128}"/>
+</volist>
+</div>
+<div style="clear:both;"></div>
+<div id="qos"  style="padding-left:10px;display:none;padding-bottom:10px;">
+    <div id="qos_slider" style="width:600px;margin-left:1px;margin-top:5px;float:left"></div>
+	<input type="text" name="qos_slider_value" id="qos_slider_value" value="0" size="5" style="border:0;" readonly onKeyPress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"/>M
+</div></div>
+      <div class="cp_box02">(以1M为步长减少，最大可升级至{$cloudproduct.dqos}M，返还费用根据云服务器到期时间计算得出)</div>
+          	<div class="cp_box03">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="60">当前：</td>
+    <td width="150"><span class="slider_pri" id="qosnewsize">0</span>M</td>
+    <td width="100">本次减少：</td>
+    <td width="150"><span class="slider_pri" id="amount_qos_show">0</span></td>
+    <td width="100">返还费用：</td>
+    <td><span class="slider_pri" id="moneynowqos_show">0</span>元</td>
+    <td  style="text-align:right;">
+    <button class="btn btnOrg1 btnsubmitdownqos" type="submit" >确定调整</button>
+	</td>
+  </tr>
+</table>
+            </div>
+          	<div class="cp_box04"><span class="red">注意：</span>调整宽带时，系统会强制关闭云服务器，升级前请先正常关闭云服务器，以免造成数据丢失</div>
+		</div>
+	</form>
+	<form action="{:U('User/Clouddown/downhandle')}" method="post" class="formvalidateip">
+		<div class="cp_box jp_05">
+          	<div class="cp_box01">
+	<input type="hidden" name="act" id="act" value="ip" />
+	<input type="hidden" name="id" id="id" value="{$id}" />
+	<input type="hidden" name="num" id="num" value="1" />
+	<input type="hidden" name="deleteip" id="deleteip" value="" />
+	<input type="hidden" name="deletemac" id="deletemac" value="" />
+<table width="100%"  cellspacing="0" cellpadding="0" border="0">
+<tbody>
+<volist name="cloudipqosinfo" id="vo">
+	<if condition="!$vo[shared]">
+	<volist name="vo.ip_infos" id="voo">
+		<if condition="$voo[iptype] neq $iptypeid1">
+	<tr>
+		<td id="MAC_1" style="width:20px;">
+			<input onclick="checkbox('{$vo.uuid}')" style="margin-top:2px;" name="ip_id[]" id="ip_id" type="checkbox" value="{$voo.ip_id}"/>
+		</td>
+		<td style="width:80px;" id="type_{$voo.ip_id}">{$voo.typename}</td>
+		<td style="width:120px;" id="ip_{$voo.ip_id}">{$voo.ip}</td>
+		<td style="display:none;" id="typeid_{$voo.ip_id}">{$voo.iptype}</td>
+		<td style="width:200px;"  id="MAC_{$voo.ip_id}">{$vo.MAC}</td>
+		<td style="display:none;"  id="uuid_{$voo.ip_id}">{$vo.uuid}</td>
+	</tr>
+		</if>
+	</volist>
+	</if>
+</volist>
+ </tbody>
+</table>
+			</div>
+          	<div class="cp_box03">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td width="100">当前公网IP：</td>
+		    <td width="150"><span class="slider_pri">{$ipnum}</span>个</td>
+		    <td width="90">本次升级：</td>
+		    <td><span class="slider_pri" id="amount_ip_show">0</span></td>
+		    <td rowspan="2" style="text-align:right;">
+		    	<button class="btn btnOrg1 btnsubmitupip" type="submit" >确定调整</button>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td>单价：</td>
+		    <td><span class="slider_pri">{$cloudproduct.moneyip}</span>元/年/个</td>
+		    <td>返还费用：</td>
+		    <td><span class="slider_pri" id="moneynowip_show">0</span>元</td>
+		    </tr>
+	</table>
+            </div>
+          	<div class="cp_box04"><span class="red">注意：</span>升级IP时，系统会强制关闭云服务器，升级前请先正常关闭云服务器，以免造成数据丢失</div>
+		</div>
+	</form>
+</div>	
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<link rel="stylesheet" href="__PUBLIC__/User/Default/css/updown.css" />
+<script type="text/javascript" src="__PUBLIC__/User/js/ul/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/User/js/ul/jquery-uinew.css" > 
+<script>
+$(function() {
+	$(".btnsubmitupip").click(function(){ 
+		layer.confirm('确定删除当前IP？',function(index){
+			$(".formvalidateip").ajaxSubmit({
+					dataType:  'json',
+					beforeSend: function() {
+						var loadi = layer.load('IP调整中');//提示框
+					},
+					success: function(data) {
+						if(data.status == '1'){
+								layer.msg(data.info,2,1);
+								setTimeout(function(){
+									location.reload();
+								},1000);
+							}else{
+								layer.msg(data.info,2,8);
+						}
+					}
+				});
+		});
+		return false;
+	});
+	$(".btnsubmitdownqos").click(function(){ 
+		layer.confirm('确定调整当前带宽？',function(index){
+			var num=$("#qos_slider_value").val();
+			var vif_uuid=$("#vif_uuid").val();
+			var id={$id};
+			$(".formvalidate").ajaxSubmit({
+					dataType:  'json',
+					data:{act:'qos',num:num,id:id,vif_uuid:vif_uuid},
+					beforeSend: function() {
+						var loadi = layer.load('带宽调整中');//提示框
+					},
+					success: function(data) {
+						if(data.status == '1'){
+								layer.msg(data.info,2,1);
+								setTimeout(function(){
+									location.reload();
+								},1000);
+							}else{
+								layer.msg(data.info,2,8);
+						}
+					}
+				});
+		});
+		return false;
+	});
+	$(".btnsubmitdownmem").click(function(){ 
+		layer.confirm('确定调整当前内存？',function(index){
+			var num={$memorynum}-$("#mem_slider_value").val();
+			var id={$id};
+			$(".formvalidate").ajaxSubmit({
+					dataType:  'json',
+					data:{act:'mem',num:num,id:id},
+					beforeSend: function() {
+						var loadi = layer.load('内存调整中');//提示框
+					},
+					success: function(data) {
+						if(data.status == '1'){
+								layer.msg(data.info,2,1);
+								setTimeout(function(){
+									location.reload();
+								},1000);
+							}else{
+								layer.msg(data.info,2,8);
+						}
+					}
+				});
+		});
+		return false;
+	});
+	$(".btnsubmitdowncpu").click(function(){ 
+		layer.confirm('确定减少当前CPU？',function(index){
+			var num={$cpunum}-$("#cpu_slider_value").val();
+			var id={$id};
+			$(".formvalidate").ajaxSubmit({
+					dataType:  'json',
+					data:{act:'cpu',num:num,id:id},
+					beforeSend: function() {
+						var loadi = layer.load('配置调整中');//提示框
+					},
+					success: function(data) {
+						if(data.status == '1'){
+								layer.msg(data.info,2,1);
+								setTimeout(function(){
+									location.reload();
+								},1000);
+							}else{
+								layer.msg(data.info,2,8);
+						}
+					}
+				});
+		});
+		return false;
+	});
+	$("#cpu_slider").slider({
+		range: "max",
+		min: 1,
+		max: {$cpunum},
+		value: {$cpunum},
+		step: 1,
+		slide: function( event, ui ) {
+			pos=ui.value;
+			var posnumber={$cpunum}-pos;
+			$("#cpu_slider_value").val(pos);
+			$("#amount_cpu_show").html(posnumber);
+			getcpuprice(posnumber);
+		}
+	});
+	$( "#mem_slider" ).slider({
+		range: "max",
+		min: 0.5,//最小值
+		max: {$memorynum},//最大值
+		value: {$memorynum},//默认值
+		step: 0.5,//此处为步长
+		slide: function( event, ui ) {
+			pos=ui.value;
+			var posnumber={$memorynum}-pos;
+			$("#mem_slider_value").val(pos);
+			$("#amount_mem_show").html(posnumber);
+			getmemprice(posnumber);
+		}
+	});
+	$('#vif_uuid').change(function(){
+		if($(this).val()=='no'){
+			$("#qos").css("display","none");
+			$("#qosnewsize").html(0);
+			return false;
+		}else{
+			var macqos=$(this).val();
+			var dqos=$("#qosmac_"+macqos).val();
+			$("#qos").css("display","block");
+			$("#qosnewsize").html(dqos);
+			$("#moneynowqos" ).html(0);
+			$("#qos_slider_value" ).val(dqos);
+			var mqos={$cloudproduct.mqos}-$("#qosmac_"+macqos).val();
+			$("#qos_slider" ).slider({
+				range: "max",
+				min:{$cloudproduct.dqos},
+				max:dqos,
+				value:dqos,
+				step: 1,
+				slide: function( event, ui ) {
+					$( "#qos_slider_value" ).val(ui.value);
+					$( "#amount_qos_show" ).html(dqos-ui.value);
+					getqosprice(macqos);
+				}
+			});
+		}
+	});
+});
+
+function getmemprice(mem){
+	var id={$id};
+	$.getJSON('{:U("User/Clouddown/memprice")}',{id:id,num:mem,rtime:new Date().getTime()},
+			function(data){
+				if(data.status == '1'){
+					$( "#moneynowmem_show" ).html(data.info);
+				}else{
+					layer.msg(data.info,2,8);
+				}
+	});
+}
+function getcpuprice(num){
+	var id={$id};
+	$.getJSON('{:U("User/Clouddown/cpuprice")}',{id:id,num:num,rtime:new Date().getTime()},
+			function(data){
+				if(data.status == '1'){
+					$( "#moneynowcpu_show" ).html(data.info);
+				}else{
+					layer.msg(data.info,2,8);
+				}
+	});
+}
+
+function getqosprice(vif_uuid){
+		var amountqos=$("#qos_slider_value").val();
+		var id={$id};
+		var qoscount=$("#qosmac_"+vif_uuid).val();
+		$.getJSON('{:U("User/Clouddown/qosprice")}',{id:id,amountqos:amountqos,qoscount:qoscount,vif_uuid:vif_uuid,rtime:new Date().getTime()},
+				function(data){
+					if(data.status == '1'){
+						$( "#moneynowqos_show" ).html(data.info);
+					}else{
+						layer.msg(data.info,2,8);
+					}
+		});
+
+}
+</script>
+<script>
+function checkbox(MACnum){ 
+	var strtypeid=""
+	var ipcountnum=0;
+	$("input[name='ip_id[]']").each(function(){
+		ipcountnum=ipcountnum+1; //获得总IP数
+		if ($(this).prop('checked') ==true) {
+			var val=$(this).val();//获取选中的值
+			var typeid=$("#typeid_"+val).text();
+			var MACstr=$("#MAC_"+val).text();
+			var uuid=$("#uuid_"+val).text();
+			if(MACnum==uuid){
+				strtypeid +=typeid+",";
+			}else{
+				$(this).prop("checked",false);
+			}
+		}
+	});
+	var strtypeidlength=0;
+	if(strtypeid!=""){
+	var strarrr= new Array(); 
+		strarrr=strtypeid.split(",");
+		strtypeidlength=(strarrr.length-1);
+	}
+	var ipnumber={$ipnumber};
+	if((strtypeidlength/ipnumber)>1){
+	$("input[name='ip_id[]']").removeAttr("checked");
+	}
+	if((ipcountnum/ipnumber)-(strtypeidlength/ipnumber)<1){
+	$("input[name='ip_id[]']").removeAttr("checked");
+	}
+	if(ipnumber>1){
+		var iptypeid0="{$iptypeid0}";
+		var strarr= new Array(); 
+		strarr=iptypeid0.split(",");
+		if(strtypeid!=""){
+			var strarrrr= new Array(); 
+			strarrrr=strtypeid.split(",");
+		}
+		$.each(strarr, function(key, val) {
+			if(val!=""){
+				var number=0;
+				$.each(strarrrr, function(keys, vall){
+					if(val==vall){number=number+1;}
+				});
+				if(number==2){$("input[name='ip_id[]']").removeAttr("checked");}
+			}
+		});
+	}
+	var restrtypeid="";
+	$("input[name='ip_id[]']").each(function(){
+		if ($(this).prop('checked') ==true) {
+			var val=$(this).val();
+			var typeidid=$("#typeid_"+val).text();
+				restrtypeid +=typeidid+",";
+		}
+	});
+	var moneys=0;
+	var ipcounumber=0;
+	var itemv={$cloudproduct.moneyip};
+	var countday={$countdays};
+	if(ipnumber>1){
+		if(restrtypeid!=""){
+			var strarrrrr1= new Array(); 
+			strarrrrr1=restrtypeid.split(",");
+			ipcouns1=(strarrrrr1.length-1);
+			if((ipcouns1/ipnumber)==1){
+				ipcounumber=(ipcouns1/ipnumber);
+				moneys=moneys+Math.round(((itemv/365)*1*countday)*100)/100;
+			}
+		}
+	}else{
+		var iptypeid0="{$iptypeid0}";
+		var strarrrr1= new Array(); 
+		strarrrr1=iptypeid0.split(",");
+		var ipcouns=0;
+		if(restrtypeid!=""){
+			var strarrrrr= new Array(); 
+			strarrrrr=restrtypeid.split(",");
+			ipcouns=(strarrrrr.length-1);
+			$.each(strarrrrr, function(keys, vall) {
+				if(vall!=""){
+					$.each(strarrrr1, function(key, val){
+						if(vall=val){moneys=moneys+Math.round(((itemv/365)*1*countday)*100)/100;}
+					});
+				}
+			});
+		}
+		ipcounumber=ipcouns;
+	}
+	$( "#amount_ip_show" ).html(ipcounumber);
+	$( "#moneynowip_show" ).html(moneys);
+	var deleteip="";
+	var deletemac="";
+	$("input[name='ip_id[]']").each(function(){
+		if ($(this).prop('checked') ==true){
+			var val=$(this).val();
+			if(deleteip==""){
+				deleteip = $("#ip_"+val).text();
+			}else{
+				deleteip= deleteip + "," +$("#ip_"+val).text();
+			}
+				deletemac=$("#MAC_"+val).text();
+		}
+	});
+	$( "#deleteip" ).val(deleteip);
+	$( "#deletemac" ).val(deletemac);
+	
+}
+</script>
+</body>
+</html>

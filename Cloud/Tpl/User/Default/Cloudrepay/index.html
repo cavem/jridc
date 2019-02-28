@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云主机续费-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>云主机续费</b>
+		</div>
+		
+		<div class="mainM">
+		<div id="search" class="forms">
+			
+		</div>
+			<form id="subform" name="subform" action="{:U("User/Cloudrepay/dorepay")}" method="post">
+			<table class="table">
+				<tr>
+					<th width="150px;">云主机名</th>
+					<td style="text-align:left;">{$cloud.cloudname}</td>
+				</tr>	
+				<tr>
+					<th>开通时间</th>
+					<td style="text-align:left;">{$cloud.starttime|date='Y-m-d H:i:s',###}</td>
+				</tr>	
+				<tr>
+					<th>结束时间</th>
+					<td style="text-align:left;">{$cloud.endtime|date='Y-m-d H:i:s',###}</td>
+				</tr>	
+				<tr>
+					<th>付款周期</th>
+					<td style="text-align:left;">
+						<if condition="$cloudproduct['canmonth'] eq '1'">
+						<input type="radio" name="year" value="{$cloudproduct.PAY_Month}" onclick="getprice(this.value)">月付
+						</if>
+						<if condition="$cloudproduct['canseason'] eq '1'">
+						<input type="radio" name="year" value="{$cloudproduct.PAY_Season}" onclick="getprice(this.value)">季度
+						</if>
+						<if condition="$cloudproduct['canhalfyear'] eq '1'">
+						<input type="radio" name="year" value="{$cloudproduct.PAY_halfyear}" onclick="getprice(this.value)">半年
+						</if>
+						<input type="radio" name="year" checked value="{$cloudproduct.PAY_Nextyear}" onclick="getprice(this.value)">一年付
+						<input type="radio" name="year" value="{$cloudproduct.PAY_2year}" onclick="getprice(this.value)">两年付
+						<input type="radio" name="year" value="{$cloudproduct.PAY_3year}" onclick="getprice(this.value)">三年付
+						<input type="radio" name="year" value="{$cloudproduct.PAY_4year}" onclick="getprice(this.value)">四年付
+						<input type="radio" name="year" value="{$cloudproduct.PAY_5year}" onclick="getprice(this.value)">五年付
+					</td>
+				</tr>
+				<if condition="$cloud['istest'] eq 'y'">
+					<tr>
+						<th>优惠券</th>
+						<td style="text-align:left;">
+								<select  id="coupon" name="coupon">
+									<option value="0">请选择</option>
+									<volist name="coupon" id="vo"> 
+										<option value="{$vo.id}">{$vo.couponnum}(金额{$vo.couponmoney})</option>
+									</volist>
+								</select>	
+						</td>
+					</tr>
+				</if>		
+				
+				
+				<tr>
+					<th>金额</th>
+					<td style="text-align:left;">
+					<span id="moneynow">0.00</span>元
+					</td>
+				</tr>
+						
+			</table>
+			<form id="subform" name="subform" action="{:U('User/Order/cloudopen')}" method="post">
+			<input name="id" id="id" type="hidden" value="{$cloud.id}">
+			<button class="btn btnOrg1 btnsubmitrepays" type="submit" >马上续费</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+<script>
+$(function () {
+	$(".btnsubmitrepay").click(function(){ 
+		layer.confirm('确定续费当前云主机?',function(index){
+			var data={id:$('#id').val(),year:$('input[name="year"]:checked').val()};
+			<if condition="$cloud['istest'] eq 'y'">var data={id:$('#id').val(),year:$('input[name="year"]:checked').val(),coupon:$('#coupon').val()};</if>
+			$(this).ajaxSubmit({	
+			type:"post",  //提交方式  	
+			dataType:  'json',		
+			data:data,
+			url:'{:U("User/Cloudrepay/dorepay")}',
+			beforeSend: function() {
+				var loadi = layer.load('提交订单中');//提示框
+			},
+			success: function(data) {
+				if(data.status == '1'){
+					layer.msg(data.info,2,1);
+					setTimeout(function(){
+						location.href =data.url;
+					},2000);
+				}else{
+					layer.msg(data.info,2,8);
+				}
+			}
+			});
+	});
+});
+
+});
+getprice($('input[name="year"]:checked').val());
+function getprice(year){
+	var money={$money};
+	var id=$('#id').val();
+	<if condition="$cloud['istest'] eq 'y'">
+		$("#coupon option").each(function(){
+			$(this).remove();
+		});	
+		$("<option value='0'>请选择</option>").appendTo($("#coupon"));
+	</if>
+	$.getJSON('{:U("User/Cloudrepay/repayprice")}',{money:money,year:year,id:id},function(data){
+		if(data!=null){
+			$("#moneynow" ).html(data.money);
+			<if condition="$cloud['istest'] eq 'y'">
+				$.each(data.coupon,function(idx,item){
+					$("<option value="+item.id+">"+item.couponnum+"(金额"+item.couponmoney+")</option>").appendTo($("#coupon"));
+				});
+			</if>
+		}
+	});
+}
+
+
+</script>
+</body>
+</html>

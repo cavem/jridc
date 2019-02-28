@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>提交工单-{$Web.Config.site_name}</title>
+<include file="Common:inc_js_cs"/>
+<script>
+function setTempContent(){
+ 	$.ajax({
+		url:'{:U("Admin/Ajax/getWOtc")}',
+		cache:false,
+		dataType:"json",
+		data:{'id':$("#type").val()},
+		type:"GET",
+		success:function(data){
+			$("#contenttext").html(data);
+		}
+	});
+}
+//验证上传文件大小
+var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+var file_able = new Array();
+file_able["upfile1"] = true;
+file_able['upfile2'] = true;
+file_able['upfile3'] = true;
+function filechange(target){
+	var e_id = $(target).attr('id');
+	//验证文件类型
+    photoExt=target.value.substr(target.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+    if(photoExt!='.jpg' & photoExt!='.jpeg' & photoExt!='.pjpeg' & photoExt!='.png' & photoExt!='.gif' & photoExt!='.bmp'){
+		alert("图片格式不正确!");
+		clearObj(e_id);
+		return false;
+    }
+	var fileSize = 0;
+	if (isIE && !target.files) {
+		var filePath = target.value;
+		var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+		var file = fileSystem.GetFile (filePath);
+		fileSize = file.Size;
+	} else {
+		fileSize = target.files[0].size;
+	}
+	var size = fileSize / (1024*1024);
+	if(size>10){
+		alert("附件不能大于10M");
+		file_able[e_id] = false;
+	}else{
+		file_able[e_id] = true;
+	}
+	$("#submit_btn").removeAttr('disabled');
+	for(var i=1;i<=arr_count(file_able);i++){
+		if(!file_able['upfile'+i]){
+			$('#submit_btn').attr("disabled","disabled");
+			clearObj(e_id);
+		}
+	}
+}
+function clearObj(e_id){
+	if (document.getElementById(e_id).outerHTML) {
+		document.getElementById(e_id).outerHTML = document.getElementById(e_id).outerHTML;
+	} else {
+		document.getElementById(e_id).value = "";
+	}
+	document.getElementById(e_id).focus();
+}
+function arr_count(o){
+	var t = typeof o;
+	if(t == 'string'){
+		return o.length;
+	}else if(t == 'object'){
+		var n = 0;
+		for(var i in o){n++;}
+		return n;
+	}
+	return t;
+}
+</script>
+</head>
+<body>
+<include file="Common:inc_header"/>
+<!--主体-->
+<div id="content">
+<!--菜单-->
+<include file="Common:inc_left"/>
+	<!--内容-->
+	<div class="main">
+		<div class="mainT">
+			<b>提交工单</b>
+			<span>
+				<a class="btn btnBlue2" href="{:U('User/Support/index')}">我的工单</a>
+			</span>
+		</div>
+		<div class="mainM">
+			<div class="tabTbox">
+				<ul class="tabT" id="tabT1">
+					<li class="now">新建工单</li>
+				</ul>
+			</div>
+			<div class="blockBody">
+				<div class="forms">
+					<form action="{:U('User/Support/add')}" class='formvalidate' method="post" enctype="multipart/form-data">
+					<div class="item">
+						<b style="width: 180px;">类型：</b>
+						<select name='type' id='type' class='' onchange='setTempContent();'>
+							<volist name='types' id='vo'>
+							<option value='{$vo.id}' disabled>{$vo.name}</option>
+								<volist name='vo.childs' id='voo'>
+								<option value='{$voo.id}'>&nbsp;&nbsp;&nbsp;&nbsp;{$voo.name}</option>
+								</volist>
+							</volist>
+						</select>
+					</div>
+					<div class="item">
+						<b style="width:180px;">标题：</b>
+						<input type='text' name='title' id='title' class='edit_inp' validate='{required:true}'/>
+					</div>
+					<div class="item" style='height:'>
+						<b style="width:180px;">内容：</b>
+						<textarea name='content' id='contenttext' rows="15" cols="100"></textarea>
+					</div>
+					<div class="item">
+						<b style="width:180px;">上传附件：</b>
+						<input type="file" name="upfile1" id="upfile1" onchange='filechange(this);'/> 
+					</div>
+					<div class="item">
+						<b style="width:180px;">上传附件：</b>
+						<input type="file" name="upfile2" id="upfile2" onchange='filechange(this);'/> 
+					</div>
+					<div class="item">
+						<b style="width:180px;">上传附件：</b>
+						<input type="file" name="upfile3" id="upfile3" onchange='filechange(this);'/> 
+					</div>
+					<div class="item">
+						<button type="submit" class="btn btnOrg2 btnsubmitfapiaoinfo" id='submit_btn' style="margin-left:170px;">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--尾部-->
+<include file="Common:inc_footer"/>
+
+</body>
+</html>
